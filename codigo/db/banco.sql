@@ -14,13 +14,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `db_quarter_horse` DEFAULT CHARACTER SET utf8 ;
+USE `db_quarter_horse` ;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`tb_cavalo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tb_cavalo` (
+CREATE TABLE IF NOT EXISTS `db_quarter_horse`.`tb_cavalo` (
   `id_cavalo` INT NOT NULL AUTO_INCREMENT,
   `nome_cavalo` VARCHAR(45) NOT NULL,
   `raca_cavalo` VARCHAR(45) NOT NULL,
@@ -35,7 +35,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tb_usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tb_usuario` (
+CREATE TABLE IF NOT EXISTS `db_quarter_horse`.`tb_usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `nome_usuario` VARCHAR(45) NOT NULL,
   `email_usuario` VARCHAR(45) NOT NULL,
@@ -48,7 +48,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tb_lote`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tb_lote` (
+CREATE TABLE IF NOT EXISTS `db_quarter_horse`.`tb_lote` (
   `id_lote` INT NOT NULL AUTO_INCREMENT,
   `valor_lote` DECIMAL(10,2) NOT NULL,
   `data_lote` DATETIME NOT NULL,
@@ -68,7 +68,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tb_lance`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tb_lance` (
+CREATE TABLE IF NOT EXISTS `db_quarter_horse`.`tb_lance` (
   `id_lance` INT NOT NULL AUTO_INCREMENT,
   `valor_lance` DECIMAL(10,2) NOT NULL,
   `data_lance` DATETIME NOT NULL,
@@ -93,7 +93,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tb_pai_cavalo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tb_pai_cavalo` (
+CREATE TABLE IF NOT EXISTS `db_quarter_horse`.`tb_pai_cavalo` (
   `idtb_pai_cavalo` INT NOT NULL,
   PRIMARY KEY (`idtb_pai_cavalo`))
 ENGINE = InnoDB;
