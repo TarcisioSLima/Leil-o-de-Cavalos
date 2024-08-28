@@ -4,80 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quarter Horse</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
     <script src="https://kit.fontawesome.com/bc42253982.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.t_header{
-    background-color: #282e09;
-}
-
-.t_header ul {
-    list-style: none; /* Remove marcadores de lista */
-    margin: 0; /* Remove margens padrão */
-    padding: 0; /* Remove padding padrão */
-    display: flex; /* Define o display como flexbox */
-}
-
-.t_header li {
-    margin-right: 10px; /* Adiciona espaço entre os itens da lista */
-}
-
-.t_header li:last-child { 
-    margin-right: 0; 
-}
-.t_header li:first-child { 
-    margin-left: 10px; 
-}
-
-.t_header a {
-    display: block; 
-    padding: 10px 15px; 
-    background-color:#282e09; 
-    color: #b6ab9e; 
-    text-decoration: none; 
-    border-radius: 5px; 
-}
-
-.t_header a:hover {
-    background-color: #53422a; /* Cor de fundo ao passar o mouse */
-}    
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    margin: 0;
-    padding: 0;
-}
-
-.header {
-    background-color: #b6ab9e;
-    color: white;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.header .auth-buttons button {
-    background-color: #282e09;
-    color: #b6ab9e;
-    border: none;
-    padding: 10px 15px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 0.25rem;
-}
-
-.header .auth-buttons button:hover {
-    background-color: #191c06;
-    
-}
-
 .main-content {
     padding: 20px;
     display: flex;
@@ -254,7 +184,7 @@ p {
     <div class="t_header">
         <ul>
             <li><a href="#">Início</a></li>
-            <li><a href="#">Quem Somos</a></li>
+            <li><a href="quarter_horse.html">Quem Somos</a></li>
             <li><a href="#">Anunciar</a></li>
         </ul>
     </div>
