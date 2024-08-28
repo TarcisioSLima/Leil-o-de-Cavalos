@@ -232,7 +232,7 @@ p {
 <body>
     <header class="header">
         <div class="logo" >
-           <img src="/codigo/public/assets/img/logo_verde.png" alt="" style="max-width: 200px; max-height: 200px;">
+           <img src="assets/img/logo_verde.png" alt="" style="max-width: 200px; max-height: 200px;">
         </div>
 
         <div class="search-container">
@@ -274,13 +274,13 @@ p {
 
 
         <div class="main-content"> 
-            <img src="/codigo/public/assets/img/test.png" alt="" class="img_i"> 
+            <img src="assets/img/test.png" alt="" class="img_i"> 
         </div>
     </div>
 
     <div class="lotes">
         <div class="ls">
-            <img src="/codigo/public/assets/img/horse.jpg" alt=""> <br>
+            <img src="assets/img/horse.jpg" alt=""> <br>
             <hr> <br>
             <h4>
                 Item de Exemplo 1
@@ -311,7 +311,7 @@ p {
         
         </div>
         <div class="ls">
-            <img src="/codigo/public/assets/img/horse.jpg" alt=""> <br>
+            <img src="assets/img/horse.jpg" alt=""> <br>
             <hr> <br>
             <h4>
                 Item de Exemplo 2
@@ -343,7 +343,7 @@ p {
 
         </div>
         <div class="ls">
-            <img src="/codigo/public/assets/img/horse.jpg" alt=""> <br>
+            <img src="assets/img/horse.jpg" alt=""> <br>
             <hr> <br>
             <h4>
                 Item de Exemplo 3
@@ -372,7 +372,7 @@ p {
                
         </div>
         <div class="ls">
-                <img src="/codigo/public/assets/img/horse.jpg" alt=""> <br> <hr> <br>
+                <img src="assets/img/horse.jpg" alt=""> <br> <hr> <br>
                 <h4>
                     Item de Exemplo 4
                 </h4>
