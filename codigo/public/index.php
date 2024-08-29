@@ -8,155 +8,154 @@
     <script src="https://kit.fontawesome.com/bc42253982.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-.main-content {
-    padding: 20px;
-    display: flex;
-    gap: 20px;
-}
+        .main-content {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
 
-.search-container {
-  display: flex;
-  width: 300px; 
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #282e09 ;
-  color: #b6ab9e;
-}
-.search-box {
-  padding: 10px;
-  border: none;
-  width: 100%;
-  font-size: 16px;
-  background-color: transparent;
-  
-}
+        .search-container {
+        display: flex;
+        width: 300px; 
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #282e09 ;
+        color: #b6ab9e;
+        }
+        .search-box {
+        padding: 10px;
+        border: none;
+        width: 100%;
+        font-size: 16px;
+        background-color: transparent;
+        
+        }
 
-.search-box::placeholder {
-  color: #b6ab9e; 
-}
+        .search-box::placeholder {
+        color: #b6ab9e; 
+        }
 
-.search-button {
-  background-color: transparent;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
+        .search-button {
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        }
 
-.search-icon {
-  width: 20px; 
-  color: #b6ab9e; 
-}
+        .search-icon {
+        width: 20px; 
+        color: #b6ab9e; 
+        }
 
-.u_categorias {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: 10%;
-    padding-top: 0;
-    list-style: none;
-    border: 1px solid rgb(210, 209, 209); 
-    background-color: rgb(247, 247, 247);
-    border-radius: 10px;
-    overflow: hidden;
-}
+        .u_categorias {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 10%;
+            padding-top: 0;
+            list-style: none;
+            border: 1px solid rgb(210, 209, 209); 
+            background-color: rgb(247, 247, 247);
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-.u_categorias a {
-    text-decoration: none;
-    color: #191c06;
-    display: flex;
-    align-items: center;
-    padding: 15px 20px; 
-    border-bottom: 1px solid rgb(210, 209, 209);
-     
-}
+        .u_categorias a {
+            text-decoration: none;
+            color: #191c06;
+            display: flex;
+            align-items: center;
+            padding: 15px 20px; 
+            border-bottom: 1px solid rgb(210, 209, 209);
+            
+        }
 
-.u_categorias i {
-    margin-right: 6px; 
-    font-size: 1.0em; 
-    padding: 0;
-}
+        .u_categorias i {
+            margin-right: 6px; 
+            font-size: 1.0em; 
+            padding: 0;
+        }
 
-.img_i {
-    max-width: 100%;
-    border-radius: 10px;
-    
-    
-}
-.search-container {
-    display: flex;
-    align-items: center;
-}
+        .img_i {
+            max-width: 100%;
+            border-radius: 10px;
+            
+            
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
 
-.main-content {
-    width: 75%; 
-    padding: 0;
-    margin-left: 10%;
-}
+        .main-content {
+            width: 75%; 
+            padding: 0;
+            margin-left: 10%;
+        }
 
-.card_categorias{
-    width: 25%;
-    
-}
+        .card_categorias{
+            width: 25%;
+            
+        }
 
-.container {
-    display: flex;
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 20px;
-    
-}
+        .container {
+            display: flex;
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px;
+            
+        }
 
-.lotes {
-    display: flex;
-    align-items: center;
-}
-.lotes div{
-    margin-left: 2%;    
-}
+        .lotes {
+            display: flex;
+            align-items: center;
+        }
+        .lotes div{
+            margin-left: 2%;    
+        }
 
-.ul_numeros {
-    list-style: none;
-    display: flex;
-}
+        .ul_numeros {
+            list-style: none;
+            display: flex;
+        }
 
-.ul_numeros li {
-    margin-right: 50px;
-}
+        .ul_numeros li {
+            margin-right: 50px;
+        }
 
-.lotes {
-    text-align: left;
-    
-}
-p {
-    margin-left: 10px;
-}
+        .lotes {
+            text-align: left;
+            
+        }
+        p {
+            margin-left: 10px;
+        }
 
-.lotes ul {
-    list-style: none;
-    display: flex;
-    margin-right: 10px;
-    text-align: center;
-    flex-direction: column;
-    
-}
-.uls {
-    display: flex;
-    
-    
-}
+        .lotes ul {
+            list-style: none;
+            display: flex;
+            margin-right: 10px;
+            text-align: center;
+            flex-direction: column;
+            
+        }
+        .uls {
+            display: flex;
+            
+            
+        }
 
-.nuns {
-    font-size: 30px;
-}
+        .nuns {
+            font-size: 30px;
+        }
 
-.ls {
-    border: solid 2px rgb(216, 216, 216);
-    border-radius: 5px;
-}
-.u_categorias li:hover{
-    background-color: #dedddd;
-}
-
+        .ls {
+            border: solid 2px rgb(216, 216, 216);
+            border-radius: 5px;
+        }
+        .u_categorias li:hover{
+            background-color: #dedddd;
+        }
     </style>
 </head>
 <body>
@@ -170,9 +169,7 @@ p {
             <button type="submit" class="search-button">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
             </button>
-          </div>
-            
-
+          </div>    
         
         <div class="auth-buttons">
             <button id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()"><i class="fa-solid fa-user-check"></i> Login</button>
