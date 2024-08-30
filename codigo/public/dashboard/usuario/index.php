@@ -70,14 +70,14 @@
 
     <div class="t_header">
         <ul>
-            <li><a href="index.php">Início</a></li>
+            <li><a href="public/index.php">Início</a></li>
             <li><a href="#">Quem Somos</a></li>
         </ul>
     </div>
 
     <div>
         <p>Preencha os campos abaixo e entre em sua conta!</p> <br>
-        <form action="/codigo/controle/controle_usuario.php" method="POST">
+        <form action="/controle/controle_usuario.php?caso=login" method="POST">
             <ul>
                 <li>
                     <input type="text" name="email_usuario" placeholder="Email"> 
