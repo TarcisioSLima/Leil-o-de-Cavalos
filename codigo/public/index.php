@@ -172,8 +172,11 @@
           </div>    
         
         <div class="auth-buttons">
-            <button id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()"><i class="fa-solid fa-user-check"></i> Login</button>
-            <button id="button2" class="" onmouseover="animate_y2()" onmouseout="animate_n2()"><i class="fa-solid fa-user-plus"></i> Cadastrar-se</button>
+            <ul>
+                <li><a href="dashboard/usuario/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()"><i class="fa-solid fa-user-check"></i> Login</a></li>
+                <li><a href="dashboard/usuario/form.php" id="button2" class="" onmouseover="animate_y2()" onmouseout="animate_n2()"><i class="fa-solid fa-user-plus"></i> Cadastrar-se</a></li>
+            </ul>
+        
         </div>
        
     </header>

@@ -54,17 +54,26 @@ body {
     align-items: center;
 }
 
-.header .auth-buttons button {
+.header .auth-buttons a {
     background-color: #282e09; /* auth-buttons são os botões de cadastro e login, */
     color: #b6ab9e;            /* não lembro porque botei esse nome :/ */
     border: none;
-    padding: 10px 15px;
     margin-left: 10px;
     cursor: pointer;
     border-radius: 0.25rem;
+    display: block; 
+    padding: 10px 15px; 
+    text-decoration: none; 
 }
 
-.header .auth-buttons button:hover {
+.header .auth-buttons ul {
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+}
+
+.header .auth-buttons a:hover {
     background-color: #191c06;
     
 }
