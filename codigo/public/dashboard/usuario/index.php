@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
     .t_header{
         background-color: #282e09;
     }
@@ -75,22 +70,25 @@
         </ul>
     </div>
 
-    <div>
-        <p>Preencha os campos abaixo e entre em sua conta!</p> <br>
-        <form action="/controle/controle_usuario.php?caso=login" method="POST">
-            <ul>
-                <li>
-                    <input type="text" name="email_usuario" placeholder="Email"> 
-                </li>
-                <li>
-                    <input type="text" name="senha_usuario" placeholder="Senha"> 
-                </li>
-            </ul>
-
-            <button type="submit">Acessar</button>
-            
-
-        </form>
-    </div>
+    
+        <?php if (isset($_GET["id_usuario"])) { $id_usuario = $_REQUEST['id_usuario']; ?>
+        <div style="text-align: center;">
+            <p>Primeiro confirme seu email e senha!</p> <br>
+            <form action="/controle/controle_usuario.php?caso=direcionar&id_usuario=<?php echo $id_usuario ;?>" method="POST">
+                <p><input type="text" name="email_usuario" placeholder="Email" style="text-align: center;"></p>
+                <p><input type="text" name="senha_usuario" placeholder="Senha" style="text-align: center;"></p>
+                <button type="submit">Acessar</button>
+            </form>
+        </div>
+        <?php } else {?>
+        <div style="text-align: center;">
+            <p>Preencha os campos abaixo e entre em sua conta!</p> <br>
+            <form action="/controle/controle_usuario.php?caso=login" method="POST">    
+                <p><input type="text" name="email_usuario" placeholder="Email" style="text-align: center;"></p>
+                <p><input type="text" name="senha_usuario" placeholder="Senha" style="text-align: center;"></p> 
+                <button type="submit">Acessar</button>
+            </form>
+        </div>
+        <?php }?>
 </body>
 </html>

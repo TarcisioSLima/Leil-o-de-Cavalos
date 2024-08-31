@@ -12,7 +12,7 @@ function redirecionar($action, $mensagem){
             echo "
                 <script>
                     window.alert('$mensagem');
-                    window.location.href='/public/index.php';
+                    window.location.href='/public/dashboard/usuario/index.php';
                 </script>";
                 exit();
             break;
@@ -23,7 +23,9 @@ function redirecionar($action, $mensagem){
                 window.location.href='/public/dashboard/usuario/form.php';
             </script>";
             break;
-
+        case 'perfil':
+            
+            break;
         default:
             # code...
             break;

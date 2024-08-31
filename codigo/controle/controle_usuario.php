@@ -18,7 +18,9 @@
                 $_SESSION["id_usuario"] = $dados["id_usuario"];
                 $_SESSION["email_usuario"] = $dados["email_usuario"];
                 $_SESSION["nome_usuario"] = $dados["nome_usuario"];
+                $_SESSION["senha_usuario"] = $dados["senha_usuario"];
                 $_SESSION["tipo_usuario"] = $dados["tipo_usuario"];
+                $_SESSION["p_modalidade"] = $dados["p_modalidade"];
                 redirecionar('pagina_inicial', '');
             }else redirecionar("login_erro", "Email ou Senha incorretos. Tente novamente!");
             break;
@@ -39,8 +41,28 @@
                 redirecionar("pagina_inicial", "");
             } else redirecionar("cadastro_erro", "Já existe um usuário cadastrado com esse Email!");
             break;
-        default:
-            # code...
+        case 'direcionar':
+                $id_usuario = $_REQUEST["id_usuario"];
+                $senha_digitada = $_REQUEST["senha_usuario"]; $email_digitado = $_REQUEST["email_usuario"];
+                $sql = "SELECT * FROM tb_usuario WHERE id_usuario = $id_usuario";
+                $retorno = conectarDB($sql); $dados = mysqli_fetch_array($retorno);
+                $senha_usuario = $dados["senha_usuario"]; $email_usuario = $dados["email_usuario"];
+            if ($senha_digitada ==  $senha_usuario AND $email_digitado == $email_usuario) {
+                echo "
+                <script>
+                    window.location.href='/public/dashboard/usuario/perfil.php?editar=n';
+                </script>";
+            }else {
+                echo "
+                <script>
+                    window.alert('Email ou Senha digitados incorretos! tente novamente...');
+                    window.location.href='/public/dashboard/usuario/perfil.php';
+                </script>";
+            }
+
+            break;
+            default:
+            
             break;
     }
 
