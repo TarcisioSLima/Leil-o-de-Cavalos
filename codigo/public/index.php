@@ -12,6 +12,11 @@ session_start();
     <script src="https://kit.fontawesome.com/bc42253982.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
         .main-content {
             padding: 20px;
             display: flex;
