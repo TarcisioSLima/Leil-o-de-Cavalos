@@ -243,19 +243,68 @@ session_start();
         
             <div class="card_categorias">
                 <ul class="u_categorias">
-                    <li><a href=""><i class="fa-solid fa-box"></i>Categoria de exemplo 1</a></li>
-                    <li><a href=""><i class="fa-solid fa-litecoin-sign"></i>Categoria de exemplo 2</a></li>
-                    <li><a href=""><i class="fa-solid fa-volleyball"></i>Categoria de exemplo 3</a></li>
-                    <li><a href=""><i class="fa-solid fa-horse"></i>Categoria de exemplo 4</a></li>
-                    <li><a href=""><i class="fa-solid fa-display"></i>Categoria de exemplo 5</a></li>
-                    <li><a href=""><i class="fa-solid fa-person"></i>Categoria de exemplo 6</a></li>  
+                    <li><a href="index.php?caso=destaque&cavalo_d=1">
+                        <i class="fa-solid fa-box"></i>Categoria de exemplo 1</a>
+                    </li>
+                    <li><a href="index.php?caso=destaque&cavalo_d=2">
+                        <i class="fa-solid fa-litecoin-sign"></i>Categoria de exemplo 2</a>
+                    </li>
+                    <li><a href="index.php?caso=destaque&cavalo_d=3">
+                        <i class="fa-solid fa-volleyball"></i>Categoria de exemplo 3</a>
+                    </li>
+                    <li><a href="index.php?caso=destaque&cavalo_d=4">
+                        <i class="fa-solid fa-horse"></i>Categoria de exemplo 4</a>
+                    </li>
+                    <li><a href="index.php?caso=destaque&cavalo_d=5">
+                        <i class="fa-solid fa-display"></i>Categoria de exemplo 5</a>
+                    </li>
+                    <li><a href="index.php?caso=destaque&cavalo_d=6">
+                        <i class="fa-solid fa-person"></i>Categoria de exemplo 6</a>
+                    </li>  
                 </ul>
             </div>
 
+        <?php if (isset($_REQUEST["cavalo_d"])) {
+                require_once "../db/conexao.php";
 
-        <div class="main-content"> 
-            <img src="assets/img/test.png" alt="" class="img_i"> 
-        </div>
+                $cavalo_d = $_REQUEST['cavalo_d'];
+                $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
+                $retorno = conectarDB($sql);
+                $contador = 1;
+                while ($dados = mysqli_fetch_array($retorno)) { 
+                    if ($contador == $cavalo_d) {
+                        $dados_basicos = [
+                                    $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
+                                    $raca_cavalo = ("Raça: " . $dados["raca_cavalo"]),
+                                    $pelagem_cavalo = ("Pelagem: " . $dados["pelagem_cavalo"]),
+                                    $premio_cavalo = ("Prémio: " . $dados["premio_cavalo"]),
+                                    $modalidade_cavalo = ("Modalidade: " . $dados["modalidade_cavalo"]),];
+                        $img_cavalo = $dados["img_cavalo"];
+                        $destaque = $dados["destaque"];
+                        $situacao_cavalo = $dados["situacao_cavalo"];                                                                    
+                    }
+                    $contador += 1;
+                }?>
+                <div class="main-content">
+                    <ul>
+                        <?php for ($i=0; $i < 5; $i++) {?>
+                        <li>
+                            <?php echo $dados_basicos[$i] ;?>
+                        </li>
+                       <?php } ?>
+                    </ul>
+                    <ul>
+                        <img src="<?php $img_cavalo ?>" alt="imagem">
+                    </ul>
+                </div>
+
+        <?php } else{ ?>
+            <div class="main-content"> 
+                <img src="assets/img/test.png" alt="" class="img_i"> 
+            </div>
+        <?php } ?>
+    
+    
     </div>
 
     <div class="lotes">
