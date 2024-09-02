@@ -19,6 +19,7 @@ CREATE TABLE `tb_cavalo` (
   `pelagem_cavalo` varchar(45) NOT NULL,
   `premio_cavalo` varchar(55) DEFAULT NULL,
   `situacao_cavalo` enum('Ativo','Inativo','Vendido') NOT NULL,
+  `modalidade_cavalo` enum('3 Tambores','Laço','Vaquejada') NOT NULL,
   `img_cavalo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_cavalo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -45,7 +46,6 @@ CREATE TABLE `tb_lote` (
   `valor_lote` decimal(10,2) NOT NULL,
   `data_lote` datetime NOT NULL,
   `estado_lote` enum('Disponível','Finalizado','Cancelado') NOT NULL,
-  `modalidade_cavalo` enum('Venda','Leilão') NOT NULL,
   `tb_cavalo_id_cavalo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_lote`),
   KEY `tb_cavalo_id_cavalo` (`tb_cavalo_id_cavalo`),
@@ -60,7 +60,7 @@ CREATE TABLE `tb_usuario` (
   `email_usuario` varchar(45) NOT NULL,
   `senha_usuario` varchar(45) NOT NULL,
   `tipo_usuario` enum('Admin','Cliente') DEFAULT 'Cliente',
-  `p_modalidade` enum('-','Venda','Leilão') DEFAULT '-',
+  `p_modalidade` enum('-','3 Tambores','Laço','Vaquejada') DEFAULT '-',
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -69,4 +69,4 @@ INSERT INTO `tb_usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_
 (6,	'fernando',	'mortinboludo@gmail.com',	'321',	'Cliente',	'-')
 ON DUPLICATE KEY UPDATE `id_usuario` = VALUES(`id_usuario`), `nome_usuario` = VALUES(`nome_usuario`), `email_usuario` = VALUES(`email_usuario`), `senha_usuario` = VALUES(`senha_usuario`), `tipo_usuario` = VALUES(`tipo_usuario`), `p_modalidade` = VALUES(`p_modalidade`);
 
--- 2024-08-31 18:55:51
+-- 2024-09-02 12:37:01

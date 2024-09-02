@@ -238,12 +238,12 @@ session_start();
         
             <div class="card_categorias">
                 <ul class="u_categorias">
-                    <li><a href="#"><i class="fa-solid fa-box"></i>Categoria de exemplo 1</a></li>
-                    <li><a href="#"><i class="fa-solid fa-litecoin-sign"></i>Categoria de exemplo 2</a></li>
-                    <li><a href="#"><i class="fa-solid fa-volleyball"></i>Categoria de exemplo 3</a></li>
-                    <li><a href="#"><i class="fa-solid fa-horse"></i>Categoria de exemplo 4</a></li>
-                    <li><a href="#"><i class="fa-solid fa-display"></i>Categoria de exemplo 5</a></li>
-                    <li><a href="#"><i class="fa-solid fa-person"></i>Categoria de exemplo 6</a></li>  
+                    <li><a href=""><i class="fa-solid fa-box"></i>Categoria de exemplo 1</a></li>
+                    <li><a href=""><i class="fa-solid fa-litecoin-sign"></i>Categoria de exemplo 2</a></li>
+                    <li><a href=""><i class="fa-solid fa-volleyball"></i>Categoria de exemplo 3</a></li>
+                    <li><a href=""><i class="fa-solid fa-horse"></i>Categoria de exemplo 4</a></li>
+                    <li><a href=""><i class="fa-solid fa-display"></i>Categoria de exemplo 5</a></li>
+                    <li><a href=""><i class="fa-solid fa-person"></i>Categoria de exemplo 6</a></li>  
                 </ul>
             </div>
 
