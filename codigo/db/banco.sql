@@ -20,10 +20,23 @@ CREATE TABLE `tb_cavalo` (
   `premio_cavalo` varchar(55) DEFAULT NULL,
   `situacao_cavalo` enum('Ativo','Inativo','Vendido') NOT NULL,
   `modalidade_cavalo` enum('3 Tambores','Laço','Vaquejada') NOT NULL,
+  `destaque` enum('Sim','Não') NOT NULL,
   `img_cavalo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_cavalo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `tb_cavalo` (`id_cavalo`, `nome_cavalo`, `raca_cavalo`, `pelagem_cavalo`, `premio_cavalo`, `situacao_cavalo`, `modalidade_cavalo`, `destaque`, `img_cavalo`) VALUES
+(1,	'Tornado',	'Puro Sangue',	'Alazão',	'Troféu de Velocidade',	'Ativo',	'3 Tambores',	'Sim',	'tornado.jpg'),
+(2,	'Relâmpago',	'Mangalarga',	'Tordilho',	'Troféu de Resistência',	'Vendido',	'Laço',	'Não',	'relampago.jpg'),
+(3,	'Ventania',	'Crioulo',	'Baio',	'Medalha de Ouro',	'Ativo',	'Vaquejada',	'Sim',	'ventania.jpg'),
+(4,	'Estrela',	'Árabe',	'Preto',	'Troféu de Agilidade',	'Inativo',	'3 Tambores',	'Não',	'estrela.jpg'),
+(5,	'Diamante',	'Lusitano',	'Castanho',	'Certificado de Excelência',	'Ativo',	'Laço',	'Sim',	'diamante.jpg'),
+(6,	'Pegasus',	'Appaloosa',	'Malhado',	NULL,	'Vendido',	'Vaquejada',	'Não',	'pegasus.jpg'),
+(7,	'Fênix',	'Puro Sangue',	'Alazão',	'Troféu de Participação',	'Ativo',	'3 Tambores',	'Sim',	'fenix.jpg'),
+(8,	'Jatobá',	'Mangalarga Marchador',	'Lobuno',	NULL,	'Inativo',	'Laço',	'Não',	'jatoba.jpg'),
+(9,	'Caramelo',	'Andaluz',	'Palomino',	'Troféu de Estilo',	'Vendido',	'Vaquejada',	'Sim',	'caramelo.jpg'),
+(10,	'Aurora',	'Quarto de Milha',	'Rosilho',	'Medalha de Prata',	'Ativo',	'3 Tambores',	'Sim',	'aurora.jpg')
+ON DUPLICATE KEY UPDATE `id_cavalo` = VALUES(`id_cavalo`), `nome_cavalo` = VALUES(`nome_cavalo`), `raca_cavalo` = VALUES(`raca_cavalo`), `pelagem_cavalo` = VALUES(`pelagem_cavalo`), `premio_cavalo` = VALUES(`premio_cavalo`), `situacao_cavalo` = VALUES(`situacao_cavalo`), `modalidade_cavalo` = VALUES(`modalidade_cavalo`), `destaque` = VALUES(`destaque`), `img_cavalo` = VALUES(`img_cavalo`);
 
 DROP TABLE IF EXISTS `tb_lance`;
 CREATE TABLE `tb_lance` (
@@ -69,4 +82,4 @@ INSERT INTO `tb_usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_
 (6,	'fernando',	'mortinboludo@gmail.com',	'321',	'Cliente',	'-')
 ON DUPLICATE KEY UPDATE `id_usuario` = VALUES(`id_usuario`), `nome_usuario` = VALUES(`nome_usuario`), `email_usuario` = VALUES(`email_usuario`), `senha_usuario` = VALUES(`senha_usuario`), `tipo_usuario` = VALUES(`tipo_usuario`), `p_modalidade` = VALUES(`p_modalidade`);
 
--- 2024-09-02 12:37:01
+-- 2024-09-03 10:14:21

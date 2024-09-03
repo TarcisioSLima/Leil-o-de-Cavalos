@@ -11,6 +11,7 @@ session_start();
     <link rel="stylesheet" href="assets/css/nav.css">
     <script src="https://kit.fontawesome.com/bc42253982.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="assets/css/cards.css">
     <style>
         * {
         margin: 0;
@@ -266,7 +267,6 @@ session_start();
 
         <?php if (isset($_REQUEST["cavalo_d"])) {
                 require_once "../db/conexao.php";
-
                 $cavalo_d = $_REQUEST['cavalo_d'];
                 $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
                 $retorno = conectarDB($sql);
@@ -285,7 +285,7 @@ session_start();
                     }
                     $contador += 1;
                 }?>
-                <div class="main-content">
+                <div class="card">
                     <ul>
                         <?php for ($i=0; $i < 5; $i++) {?>
                         <li>
