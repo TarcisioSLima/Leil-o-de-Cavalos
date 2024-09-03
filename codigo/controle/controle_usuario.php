@@ -36,7 +36,7 @@
             $p_modalidade = $_REQUEST["p_modalidade"];
            
             $sql = "SELECT * FROM tb_usuario WHERE email_usuario = '$email_usuario'";
-            $retorno = conectarDB("select", $sql, "nada", []);
+            $retorno = conectarDB("select_comum", $sql, "nada", []);
 
             if (mysqli_num_rows($retorno) == 0) {
                 $sql = "INSERT INTO tb_usuario VALUES (NULL, ?, ?, ?, ?, ?)";

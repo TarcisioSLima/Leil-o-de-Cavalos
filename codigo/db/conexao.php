@@ -16,22 +16,11 @@
             /*---------------------------------------------------------*/
             case 'select_c_variavel':
                 /* Esperar ele fazer */
-                
+
                 break;
             /*---------------------------------------------------------*/
             case 'insert_update':
-                $stmt = mysqli_prepare($conexao, $sql);
-                
-                mysqli_stmt_bind_param($stmt, $tipos_dados, ...$dados);
-
-                mysqli_stmt_execute($stmt);
-
-                $id = mysqli_stmt_insert_id($stmt);
-
-                mysqli_stmt_close($stmt);
-                
-                return $id;
-
+                insert_update($conexao, $sql, $tipos_dados, $dados);
                 break;
             /*---------------------------------------------------------*/
             case 'delete':
@@ -40,12 +29,25 @@
             default:
                 
                 break;
-        }
-
-
-        
-        
-        
-       
+        } 
     }
+    function select_comum($conexao, $sql){
+        $retorno = mysqli_query($conexao, $sql);
+        mysqli_close($conexao);
+        return $retorno;
+    }
+    function insert_update($conexao, $sql, $tipos_dados, $dados){
+        $stmt = mysqli_prepare($conexao, $sql);
+                
+        mysqli_stmt_bind_param($stmt, $tipos_dados, ...$dados);
+
+        mysqli_stmt_execute($stmt);
+
+        $id = mysqli_stmt_insert_id($stmt);
+
+        mysqli_stmt_close($stmt);
+        
+        return $id;
+    }
+    
 ?>
