@@ -9,7 +9,7 @@
             $email_usuario = $_REQUEST["email_usuario"];
             $senha_usuario = $_REQUEST["senha_usuario"];
             $sql = "SELECT * FROM tb_usuario WHERE email_usuario = '$email_usuario' AND senha_usuario = '$senha_usuario'";
-            $retorno = conectarDB($sql);
+            $retorno = conectarDB("select_comum", $sql, "", "" );
             if (mysqli_num_rows($retorno) == 1) {
                 session_start();
                 session_destroy();
@@ -30,14 +30,20 @@
             redirecionar('pagina_inicial', '');
             break;
         case 'cadastro_usuario':
-            $nome_usuario = $_REQUEST["nome_usuario"];
-            $email_usuario = $_REQUEST["email_usuario"];
-            $senha_usuario = $_REQUEST["senha_usuario"];
+            $nome_usuario = $_REQUEST["nome_usuario"]; 
+            $email_usuario = $_REQUEST["email_usuario"]; 
+            $senha_usuario = $_REQUEST["senha_usuario"]; 
+            $p_modalidade = $_REQUEST["p_modalidade"];
+           
             $sql = "SELECT * FROM tb_usuario WHERE email_usuario = '$email_usuario'";
-            $retorno = conectarDB($sql);
+            $retorno = conectarDB("select", $sql, "nada", []);
+
             if (mysqli_num_rows($retorno) == 0) {
-                $sql = "INSERT INTO tb_usuario VALUES (NULL, '$nome_usuario', '$email_usuario', '$senha_usuario', 'Cliente')";
-                conectarDB($sql);
+                $sql = "INSERT INTO tb_usuario VALUES (NULL, ?, ?, ?, ?, ?)";
+
+                conectarDB("insert_update", $sql, "sssss", 
+                [$nome_usuario, $email_usuario, $senha_usuario, 'Cliente', $p_modalidade] );
+                
                 redirecionar("pagina_inicial", "");
             } else redirecionar("cadastro_erro", "Já existe um usuário cadastrado com esse Email!");
             break;
@@ -45,7 +51,7 @@
                 $id_usuario = $_REQUEST["id_usuario"];
                 $senha_digitada = $_REQUEST["senha_usuario"]; $email_digitado = $_REQUEST["email_usuario"];
                 $sql = "SELECT * FROM tb_usuario WHERE id_usuario = $id_usuario";
-                $retorno = conectarDB($sql); $dados = mysqli_fetch_array($retorno);
+                $retorno = conectarDB("select_normal", $sql, "", []); $dados = mysqli_fetch_array($retorno);
                 $senha_usuario = $dados["senha_usuario"]; $email_usuario = $dados["email_usuario"];
             if ($senha_digitada ==  $senha_usuario AND $email_digitado == $email_usuario) {
                 echo "

@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -269,7 +269,7 @@ session_start();
                 require_once "../db/conexao.php";
                 $cavalo_d = $_REQUEST['cavalo_d'];
                 $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
-                $retorno = conectarDB($sql);
+                $retorno = conectarDB("select_comum", $sql, "nada" , []);
                 $contador = 1;
                 while ($dados = mysqli_fetch_array($retorno)) { 
                     if ($contador == $cavalo_d) {
@@ -431,8 +431,6 @@ session_start();
             
     </div>
 <br><br><br><br><br><br>
-
-
 
     <script>
         function animate_y1() {

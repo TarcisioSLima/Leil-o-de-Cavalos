@@ -4,7 +4,7 @@
     $case = $_REQUEST['caso'];
 
     switch ($case) {
-            break;
+           
         case 'destaque':
             # code...
             break;
