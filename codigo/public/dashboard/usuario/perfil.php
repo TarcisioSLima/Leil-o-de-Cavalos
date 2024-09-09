@@ -13,6 +13,37 @@
         <?php $nome_usuario = $_SESSION['nome_usuario']; echo "Perfil $nome_usuario"; ?>
     </title>
     <link rel="stylesheet" href="/public/assets/css/form.css">
+    <style>
+        .div_p {
+            padding: 12px 0px 0px 0px;
+            height: 250px;
+            border-radius: 5%;
+            max-width: 400px;
+            margin: 4% auto;
+            text-align: center;
+        }
+        .div_p p {
+            font-size: large;
+            margin-bottom: 10px;
+            padding: 10px 0px 0px 0px;
+            
+        }
+        .div_p a {
+            width: 100px;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            background-color: rgb(30, 30, 245);
+            border: 0px;
+            text-align: center;
+            font-size: medium;
+            text-decoration: none;
+        }
+        .div_p a:hover {
+            background-color: rgb(68, 68, 231);
+        }
+    </style>
 </head>
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/navbar.html'; ?>
@@ -42,7 +73,7 @@
                 </form>
             </div>
             <?php } else {?>
-                <div style="text-align: center;">
+                <div class="div_p">
                     <p><?php echo"$nome_usuario"; ?></p>
                     <p><?php echo"$email_usuario"; ?></p>
                     <p><?php echo"$p_modalidade"; ?></p>
