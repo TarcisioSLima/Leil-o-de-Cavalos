@@ -67,6 +67,22 @@
             }
 
             break;
+        case 'editar':
+            $nome_usuario = $_REQUEST["n_nome"]; 
+            $email_usuario = $_REQUEST["n_email"]; 
+            $p_modalidade = $_REQUEST["n_p_modalidade"];
+            session_start();
+            
+            $id_usuario = $_SESSION["id_usuario"];
+            $sql = "UPDATE tb_usuario SET
+            nome_usuario = ?, email_usuario = ?, p_modalidade = ?
+            WHERE id_usuario = $id_usuario";
+            $retorno = conectarDB("insert_update", $sql,"sss", [$nome_usuario, $email_usuario, $p_modalidade]);
+            $_SESSION["nome_usuario"] = $nome_usuario;
+            $_SESSION["email_usuario"] = $email_usuario;
+            $_SESSION["p_modalidade"] = $p_modalidade;
+            redirecionar("perfil", "");
+            break;
             default:
             
             break;

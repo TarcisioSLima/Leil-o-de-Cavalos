@@ -24,7 +24,13 @@ function redirecionar($action, $mensagem){
             </script>";
             break;
         case 'perfil':
-            
+            echo "
+            <script>
+                window.location.href='/public/dashboard/usuario/perfil.php';
+            </script>";
+            break;
+        case 'value':
+            # code...
             break;
         default:
             # code...

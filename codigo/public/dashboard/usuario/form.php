@@ -25,7 +25,7 @@
                 </li>
                 
                     <select name="p_modalidade" id="">
-                        <option value="-">Sem Preferência</option>
+                        <option value="Sem preferência">Sem preferência</option>
                         <option value="3 Tambores">3 Tambores</option>
                         <option value="Laço">Laço</option>
                         <option value="Vaquejada">Vaquejada</option>
