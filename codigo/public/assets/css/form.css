@@ -30,6 +30,7 @@
     background-color: rgb(67, 193, 67);
     border: 0px;
     text-align: center;
+    font-size: larger;
 }
 #green:hover {   
     width: 300px;

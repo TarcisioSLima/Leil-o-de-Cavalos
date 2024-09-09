@@ -1,4 +1,5 @@
 <?php 
+    include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/navbar.html';
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
     session_start(); verificar_sessao("Cliente");
     $nome_usuario = $_SESSION["nome_usuario"]; $email_usuario = $_SESSION["email_usuario"]; $senha_usuario = $_SESSION["senha_usuario"]; $p_modalidade = $_SESSION["p_modalidade"]; $id_usuario = $_SESSION["id_usuario"]
@@ -17,24 +18,26 @@
 <body>
     <?php if (isset($_GET['editar'])) {?>
         <div class="div_form">
-            <p>Altere os campos que achar necessário</p> <br>
+            <p>Altere os campos que achar necessário</p>
                 <form action="">
                     <ul>
                         <li>
-                            <input type="text" value="<?php echo $nome_usuario ; ?>">
+                            <input type="text" value="<?php echo $nome_usuario ;?>">
                         </li>
                         <li>
-                            <input type="email" value="<?php echo $email_usuario ; ?>">  
+                            <input type="email" value="<?php echo $email_usuario ;?>">  
                         </li>
-                        
+                        <li>
                             <select name="p_modalidade" id="">
                                 <option value="-" <?php if ($p_modalidade == "Sem preferência") echo "selected"; ?> >Sem Preferência</option>
                                 <option value="3 Tambores" <?php if ($p_modalidade == "3 Tambores") echo "selected";?> >3 Tambores</option>
                                 <option value="Laço" <?php if ($p_modalidade == "Laço") echo "selected"; ?> >Laço</option>
                                 <option value="Vaquejada" <?php if ($p_modalidade == "Vaquejada") echo "selected"; ?>>Vaquejada</option>
                             </select>
-                        <br>
-                        <button type="submit">Salvar</button>
+                        </li>
+                        <li>
+                            <button type="submit" id="green">Salvar</button>
+                        </li>
                     </ul>
                 </form>
             </div>

@@ -233,8 +233,8 @@
 
     <div class="t_header">
         <ul>
-            <li><a href="#">Início</a></li>
-            <li><a href="quarter_horse.html">Quem Somos</a></li>
+            <li><a href="/public/index.php">Início</a></li>
+            <li><a href="/public/quarter_horse.php">Quem Somos</a></li>
         </ul>
     </div>
 
