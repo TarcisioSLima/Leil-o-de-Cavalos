@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/public/assets/css/form.css">
 <style>
     * {
         margin: 0;
@@ -70,13 +71,13 @@
 
     <div class="t_header">
         <ul>
-            <li><a href="index.php">Início</a></li>
-            <li><a href="#">Quem Somos</a></li>
+            <li><a href="/public/index.php">Início</a></li>
+            <li><a href="/public/quarter_horse.html">Quem Somos</a></li>
         </ul>
     </div>
 
-    <div>
-        <p>Preencha os campos abaixo e para criar sua conta!</p> <br>
+    <div class="div_form">
+        <p>Preencha os campos abaixo para criar sua conta!</p> <br>
         <form action="/controle/controle_usuario.php?caso=cadastro_usuario" method="POST">
             <ul>
                 <li>
@@ -88,7 +89,7 @@
                 <li>
                     <input type="text" name="senha_usuario" placeholder="Senha"> 
                 </li>
-                <li>
+                
                     <select name="p_modalidade" id="">
                         <option value="-">Sem Preferência</option>
                         <option value="3 Tambores">3 Tambores</option>
@@ -98,7 +99,7 @@
                 </li>
             </ul>
 
-            <button type="submit">Acessar</button>
+            <button type="submit" id="green">Acessar</button>
             
 
         </form>

@@ -51,7 +51,7 @@
                 $id_usuario = $_REQUEST["id_usuario"];
                 $senha_digitada = $_REQUEST["senha_usuario"]; $email_digitado = $_REQUEST["email_usuario"];
                 $sql = "SELECT * FROM tb_usuario WHERE id_usuario = $id_usuario";
-                $retorno = conectarDB("select_normal", $sql, "", []); $dados = mysqli_fetch_array($retorno);
+                $retorno = conectarDB("select_comum", $sql, "nada", []); $dados = mysqli_fetch_array($retorno);
                 $senha_usuario = $dados["senha_usuario"]; $email_usuario = $dados["email_usuario"];
             if ($senha_digitada ==  $senha_usuario AND $email_digitado == $email_usuario) {
                 echo "

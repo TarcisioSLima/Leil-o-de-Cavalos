@@ -1,11 +1,39 @@
+.card{
+    width: 800px;
+    height: 350px;
+    background-size: cover;
+    background-image: url("../img/horse.jpg");
+    border: solid 1px black;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
+
+
+
+/*
 .card {
     border: 1px solid black;
     padding: 20px;
     display: flex;
     gap: 20px;
-    width: 700px;
+    width: 200px;
     margin-left: 10%;
 }
+
+*/
 .card ul{
     list-style: none;
+    color: #b6ab9e;
+}
+.card li:first-child{
+    
+    font-size: x-large;
+    
 }

@@ -12,29 +12,41 @@
     <title>
         <?php $nome_usuario = $_SESSION['nome_usuario']; echo "Perfil $nome_usuario"; ?>
     </title>
+    <link rel="stylesheet" href="/public/assets/css/form.css">
 </head>
 <body>
-    <div>
-        <?php if (isset($_GET['editar'])) {?>
-            <div style="text-align: center;">
+    <?php if (isset($_GET['editar'])) {?>
+        <div class="div_form">
+            <p>Altere os campos que achar necessário</p> <br>
                 <form action="">
-                    <p><input type="text" value="<?php echo $nome_usuario ; ?>" style="text-align: center;"></p>
-                    <p><input type="email" value="<?php echo $email_usuario ; ?>" style="text-align: center;"></p>
-                    <p><input type="password" value="<?php echo $senha_usuario ; ?>" style="text-align: center;"></p>
-                    <p><input type="text" value="<?php echo $p_modalidade ; ?>" style="text-align: center;"></p>
-                    <button type="submit">Salvar</button>
+                    <ul>
+                        <li>
+                            <input type="text" value="<?php echo $nome_usuario ; ?>">
+                        </li>
+                        <li>
+                            <input type="email" value="<?php echo $email_usuario ; ?>">  
+                        </li>
+                        
+                            <select name="p_modalidade" id="">
+                                <option value="-" <?php if ($p_modalidade == "Sem preferência") echo "selected"; ?> >Sem Preferência</option>
+                                <option value="3 Tambores" <?php if ($p_modalidade == "3 Tambores") echo "selected";?> >3 Tambores</option>
+                                <option value="Laço" <?php if ($p_modalidade == "Laço") echo "selected"; ?> >Laço</option>
+                                <option value="Vaquejada" <?php if ($p_modalidade == "Vaquejada") echo "selected"; ?>>Vaquejada</option>
+                            </select>
+                        <br>
+                        <button type="submit">Salvar</button>
+                    </ul>
                 </form>
             </div>
             <?php } else {?>
                 <div style="text-align: center;">
                     <p><?php echo"$nome_usuario"; ?></p>
                     <p><?php echo"$email_usuario"; ?></p>
-                    <p><?php echo"$senha_usuario"; ?></p>
                     <p><?php echo"$p_modalidade"; ?></p>
                     <p><a href="index.php?id_usuario=<?php echo $id_usuario; ?>">Alterar dados</a></p>
                 </div>
         <?php }?>    
 
-    </div>
+    
 </body>
 </html>

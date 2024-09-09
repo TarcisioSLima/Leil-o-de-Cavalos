@@ -1,4 +1,90 @@
-div{
+/* inputs */
+.div_form input{
+    text-align: center;
+    border-radius: 10px;
+    border: 0;
+    padding: 10px;
+    width: 300px;
+    font-size: larger;
+    background-color: hsl(35, 33%, 25%);
+    color: #b6ab9e; 
+}
+.div_form input::placeholder, select::placeholder{
+    color: #b6ab9e;
+}
+.div_form input:hover::placeholder, select:hover::placeholder {
+    color: #53422a;
+}
+.div_form input:hover {
+    background-color: #b6ab9e;
+    color: #53422a;
+}
+/* butões */
+
+#green {
+    width: 100px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(67, 193, 67);
+    border: 0px;
+    text-align: center;
+}
+#green:hover {   
+    width: 300px;
+    background-color: rgb(159, 209, 159);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* div */
+.div_form{
+    padding: 12px 0px 0px 0px;
+    height: 250px;
+    border-radius: 5%;
+    max-width: 400px;
+    margin: 4% auto;
+    text-align: center;
+}
+
+.div_form li{
+    padding-bottom: 4%;
+    list-style: none;
+}
+
+
+/* P */
+.div_form p{
+    text-align: justify;
+    font-size: x-large;
+    color:#282e09;
+}
+
+
+
+/* select */
+
+.div_form select {
+    width: 300px;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #53422a;
+    color: #b6ab9e; 
+    text-align: center;
+    font-size: larger;
+}
+
+.div_form select:hover {
+    background-color: #b6ab9e;
+    color: #53422a;
+}
+
+/* div{
     width: 300px;
     margin: 0 auto;
     padding: 15px;
@@ -70,4 +156,4 @@ select {
     border-radius: 4px;
     box-sizing: border-box;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+} */

@@ -62,7 +62,7 @@
             flex-direction: column;
             width: 300px;
             margin: 10%;
-            padding-top: 0;
+            padding-top: 0; 
             list-style: none;
             border: 1px solid rgb(210, 209, 209); 
             background-color: rgb(247, 247, 247);
@@ -150,9 +150,7 @@
             
         }
         .uls {
-            display: flex;
-            
-            
+            display: flex; 
         }
 
         .nuns {
@@ -240,26 +238,29 @@
         </ul>
     </div>
 
-    <div class="container"> 
+    <div class="container" > 
         
             <div class="card_categorias">
                 <ul class="u_categorias">
-                    <li><a href="index.php?caso=destaque&cavalo_d=1">
+                    <li><a href="index.php">
+                        Cavalos em Destaque</a>
+                    </li>
+                    <li><a href="index.php?cavalo_d=1">
                         <i class="fa-solid fa-box"></i>Categoria de exemplo 1</a>
                     </li>
-                    <li><a href="index.php?caso=destaque&cavalo_d=2">
+                    <li><a href="index.php?cavalo_d=2">
                         <i class="fa-solid fa-litecoin-sign"></i>Categoria de exemplo 2</a>
                     </li>
-                    <li><a href="index.php?caso=destaque&cavalo_d=3">
+                    <li><a href="index.php?cavalo_d=3">
                         <i class="fa-solid fa-volleyball"></i>Categoria de exemplo 3</a>
                     </li>
-                    <li><a href="index.php?caso=destaque&cavalo_d=4">
+                    <li><a href="index.php?cavalo_d=4">
                         <i class="fa-solid fa-horse"></i>Categoria de exemplo 4</a>
                     </li>
-                    <li><a href="index.php?caso=destaque&cavalo_d=5">
+                    <li><a href="index.php?cavalo_d=5">
                         <i class="fa-solid fa-display"></i>Categoria de exemplo 5</a>
                     </li>
-                    <li><a href="index.php?caso=destaque&cavalo_d=6">
+                    <li><a href="index.php?cavalo_d=6">
                         <i class="fa-solid fa-person"></i>Categoria de exemplo 6</a>
                     </li>  
                 </ul>
@@ -294,7 +295,7 @@
                        <?php } ?>
                     </ul>
                     <ul>
-                        <img src="<?php $img_cavalo ?>" alt="imagem">
+                        <img src="<?php $img_cavalo ?>" alt="imagem" class="img">
                     </ul>
                 </div>
 
@@ -309,7 +310,7 @@
 
     <div class="lotes">
         <div class="ls">
-            <img src="assets/img/horse.jpg" alt=""> <br>
+            <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
             <hr> <br>
             <h4>
                 Item de Exemplo 1
@@ -340,7 +341,7 @@
         
         </div>
         <div class="ls">
-            <img src="assets/img/horse.jpg" alt=""> <br>
+            <img src="assets/img/horse.jpg" alt="" style="overflow: hidden;"> <br>
             <hr> <br>
             <h4>
                 Item de Exemplo 2

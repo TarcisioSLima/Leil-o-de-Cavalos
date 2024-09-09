@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/public/assets/css/form.css">
+
 <style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     .t_header{
         background-color: #282e09;
     }
@@ -65,29 +73,45 @@
 
     <div class="t_header">
         <ul>
-            <li><a href="public/index.php">Início</a></li>
-            <li><a href="#">Quem Somos</a></li>
+            <li><a href="/public/index.php">Início</a></li>
+            <li><a href="/public/quarter_horse.html">Quem Somos</a></li>
         </ul>
     </div>
 
     
         <?php if (isset($_GET["id_usuario"])) { $id_usuario = $_REQUEST['id_usuario']; ?>
-        <div style="text-align: center;">
-            <p>Primeiro confirme seu email e senha!</p> <br>
-            <form action="/controle/controle_usuario.php?caso=direcionar&id_usuario=<?php echo $id_usuario ;?>" method="POST">
-                <p><input type="text" name="email_usuario" placeholder="Email" style="text-align: center;"></p>
-                <p><input type="text" name="senha_usuario" placeholder="Senha" style="text-align: center;"></p>
-                <button type="submit">Acessar</button>
-            </form>
+        <div class="div_form">
+            <div>
+
+                <p>Primeiro confirme seu email e senha!</p> <br>
+                <form action="/controle/controle_usuario.php?caso=direcionar&id_usuario=<?php echo $id_usuario ;?>" method="POST">
+                    <ul>
+                        <li>
+                            <input type="text" name="email_usuario" placeholder="Email" class="inputs">    
+                        </li>
+                        <li>
+                            <input type="text" name="senha_usuario" placeholder="Senha" class="inputs">
+                        </li>
+                        <button type="submit" id="green">Acessar</button>
+                    </ul>
+                </form>
+            </div>
         </div>
         <?php } else {?>
-        <div style="text-align: center;">
-            <p>Preencha os campos abaixo e entre em sua conta!</p> <br>
-            <form action="/controle/controle_usuario.php?caso=login" method="POST">    
-                <p><input type="text" name="email_usuario" placeholder="Email" style="text-align: center;"></p>
-                <p><input type="text" name="senha_usuario" placeholder="Senha" style="text-align: center;"></p> 
-                <button type="submit">Acessar</button>
-            </form>
+        <div class="div_form">
+                <p>Preencha os campos abaixo 
+                e entre em sua conta!</p> <br>
+                <form action="/controle/controle_usuario.php?caso=login" method="POST"> 
+                    <ul>
+                        <li>
+                            <input type="text" name="email_usuario" placeholder="Email" class="inputs">
+                        </li>        
+                        <li>
+                            <input type="text" name="senha_usuario" placeholder="Senha" class="inputs">
+                        </li>
+                        <button type="submit" id="green">Acessar</button>
+                    </ul>   
+                </form>
         </div>
         <?php }?>
 </body>
