@@ -270,9 +270,9 @@
                 require_once "../db/conexao.php";
                 $cavalo_d = $_REQUEST['cavalo_d'];
                 $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
-                $retorno = conectarDB("select_comum", $sql, "nada" , []);
+                $retorno = conectarDB("select", $sql, "", []);
                 $contador = 1;
-                while ($dados = mysqli_fetch_array($retorno)) { 
+                foreach ($retorno[1] as $dados) { 
                     if ($contador == $cavalo_d) {
                         $dados_basicos = [
                                     $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
