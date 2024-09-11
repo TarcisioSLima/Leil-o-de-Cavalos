@@ -53,10 +53,10 @@
                 <form action="/controle/controle_usuario.php?caso=editar" method="POST">
                     <ul>
                         <li>
-                            <input type="text" value="<?php echo $nome_usuario ;?>" name="n_nome">
+                            <input type="text" value="<?= $nome_usuario ;?>" name="n_nome">
                         </li>
                         <li>
-                            <input type="email" value="<?php echo $email_usuario ;?>" name="n_email">  
+                            <input type="email" value="<?= $email_usuario ;?>" name="n_email">  
                         </li>
                         <li>
                             <select name="n_p_modalidade" id="">
@@ -74,10 +74,10 @@
             </div>
             <?php } else {?>
                 <div class="div_p">
-                    <p><?php echo"$nome_usuario"; ?></p>
-                    <p><?php echo"$email_usuario"; ?></p>
-                    <p><?php echo"$p_modalidade"; ?></p>
-                    <p><a href="index.php?id_usuario=<?php echo $id_usuario; ?>">Alterar dados</a></p>
+                    <p><?= "$nome_usuario"; ?></p>
+                    <p><?= "$email_usuario"; ?></p>
+                    <p><?= "$p_modalidade"; ?></p>
+                    <p><a href="index.php?id_usuario=<?= $id_usuario; ?>">Alterar dados</a></p>
                 </div>
         <?php }?>    
 
