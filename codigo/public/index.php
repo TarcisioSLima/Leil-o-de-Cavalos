@@ -186,12 +186,12 @@
 
                 <?php if (!isset($_SESSION["tipo_usuario"])) {  ?>
                     <li>
-                        <a href="dashboard/usuario/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                        <a href="dashboard/usuario/cliente/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
                             <i class="fa-solid fa-user-check"></i> Login
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard/usuario/form.php" id="button2" class="" onmouseover="animate_y2()" onmouseout="animate_n2()">
+                        <a href="dashboard/usuario/cliente/form.php" id="button2" class="" onmouseover="animate_y2()" onmouseout="animate_n2()">
                             <i class="fa-solid fa-user-plus"></i> Cadastrar-se
                         </a>
                     </li>
@@ -200,7 +200,7 @@
                 
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Admin") { ?>
                     <li>
-                        <a href="dashboard/usuario/form.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                        <a href="dashboard/usuario/admin/anuncio.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
                             Anunciar <i class="fa-solid fa-horse"></i> 
                         </a>
                     </li>
@@ -214,7 +214,7 @@
 
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Cliente") { ?>
                     <li>
-                        <a href="dashboard/usuario/perfil.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                        <a href="dashboard/usuario/cliente/perfil.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
                             <i class="fa-regular fa-id-card"></i> 
                             <?php $nome_usuario = $_SESSION['nome_usuario']; echo " Olá $nome_usuario"; ?>
                         </a>
@@ -267,10 +267,10 @@
             </div>
 
         <?php if (isset($_REQUEST["cavalo_d"])) {
-                require_once "../db/conexao.php";
+                include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
                 $cavalo_d = $_REQUEST['cavalo_d'];
                 $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
-                $retorno = conectarDB("select", $sql, "", []);
+                $retorno = conectarDB("select", $sql, [], "");
                 $contador = 1;
                 foreach ($retorno[1] as $dados) { 
                     if ($contador == $cavalo_d) {

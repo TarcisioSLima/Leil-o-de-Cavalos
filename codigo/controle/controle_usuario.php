@@ -9,7 +9,7 @@
             $email_usuario = $_REQUEST["email_usuario"];
             $senha_usuario = $_REQUEST["senha_usuario"];
             $sql = "SELECT * FROM tb_usuario WHERE email_usuario = ? AND senha_usuario = ? ";
-            $retorno = conectarDB("select", $sql, "ss", [$email_usuario, $senha_usuario]);
+            $retorno = conectarDB("select", $sql, [$email_usuario, $senha_usuario], "ss");
             if (sizeof($retorno[1]) > 0) {
                 session_start();
                 session_destroy();
@@ -36,7 +36,7 @@
             $p_modalidade = $_REQUEST["p_modalidade"];
            
             $sql = "SELECT * FROM tb_usuario WHERE email_usuario = '?'";
-            $retorno = conectarDB("select_", $sql, "s", [$email_usuario]);
+            $retorno = conectarDB("select_", $sql, [$email_usuario], "s");
 
             if (sizeof($retorno[1]) > 0) {
                 $sql = "INSERT INTO tb_usuario VALUES (NULL, ?, ?, ?, ?, ?)";
@@ -51,18 +51,18 @@
                 $id_usuario = $_REQUEST["id_usuario"];
                 $senha_digitada = $_REQUEST["senha_usuario"]; $email_digitado = $_REQUEST["email_usuario"];
                 $sql = "SELECT * FROM tb_usuario WHERE id_usuario = ?";
-                $retorno = conectarDB("select", $sql, "i", [$id_usuario]); $dados = $retorno[1][0];
+                $retorno = conectarDB("select", $sql, [$id_usuario], "i"); $dados = $retorno[1][0];
                 $senha_usuario = $dados["senha_usuario"]; $email_usuario = $dados["email_usuario"];
             if ($senha_digitada ==  $senha_usuario AND $email_digitado == $email_usuario) {
                 echo "
                 <script>
-                    window.location.href='/public/dashboard/usuario/perfil.php?editar=n';
+                    window.location.href='/public/dashboard/usuario/cliente/perfil.php?editar=n';
                 </script>";
             }else {
                 echo "
                 <script>
                     window.alert('Email ou Senha digitados incorretos! tente novamente...');
-                    window.location.href='/public/dashboard/usuario/perfil.php';
+                    window.location.href='/public/dashboard/usuario/cliente/perfil.php';
                 </script>";
             }
 
