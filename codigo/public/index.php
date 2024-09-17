@@ -242,26 +242,26 @@
         
             <div class="card_categorias">
                 <ul class="u_categorias">
-                    <li><a href="index.php">
-                        Cavalos em Destaque</a>
+                    <li><a href="">
+                        <i class="fa-solid fa-horse"></i>Cavalos em Destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=1">
-                        <i class="fa-solid fa-box"></i>Categoria de exemplo 1</a>
+                        <i class="fa-solid fa-1"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=2">
-                        <i class="fa-solid fa-litecoin-sign"></i>Categoria de exemplo 2</a>
+                        <i class="fa-solid fa-2"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=3">
-                        <i class="fa-solid fa-volleyball"></i>Categoria de exemplo 3</a>
+                        <i class="fa-solid fa-3"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=4">
-                        <i class="fa-solid fa-horse"></i>Categoria de exemplo 4</a>
+                        <i class="fa-solid fa-4"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=5">
-                        <i class="fa-solid fa-display"></i>Categoria de exemplo 5</a>
+                        <i class="fa-solid fa-5"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=6">
-                        <i class="fa-solid fa-person"></i>Categoria de exemplo 6</a>
+                        <i class="fa-solid fa-6"></i>Cavalo em destaque</a>
                     </li>  
                 </ul>
             </div>
