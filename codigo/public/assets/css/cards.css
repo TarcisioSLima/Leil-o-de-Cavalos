@@ -2,8 +2,8 @@
     width: 800px;
     height: 350px;
     background-size: cover;
-    background-image: url("../img/horse.jpg");
-    border: solid 1px black;
+    background-color: #282e09;
+    border: none;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
@@ -25,6 +25,7 @@
     gap: 20px;
     width: 200px;
     margin-left: 10%;
+    background-image: url("../img/horse.jpg");
 }
 
 */
@@ -34,6 +35,6 @@
 }
 .card li:first-child{
     
-    font-size: x-large;
+    font-size: xx-large;
     
 }
