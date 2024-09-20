@@ -12,7 +12,7 @@ function redirecionar($action, $mensagem){
             echo "
                 <script>
                     window.alert('$mensagem');
-                    window.location.href='/public/dashboard/usuario/cliente/index.php';
+                    window.location.href='/public/dashboard/cliente/index.php';
                 </script>";
                 exit();
             break;
@@ -20,17 +20,20 @@ function redirecionar($action, $mensagem){
             echo "
             <script>
                 window.alert('$mensagem');
-                window.location.href='/public/dashboard/usuario/cliente/form.php';
+                window.location.href='/public/dashboard/cliente/form.php';
             </script>";
             break;
         case 'perfil':
             echo "
             <script>
-                window.location.href='/public/dashboard/usuario/cliente/perfil.php';
+                window.location.href='/public/dashboard/cliente/perfil.php';
             </script>";
             break;
-        case 'value':
-            # code...
+        case 'index_cavalo':
+            echo "
+            <script>
+                window.location.href='/public/dashboard/admin/cavalo/index.php';
+            </script>";
             break;
         default:
             # code...
