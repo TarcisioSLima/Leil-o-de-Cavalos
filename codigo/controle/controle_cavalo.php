@@ -27,7 +27,7 @@
             redirecionar("index_cavalo", "");
             break;
         case 'destaque':
-            # code...
+            
             break;
         case 'destaque':
             # code...
