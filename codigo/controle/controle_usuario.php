@@ -56,13 +56,13 @@
             if ($senha_digitada ==  $senha_usuario AND $email_digitado == $email_usuario) {
                 echo "
                 <script>
-                    window.location.href='/public/dashboard/usuario/cliente/perfil.php?editar=n';
+                    window.location.href='/public/dashboard/cliente/perfil.php?editar=n';
                 </script>";
             }else {
                 echo "
                 <script>
                     window.alert('Email ou Senha digitados incorretos! tente novamente...');
-                    window.location.href='/public/dashboard/usuario/cliente/perfil.php';
+                    window.location.href='/public/dashboard/cliente/perfil.php';
                 </script>";
             }
 
