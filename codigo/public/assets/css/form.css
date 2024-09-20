@@ -49,6 +49,18 @@
     text-align: center;
 }
 
+.div_quemsomos{
+    padding: 12px 0px 0px 0px;
+    height: 250px;
+    border-radius: 5%;
+    max-width: 700px;
+    margin: 4% auto;
+    text-align: center;
+    text-align: justify;
+    font-size: x-large;
+    color:#282e09;
+}
+
 .div_form li{
     padding-bottom: 4%;
     list-style: none;
