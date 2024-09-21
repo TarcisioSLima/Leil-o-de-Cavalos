@@ -180,9 +180,8 @@
           </div>    
         
         <div class="auth-buttons">
-            <ul>
-            
-                <!-- Botões Padrões Usuário deslogado -->
+            <ul> 
+            <!-- Botões Padrões Usuário deslogado -->
 
                 <?php if (!isset($_SESSION["tipo_usuario"])) {  ?>
                     <li>
@@ -196,12 +195,12 @@
                         </a>
                     </li>
                 
-                <!-- Botões ADM logado -->
+            <!-- Botões ADM logado -->
                 
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Admin") { ?>
                     <li>
                         <a href="dashboard/admin/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
-                             <i class="fa-solid fa-horse"></i> 
+                            Pensar num nome pra esse botão <i class="fa-solid fa-horse"></i> 
                         </a>
                     </li>
                     <li>
@@ -210,7 +209,7 @@
                         </a>
                     </li>
 
-                <!-- Botões Cliente logado -->
+            <!-- Botões Cliente logado -->
 
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Cliente") { ?>
                     <li>

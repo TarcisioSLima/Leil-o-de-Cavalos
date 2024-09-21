@@ -12,7 +12,7 @@
             $premio_cavalo = $_REQUEST["premio_cavalo"];
             $modalidade_cavalo = $_REQUEST["modalidade_cavalo"];
             
-            $pasta = "../public/assets/img/";
+            $pasta = "/public/assets/img/";
     
             $extensao_imagem_cavalo = "." . pathinfo($_FILES['imagem_cavalo']['name'], PATHINFO_EXTENSION);
             
