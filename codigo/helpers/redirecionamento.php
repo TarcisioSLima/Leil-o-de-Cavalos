@@ -32,7 +32,7 @@ function redirecionar($action, $mensagem){
         case 'index_cavalo':
             echo "
             <script>
-                window.location.href='/public/dashboard/admin/cavalo/index.php';
+                window.location.href='/public/dashboard/admin/cavalo/index.php?view=$mensagem';
             </script>";
             break;
         default:

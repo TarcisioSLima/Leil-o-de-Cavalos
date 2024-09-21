@@ -143,18 +143,19 @@
        <img src="/public/assets/img/logo_estendida_verde.png" alt="" style="max-width: 350px; max-height: 350px;">
     </div>   
 </header>
+<?php $view = $_REQUEST['view']; ?>
 
 <div class="t_header">
     <ul>
         <li><a href="/public/index.php">Início</a></li>
-        <li><a href="/public/dashboard/admin/index.php">Voltar</a></li>
-        <li><a href="/public/dashboard/admin/cavalo/form.php">Cadastrar novo cavalo</a></li>
+        <li><a href="/public/dashboard/admin/index.php">Voltar</a></li><?php if($view == "card"){?>
+        <li><a href="/public/dashboard/admin/cavalo/form.php?view=card">Cadastrar novo cavalo</a></li><?php } else {?>
+        <li><a href="/public/dashboard/admin/cavalo/form.php?view=table">Cadastrar novo cavalo</a></li><?php }?>
     </ul>
 </div>
 
 
-<?php $view = $_REQUEST['view'];
-    if ($view == 'table') {?>
+    <?php if ($view == 'table') {?>
     <!-- Tabela com os dados do cavalo! -->
         <div>   
             <table>
@@ -220,7 +221,7 @@
                     $img_cavalo = $dados["img_cavalo"];
             ?>
                     <div class="card">
-                        <img src="<?=$img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                        <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                         <div class="card-content">
                             <h3 class="card-title"><?= $nome_cavalo ?></h3>
                             <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
