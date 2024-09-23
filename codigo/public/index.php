@@ -180,28 +180,27 @@
           </div>    
         
         <div class="auth-buttons">
-            <ul>
-            
-                <!-- Botões Padrões Usuário deslogado -->
+            <ul> 
+            <!-- Botões Padrões Usuário deslogado -->
 
                 <?php if (!isset($_SESSION["tipo_usuario"])) {  ?>
                     <li>
-                        <a href="dashboard/usuario/cliente/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                        <a href="dashboard/cliente/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
                             <i class="fa-solid fa-user-check"></i> Login
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard/usuario/cliente/form.php" id="button2" class="" onmouseover="animate_y2()" onmouseout="animate_n2()">
+                        <a href="dashboard/cliente/form.php" id="button2" class="" onmouseover="animate_y2()" onmouseout="animate_n2()">
                             <i class="fa-solid fa-user-plus"></i> Cadastrar-se
                         </a>
                     </li>
                 
-                <!-- Botões ADM logado -->
+            <!-- Botões ADM logado -->
                 
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Admin") { ?>
                     <li>
-                        <a href="dashboard/usuario/admin/anuncio.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
-                            Anunciar <i class="fa-solid fa-horse"></i> 
+                        <a href="dashboard/admin/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                            Pensar num nome pra esse botão <i class="fa-solid fa-horse"></i> 
                         </a>
                     </li>
                     <li>
@@ -210,11 +209,11 @@
                         </a>
                     </li>
 
-                <!-- Botões Cliente logado -->
+            <!-- Botões Cliente logado -->
 
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Cliente") { ?>
                     <li>
-                        <a href="dashboard/usuario/cliente/perfil.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                        <a href="dashboard/cliente/perfil.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
                             <i class="fa-regular fa-id-card"></i> 
                             <?php $nome_usuario = $_SESSION['nome_usuario']; echo " Olá $nome_usuario"; ?>
                         </a>
