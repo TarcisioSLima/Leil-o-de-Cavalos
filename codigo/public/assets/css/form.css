@@ -49,6 +49,18 @@
     text-align: center;
 }
 
+.div_quemsomos{
+    padding: 12px 0px 0px 0px;
+    height: 250px;
+    border-radius: 5%;
+    max-width: 700px;
+    margin: 4% auto;
+    text-align: center;
+    text-align: justify;
+    font-size: x-large;
+    color:#282e09;
+}
+
 .div_form li{
     padding-bottom: 4%;
     list-style: none;
@@ -84,6 +96,28 @@
     background-color: #b6ab9e;
     color: #53422a;
 }
+
+/* input file */
+
+input[type="file"] {
+    padding: 10px !important;
+    background-color: #f0f0f0 !important;
+    border: 2px solid #ccc !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #007bff !important;
+    color: white !important;
+    padding: 10px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+}
+
+
+
 
 /* div{
     width: 300px;

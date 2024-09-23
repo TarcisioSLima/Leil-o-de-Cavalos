@@ -187,28 +187,27 @@
           </div>    
         
         <div class="auth-buttons">
-            <ul>
-            
-                <!-- Botões Padrões Usuário deslogado -->
+            <ul> 
+            <!-- Botões Padrões Usuário deslogado -->
 
                 <?php if (!isset($_SESSION["tipo_usuario"])) {  ?>
                     <li>
-                        <a href="dashboard/usuario/cliente/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                        <a href="dashboard/cliente/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
                             <i class="fa-solid fa-user-check"></i> Login
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard/usuario/cliente/form.php" id="button2" class="" onmouseover="animate_y2()" onmouseout="animate_n2()">
+                        <a href="dashboard/cliente/form.php" id="button2" class="" onmouseover="animate_y2()" onmouseout="animate_n2()">
                             <i class="fa-solid fa-user-plus"></i> Cadastrar-se
                         </a>
                     </li>
                 
-                <!-- Botões ADM logado -->
+            <!-- Botões ADM logado -->
                 
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Admin") { ?>
                     <li>
-                        <a href="dashboard/usuario/admin/anuncio.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
-                            Anunciar <i class="fa-solid fa-horse"></i> 
+                        <a href="dashboard/admin/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                            Pensar num nome pra esse botão <i class="fa-solid fa-horse"></i> 
                         </a>
                     </li>
                     <li>
@@ -217,11 +216,11 @@
                         </a>
                     </li>
 
-                <!-- Botões Cliente logado -->
+            <!-- Botões Cliente logado -->
 
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Cliente") { ?>
                     <li>
-                        <a href="dashboard/usuario/cliente/perfil.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
+                        <a href="dashboard/cliente/perfil.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
                             <i class="fa-regular fa-id-card"></i> 
                             <?php $nome_usuario = $_SESSION['nome_usuario']; echo " Olá $nome_usuario"; ?>
                         </a>
@@ -249,26 +248,26 @@
         
             <div class="card_categorias">
                 <ul class="u_categorias">
-                    <li><a href="index.php">
-                        Cavalos em Destaque</a>
+                    <li><a href="">
+                        <i class="fa-solid fa-horse"></i>Cavalos em Destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=1">
-                        <i class="fa-solid fa-box"></i>Categoria de exemplo 1</a>
+                        <i class="fa-solid fa-1"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=2">
-                        <i class="fa-solid fa-litecoin-sign"></i>Categoria de exemplo 2</a>
+                        <i class="fa-solid fa-2"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=3">
-                        <i class="fa-solid fa-volleyball"></i>Categoria de exemplo 3</a>
+                        <i class="fa-solid fa-3"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=4">
-                        <i class="fa-solid fa-horse"></i>Categoria de exemplo 4</a>
+                        <i class="fa-solid fa-4"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=5">
-                        <i class="fa-solid fa-display"></i>Categoria de exemplo 5</a>
+                        <i class="fa-solid fa-5"></i>Cavalo em destaque</a>
                     </li>
                     <li><a href="index.php?cavalo_d=6">
-                        <i class="fa-solid fa-person"></i>Categoria de exemplo 6</a>
+                        <i class="fa-solid fa-6"></i>Cavalo em destaque</a>
                     </li>  
                 </ul>
             </div>
