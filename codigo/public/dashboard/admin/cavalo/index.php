@@ -282,13 +282,15 @@
                         <?php 
                         switch ($situacao_cavalo) {
                             case 'Ativo':
-                                echo "<a href='?caso=propostas'>Ver propostas</a>";
+                                echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view'>Ver propostas</a>";
                                 break;
                             case 'Inativo':
-                                echo "<a href='?caso=editar'>Editar</a><div></div><a href='?caso=anunciar'>Anunciar</a>";
+                                echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view'>Editar</a>
+                                        <div></div>
+                                    <a href='/controle/controle_cavalo.php?caso=anunciar&id_cavalo=$id_cavalo&view=$view'>Anunciar</a>";
                                 break;
                             case 'Vendido':
-                                echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo'>Remover</a>";
+                                echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo&view=$view'>Remover</a>";
                                 break;
                             default:
                                 echo '-';

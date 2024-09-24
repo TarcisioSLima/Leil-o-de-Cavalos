@@ -81,33 +81,83 @@
         </ul>
     </div>
     
-    <div class="div_form">
-        <form action="/controle/controle_cavalo.php?caso=cadastro&view=<?=$view?>" enctype="multipart/form-data" method="POST">
-            <ul>
-                <li>
-                    <input type="text" name="nome_cavalo" placeholder="Nome">
-                </li>
-                <li>
-                    <input type="text" name="raca_cavalo" placeholder="Raça"> 
-                </li>
-                <li>
-                    <input type="text" name="pelagem_cavalo" placeholder="Pelagem"> 
-                </li>
-                <li>
-                    <input type="text" name="premio_cavalo" placeholder="Premio"> 
-                </li>
-                    <select name="modalidade_cavalo" id="">
-                        <option value="3 Tambores">3 Tambores</option>
-                        <option value="Laço">Laço</option>
-                        <option value="Vaquejada">Vaquejada</option>
-                    </select>
-                </li>
-                <li>
-                    <input type="file" name="imagem_cavalo">
-                </li>
-            </ul>
-            <button type="submit" id="green">Salvar</button>
-        </form>
-    </div>
+    <?php if (!isset($_REQUEST['id_cavalo'])) { ?>
+        <div class="div_form">
+            <form action="/controle/controle_cavalo.php?caso=cadastro&view=<?=$view?>" enctype="multipart/form-data" method="POST">
+                <ul>
+                    <li>
+                        <input type="text" name="nome_cavalo" placeholder="Nome">
+                    </li>
+                    <li>
+                        <input type="text" name="raca_cavalo" placeholder="Raça"> 
+                    </li>
+                    <li>
+                        <input type="text" name="pelagem_cavalo" placeholder="Pelagem"> 
+                    </li>
+                    <li>
+                        <input type="text" name="premio_cavalo" placeholder="Premio"> 
+                    </li>
+                        <select name="modalidade_cavalo" id="">
+                            <option value="3 Tambores">3 Tambores</option>
+                            <option value="Laço">Laço</option>
+                            <option value="Vaquejada">Vaquejada</option>
+                        </select>
+                    </li>
+                    <li>
+                        <input type="file" name="imagem_cavalo">
+                    </li>
+                </ul>
+                <button type="submit" id="green">Salvar</button>
+            </form>
+        </div>
+    <?php } else { 
+        include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
+            $id_cavalo = $_REQUEST['id_cavalo'];
+            $sql = "SELECT * FROM tb_cavalo WHERE id_cavalo = ?";
+            $retorno = conectarDB("select", $sql, [$id_cavalo], "i");
+            $dados = $retorno[1][0];
+        //editar sem a imagem ->
+            if (!isset($_REQUEST['edit_img'])) { ?>
+                <div style="display: flex;">
+                <!--estilizar ess parte da imagem!!!! {-->
+                    <div class="div_form">
+                        <ul>
+                            <li>
+                                <img src="<?=$dados['img_cavalo']?>" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                <!--estilizar ess parte da imagem!!!! }-->
+                    <div class="div_form">
+                        <form action="/controle/controle_cavalo.php?caso=editar&view=<?=$view?>" enctype="multipart/form-data" method="POST">
+                        
+                            <ul>
+                                <li>
+                                    <input type="text" name="nome_cavalo" placeholder="Nome" value="<?= $dados['nome_cavalo']?>">
+                                </li>
+                                <li>
+                                    <input type="text" name="raca_cavalo" placeholder="Raça" value="<?= $dados['raca_cavalo']?>"> 
+                                </li>
+                                <li>
+                                    <input type="text" name="pelagem_cavalo" placeholder="Pelagem" value="<?= $dados['pelagem_cavalo']?>"> 
+                                </li>
+                                <li>
+                                    <input type="text" name="premio_cavalo" placeholder="Premio" value="<?= $dados['premio_cavalo']?>"> 
+                                </li>
+                                    <select name="modalidade_cavalo" id="">
+                                        <option value="3 Tambores" <?php if ($dados['modalidade_cavalo'] == "3 Tambores") echo "selected"; ?>>3 Tambores</option>
+                                        <option value="Laço" <?php if ($dados['modalidade_cavalo'] == "Laço") echo "selected"; ?>>Laço</option>
+                                        <option value="Vaquejada" <?php if ($dados['modalidade_cavalo'] == "Vaquejada") echo "selected"; ?>>Vaquejada</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <button type="submit" id="green">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+            <?php }?>
+                
+    <?php } ?>
+
 </body>
 </html>

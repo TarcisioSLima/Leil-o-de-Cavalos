@@ -12,6 +12,7 @@
             $premio_cavalo = $_REQUEST["premio_cavalo"];
             $modalidade_cavalo = $_REQUEST["modalidade_cavalo"];
             $view = $_REQUEST['view'];
+
             $pasta_server = $_SERVER['DOCUMENT_ROOT'].'/public/assets/img/';
             $pasta_banco = "/public/assets/img/";
 
@@ -29,11 +30,22 @@
             [$nome_cavalo, $raca_cavalo, $pelagem_cavalo, $premio_cavalo, $modalidade_cavalo, $arquivo_banco_cavalo]);
             redirecionar("index_cavalo", "$view");
             break;
-        case 'destaque':
+        case 'proposta':
+            $id_cavalo = $_REQUEST['id_cavalo'];
+
             
             break;
-        case 'destaque':
-            # code...
+        case 'editar':
+            $id_cavalo = $_REQUEST['id_cavalo'];
+            
+            break;
+        case 'anunciar':
+            $id_cavalo = $_REQUEST['id_cavalo'];
+
+            break;
+        case 'remover':
+            $id_cavalo = $_REQUEST['id_cavalo'];
+
             break;
         
         default:

@@ -301,7 +301,7 @@
                        <?php } ?>
                     </ul>
                     <ul>
-                        <img src="<?php $img_cavalo ?>" alt="imagem" class="img">
+                        <img src="<?= $img_cavalo ?>" alt="imagem" class="img">
                     </ul>
                 </div>
 
