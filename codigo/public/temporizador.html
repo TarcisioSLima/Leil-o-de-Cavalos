@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva de 7 Dias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: white;
+            color: black;
+        }
+
+        #countdown {
+            display: flex;
+            gap: 15px;
+            text-align: center;
+        }
+
+        #countdown div {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #countdown span {
+            display: block;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">
+        <div><span id="days"></span>Dias</div>
+        <div><span id="hours"></span>Horas</div>
+        <div><span id="minutes"></span>Minutos</div>
+        <div><span id="seconds"></span>Segundos</div>
+    </div>
+
+    <script>
+        // Definindo a duração de 7 dias em milissegundos
+        const countdownDuration = 7 * 24 * 60 * 60 * 1000;
+
+        // Calcula o tempo final a partir do momento que o temporizador começa
+        const countdownEndTime = new Date().getTime() + countdownDuration;
+
+        // Função para atualizar a contagem regressiva a cada segundo
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownEndTime - now;
+
+            // Cálculo de dias, horas, minutos e segundos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Exibindo os resultados
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // Caso a contagem chegue a zero, mostrar mensagem de término
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "A contagem regressiva terminou!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
