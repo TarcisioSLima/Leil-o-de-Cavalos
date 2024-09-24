@@ -268,6 +268,7 @@
 
                 foreach ($retorno[1] as $dados) { 
                     $situacao_cavalo = $dados["situacao_cavalo"]; 
+                    $id_cavalo = $dados['id_cavalo'];
                 ?>
                 <tr>
                     <td><?= $dados["nome_cavalo"]; ?></td>
@@ -281,13 +282,13 @@
                         <?php 
                         switch ($situacao_cavalo) {
                             case 'Ativo':
-                                echo "<a href='?acao=propostas'>Ver propostas</a>";
+                                echo "<a href='?caso=propostas'>Ver propostas</a>";
                                 break;
                             case 'Inativo':
-                                echo "<a href='?acao=editar'>Editar</a><div></div><a href='?acao=anunciar'>Anunciar</a>";
+                                echo "<a href='?caso=editar'>Editar</a><div></div><a href='?caso=anunciar'>Anunciar</a>";
                                 break;
                             case 'Vendido':
-                                echo "<a href='?acao=remover'>Remover</a>";
+                                echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo'>Remover</a>";
                                 break;
                             default:
                                 echo '-';
