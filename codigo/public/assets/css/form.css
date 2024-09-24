@@ -97,6 +97,28 @@
     color: #53422a;
 }
 
+/* input file */
+
+input[type="file"] {
+    padding: 10px !important;
+    background-color: #f0f0f0 !important;
+    border: 2px solid #ccc !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #007bff !important;
+    color: white !important;
+    padding: 10px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+}
+
+
+
+
 /* div{
     width: 300px;
     margin: 0 auto;
