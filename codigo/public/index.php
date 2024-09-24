@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -164,6 +165,12 @@
         .u_categorias li:hover{
             background-color: #dedddd;
         }
+        .disponivel{
+            background-color: rgb(0, 255, 0)            ;
+        }
+        .finalizado{
+            background-color:  #ff0000            ;
+        }
     </style>
 </head>
 <body>
@@ -306,10 +313,43 @@
     
     
     </div>
+    <?php
+       $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
+       $retorno = conectarDB("select", $sql, [], "");
+       foreach ($retorno[1] as $dados) { 
+           $id_cavalo = $dados['id_cavalo'];
+           $nome_cavalo = $dados['nome_cavalo'];
+           $raca_cavalo = $dados['raca_cavalo'];
+           $pelagem_cavalo = $dados['pelagem_cavalo'];
+           $premio_cavalo = $dados['premio_cavalo'];
+           $situacao_cavalo = $dados['situacao_cavalo'];
+           $modalidade_cavalo = $dados['modalidade_cavalo'];
+           $destaque = $dados['destaque'];
+           $img_cavalo = $dados['img_cavalo'];
+?>
+            <div class="lotes">
+                <div class="ls">
+                    <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
+                    <hr> <br>
+                    <h4> Nome: 
+                    <?= $nome_cavalo?>
+                    </h4> <br>
+                    <hr><br>
+                    <p>Raça: <?= $raca_cavalo?></p>
+                    <br>
+                    <hr>
+                    <p> Prêmios: <?= $premio_cavalo?></p>
+                    <br>
+                    <hr>
+                    <p>Modalidade: <?= $modalidade_cavalo?></p>                    
+                    <br>
+            </div>
 
-    <div class="lotes">
+          <?php } ?>  
+
+    <!-- <div class="lotes">
         <div class="ls">
-            <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
+             <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
             <hr> <br>
             <h4>
                 Item de Exemplo 1
@@ -336,8 +376,8 @@
                     <li>Segundos</li>
                 </ul>
             
-        </div>
-        
+        </div> -->
+<!--         
         </div>
         <div class="ls">
             <img src="assets/img/horse.jpg" alt="" style="overflow: hidden;"> <br>
@@ -429,7 +469,7 @@
                 
         </div>
             
-    </div>
+    </div> --> 
 <br><br><br><br><br><br>
 
     <script>
