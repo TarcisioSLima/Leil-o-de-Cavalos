@@ -108,13 +108,13 @@
             <ul>
                 <p>Lotes</p>
                 <li>
-                    <a href="/public/dashboard/admin/lote/index.php">Ativos</a>
+                    <a href="/public/dashboard/admin/lote/index.php?view=ativo">Ativos</a>
                 </li>
                 <li>
-                    <a href="/public/dashboard/admin/lote/index.php">Encerrados</a>
+                    <a href="/public/dashboard/admin/lote/index.php?view=encerrado">Encerrados</a>
                 </li>
                 <li>
-                    <a href="/public/dashboard/admin/lote/index.php">Novo</a>
+                    <a href="/public/dashboard/admin/lote/form_lote.php">Novo</a>
                 </li>
             </ul>
         </div>
