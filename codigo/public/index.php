@@ -314,33 +314,18 @@
     
     </div>
     <?php
-    
-    $sql = "SELECT * FROM tb_lote";
-            $retorno = conectarDB("select", $sql, [], "");
-            foreach ($retorno[1] as $dados) { 
-                // print_r($dados);
-                $id_lote = $dados['id_lote'];
-                $titulo_lote = $dados['titulo_lote'];
-                $valor_lote = $dados['valor_lote'];
-                $data_lote = $dados['data_lote'];
-                $estado_lote = $dados['estado_lote'];
-                $tb_cavalo_id_cavalo = $dados['tb_cavalo_id_cavalo'];
+       $sql = "SELECT * FROM tb_cavalo";
+       $retorno = conectarDB("select", $sql, [], "");
+       foreach ($retorno[1] as $dados) { 
+           $id_lote = $dados['id_lote'];
+           $titulo_lote = $dados['titulo_lote'];
+           $valor_lote = $dados['valor_lote'];
+           $estado_lote = $dados['estado_lote'];
+           $tb_cavalo_id_cavalo = $dados['tb_cavalo_id_cavalo'];
 
-                // Obter a data atual
-                $data_atual = new DateTime();
-                $data_evento = new DateTime($data_lote);
+           // Obter a data atual
 
-                // Calcular a diferença
-                $diferenca = $data_atual->diff($data_evento);
-
-                // Obter dias, horas, minutos e segundos
-                $dias = $diferenca->d;
-                $horas = $diferenca->h;
-                $minutos = $diferenca->i;
-                $segundos = $diferenca->s;
-
-    ?>
-    
+?>
             <div class="lotes">
                 <div class="ls">
                     <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
