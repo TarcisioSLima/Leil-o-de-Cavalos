@@ -200,7 +200,7 @@
                 <?php } elseif (isset($_SESSION["tipo_usuario"]) AND $_SESSION["tipo_usuario"] == "Admin") { ?>
                     <li>
                         <a href="dashboard/admin/index.php" id="button1" class="" onmouseover="animate_y1()" onmouseout="animate_n1()">
-                            Painel <i class="fa-solid fa-horse"></i> 
+                            Painel <i class="fa-solid fa-screwdriver-wrench"></i> 
                         </a>
                     </li>
                     <li>
