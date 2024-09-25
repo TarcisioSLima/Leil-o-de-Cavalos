@@ -73,16 +73,15 @@
         <img src="/public/assets/img/logo_estendida_verde.png" alt="" style="max-width: 350px; max-height: 350px;">
         </div>   
     </header>
-    <?php $view = $_REQUEST['view']; ?>
     <div class="t_header">
         <ul>
             <li><a href="/public/index.php">Início</a></li>
-            <li><a href="/public/dashboard/admin/lote/index.php?view=<?=$view?>">Voltar</a></li>
+            <li><a href="/public/dashboard/admin/index.php">Voltar</a></li>
         </ul>
     </div>
     
     <div class="div_form">
-        <form action="/controle/controle_cavalo.php?caso=cadastro&view=<?=$view?>" enctype="multipart/form-data" method="POST">
+        <form action="/controle/controle_cavalo.php?caso=cadastro" enctype="multipart/form-data" method="POST">
             <ul>
                 <li>
                     <input type="text" name="titulo_lote" placeholder="Título">
