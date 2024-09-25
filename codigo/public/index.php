@@ -14,61 +14,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="assets/css/cards.css">
     <style>
-        * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }
-        .main-content {
-            padding: 20px;
+       /* Container geral */
+        .container {
             display: flex;
-            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .search-container {
-        display: flex;
-        width: 300px; 
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: #282e09 ;
-        color: #b6ab9e;
-        }
-        .search-box {
-        padding: 10px;
-        border: none;
-        width: 100%;
-        font-size: 16px;
-        background-color: transparent;
-        
-        }
-
-        .search-box::placeholder {
-        color: #b6ab9e; 
-        }
-
-        .search-button {
-        background-color: transparent;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        }
-
-        .search-icon {
-        width: 20px; 
-        color: #b6ab9e; 
+        /* Menu de Categorias */
+        .card_categorias {
+            width: 25%;
+            margin-right: 20px;
         }
 
         .u_categorias {
             display: flex;
             flex-direction: column;
-            width: 300px;
-            margin: 10%;
-            padding-top: 0; 
             list-style: none;
             border: 1px solid rgb(210, 209, 209); 
-            background-color: rgb(247, 247, 247);
+            background-color: #f7f7f7;
             border-radius: 10px;
             overflow: hidden;
+        }
+
+        .u_categorias li {
+            border-bottom: 1px solid rgb(210, 209, 209);
         }
 
         .u_categorias a {
@@ -76,101 +47,117 @@
             color: #191c06;
             display: flex;
             align-items: center;
-            padding: 15px 20px; 
-            border-bottom: 1px solid rgb(210, 209, 209);
-            
+            padding: 15px 20px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .u_categorias a:hover {
+            background-color: #dedddd;
         }
 
         .u_categorias i {
-            margin-right: 6px; 
-            font-size: 1.0em; 
-            padding: 0;
+            margin-right: 10px;
+            font-size: 1.2em; 
         }
 
-        .img_i {
-            max-width: 100%;
+        /* Card de destaque */
+        .card {
+            width: 70%;
+            height: auto;
+            background-color: #282e09;
             border-radius: 10px;
-            
-            
-        }
-        .search-container {
             display: flex;
-            align-items: center;
-        }
-
-        .main-content {
-            width: 75%; 
-            padding: 0;
-            margin-left: 10%;
-        }
-
-        .card_categorias{
-            width: 25%;
-            
-        }
-
-        .container {
-            display: flex;
-            max-width: 1200px; 
-            margin: 0 auto; 
+            justify-content: space-between;
             padding: 20px;
-            
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 2%;
         }
 
-        .lotes {
-            display: flex;
-            align-items: center;
-        }
-        .lotes div{
-            margin-left: 2%;    
-        }
-
-        .ul_numeros {
+        .card ul {
             list-style: none;
-            display: flex;
+            color: #b6ab9e;
+            padding: 0;
+            margin: 0;
+            width: 50%;
         }
 
-        .ul_numeros li {
-            margin-right: 50px;
+        .card li:first-child {
+            font-size: 1.8em;
+            margin-bottom: 10px;
         }
 
-        .lotes {
-            text-align: left;
-            
+        .card li {
+            font-size: 1.2em;
+            margin-bottom: 8px;
         }
-        p {
+
+        /* Imagem do cavalo */
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            max-height: 300px;
+            border: 2px solid #b6ab9e;
             margin-left: 10px;
         }
 
-        .lotes ul {
-            list-style: none;
+        /* Estilo dos lotes de cavalos */
+        .lotes {
             display: flex;
-            margin-right: 10px;
-            text-align: center;
-            flex-direction: column;
-            
-        }
-        .uls {
-            display: flex; 
-        }
-
-        .nuns {
-            font-size: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+            margin-top: 30px;
+            align-items: flex-start;
         }
 
         .ls {
-            border: solid 2px rgb(216, 216, 216);
-            border-radius: 5px;
+            width: 30%;
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            flex-grow: 1; /* Mantém a proporção e permite a expansão */
+            flex-shrink: 0; /* Não encolhe além do tamanho especificado */
         }
-        .u_categorias li:hover{
-            background-color: #dedddd;
+
+        .ls:hover {
+            transform: translateY(-5px);
         }
-        .disponivel{
-            background-color: rgb(0, 255, 0)            ;
+
+        .ls img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 15px;
         }
-        .finalizado{
-            background-color:  #ff0000            ;
+
+        .ls h4, .ls p {
+            color: #191c06;
+            margin-bottom: 10px;
         }
+
+        .ls hr {
+            border: 1px solid #d1d1d1;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .ls {
+                width: 48%; /* Ajusta para 2 colunas em telas médias */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ls {
+                width: 100%; /* Ajusta para 1 coluna em telas pequenas */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -244,75 +231,75 @@
         </ul>
     </div>
 
-    <div class="container" > 
-        
-            <div class="card_categorias">
-                <ul class="u_categorias">
-                    <li><a href="">
-                        <i class="fa-solid fa-horse"></i>Cavalos em Destaque</a>
-                    </li>
-                    <li><a href="index.php?cavalo_d=1">
-                        <i class="fa-solid fa-1"></i>Cavalo em destaque</a>
-                    </li>
-                    <li><a href="index.php?cavalo_d=2">
-                        <i class="fa-solid fa-2"></i>Cavalo em destaque</a>
-                    </li>
-                    <li><a href="index.php?cavalo_d=3">
-                        <i class="fa-solid fa-3"></i>Cavalo em destaque</a>
-                    </li>
-                    <li><a href="index.php?cavalo_d=4">
-                        <i class="fa-solid fa-4"></i>Cavalo em destaque</a>
-                    </li>
-                    <li><a href="index.php?cavalo_d=5">
-                        <i class="fa-solid fa-5"></i>Cavalo em destaque</a>
-                    </li>
-                    <li><a href="index.php?cavalo_d=6">
-                        <i class="fa-solid fa-6"></i>Cavalo em destaque</a>
-                    </li>  
-                </ul>
-            </div>
+    <div class="container">
+        <!-- Menu lateral de cavalos em destaque -->
+        <div class="card_categorias">
+            <ul class="u_categorias">
+                <li><a href="index.php">
+                    <i class="fa-solid fa-horse"></i>Cavalos em Destaque</a>
+                </li>
+                <li><a href="index.php?cavalo_d=1">
+                    <i class="fa-solid fa-1"></i>Cavalo em destaque</a>
+                </li>
+                <li><a href="index.php?cavalo_d=2">
+                    <i class="fa-solid fa-2"></i>Cavalo em destaque</a>
+                </li>
+                <li><a href="index.php?cavalo_d=3">
+                    <i class="fa-solid fa-3"></i>Cavalo em destaque</a>
+                </li>
+                <li><a href="index.php?cavalo_d=4">
+                    <i class="fa-solid fa-4"></i>Cavalo em destaque</a>
+                </li>
+                <li><a href="index.php?cavalo_d=5">
+                    <i class="fa-solid fa-5"></i>Cavalo em destaque</a>
+                </li>
+                <li><a href="index.php?cavalo_d=6">
+                    <i class="fa-solid fa-6"></i>Cavalo em destaque</a>
+                </li>
+            </ul>
+        </div>
 
+        <!-- Card com o cavalo em destaque -->
         <?php if (isset($_REQUEST["cavalo_d"])) {
-                include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-                $cavalo_d = $_REQUEST['cavalo_d'];
-                $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
-                $retorno = conectarDB("select", $sql, [], "");
-                $contador = 1;
-                foreach ($retorno[1] as $dados) { 
-                    if ($contador == $cavalo_d) {
-                        $dados_basicos = [
-                                    $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
-                                    $raca_cavalo = ("Raça: " . $dados["raca_cavalo"]),
-                                    $pelagem_cavalo = ("Pelagem: " . $dados["pelagem_cavalo"]),
-                                    $premio_cavalo = ("Prémio: " . $dados["premio_cavalo"]),
-                                    $modalidade_cavalo = ("Modalidade: " . $dados["modalidade_cavalo"]),];
-                        $img_cavalo = $dados["img_cavalo"];
-                        $destaque = $dados["destaque"];
-                        $situacao_cavalo = $dados["situacao_cavalo"];                                                                    
-                    }
-                    $contador += 1;
-                }?>
-                <div class="card">
-                    <ul>
-                        <?php for ($i=0; $i < 5; $i++) {?>
-                        <li>
-                            <?php echo $dados_basicos[$i] ;?>
-                        </li>
-                       <?php } ?>
-                    </ul>
-                    <ul>
-                        <img src="<?= $img_cavalo ?>" alt="imagem" class="img">
-                    </ul>
-                </div>
-
-        <?php } else{ ?>
+            
+            $cavalo_d = $_REQUEST['cavalo_d'];
+            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
+            $retorno = conectarDB("select", $sql, [], "");
+            $contador = 1;
+            foreach ($retorno[1] as $dados) { 
+                if ($contador == $cavalo_d) {
+                    $dados_basicos = [
+                        $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
+                        $raca_cavalo = ("Raça: " . $dados["raca_cavalo"]),
+                        $pelagem_cavalo = ("Pelagem: " . $dados["pelagem_cavalo"]),
+                        $premio_cavalo = ("Prêmio: " . $dados["premio_cavalo"]),
+                        $modalidade_cavalo = ("Modalidade: " . $dados["modalidade_cavalo"]),
+                    ];
+                    $img_cavalo = $dados["img_cavalo"];
+                    $situacao_cavalo = $dados["situacao_cavalo"];
+                }
+                $contador += 1;
+            }
+        ?>
+        <div class="card">
+            <ul>
+                <?php foreach ($dados_basicos as $dado) { ?>
+                <li><?= $dado; ?></li>
+                <?php } ?>
+            </ul>
+            <ul>
+                <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
+            </ul>
+        </div>
+        <?php } else { ?>
             <div class="main-content"> 
                 <img src="assets/img/test.png" alt="" class="img_i"> 
             </div>
         <?php } ?>
-    
-    
-    </div>
+</div>
+
+<!-- Lotes de cavalos -->
+<div class="lotes">
     <?php
        $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
        $retorno = conectarDB("select", $sql, [], "");
@@ -324,28 +311,22 @@
            $premio_cavalo = $dados['premio_cavalo'];
            $situacao_cavalo = $dados['situacao_cavalo'];
            $modalidade_cavalo = $dados['modalidade_cavalo'];
-           $destaque = $dados['destaque'];
            $img_cavalo = $dados['img_cavalo'];
-?>
-            <div class="lotes">
-                <div class="ls">
-                    <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
-                    <hr> <br>
-                    <h4> Nome: 
-                    <?= $nome_cavalo?>
-                    </h4> <br>
-                    <hr><br>
-                    <p>Raça: <?= $raca_cavalo?></p>
-                    <br>
-                    <hr>
-                    <p> Prêmios: <?= $premio_cavalo?></p>
-                    <br>
-                    <hr>
-                    <p>Modalidade: <?= $modalidade_cavalo?></p>                    
-                    <br>
-            </div>
+    ?>
+    <div class="ls">
+        <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
+        <hr>
+        <h4>Nome: <?= $nome_cavalo ?></h4>
+        <hr>
+        <p>Raça: <?= $raca_cavalo ?></p>
+        <hr>
+        <p>Prêmios: <?= $premio_cavalo ?></p>
+        <hr>
+        <p>Modalidade: <?= $modalidade_cavalo ?></p>  
+    </div>
+    <?php } ?>
+</div>
 
-          <?php } ?>  
 
     <!-- <div class="lotes">
         <div class="ls">
