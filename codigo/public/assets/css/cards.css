@@ -1,40 +1,79 @@
-.card{
-    width: 800px;
-    height: 350px;
-    background-size: cover;
-    background-color: #282e09;
-    border: none;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10%;
-    margin-top: 3%;
-}
+/* CSS dos cards */
+        /* Container dos cards */
+           /* Container dos cards */
+           .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
 
+        /* Card individual */
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
 
+        /* Imagem no card */
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #ccc;
+        }
 
-/*
-.card {
-    border: 1px solid black;
-    padding: 20px;
-    display: flex;
-    gap: 20px;
-    width: 200px;
-    margin-left: 10%;
-    background-image: url("../img/horse.jpg");
-}
+        /* Conteúdo do card */
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
 
-*/
-.card ul{
-    list-style: none;
-    color: #b6ab9e;
-}
-.card li:first-child{
-    
-    font-size: xx-large;
-    
-}
+        /* Título do card */
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Texto do card */
+        .card-text {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        /* Links para ações no card */
+        .card-actions {
+            margin-top: 10px;
+        }
+
+        /* Estilos para os links (botões) */
+        .card-link {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #282e09; /* Cor de fundo igual ao cabeçalho da tabela */
+            color: #b6ab9e; /* Cor do texto igual à cor dos botões da tabela */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo de hover para os botões */
+        .card-link:hover {
+            background-color: #53422a; /* Mesmo estilo do hover dos botões da tabela */
+            transform: translateY(-2px);
+        }

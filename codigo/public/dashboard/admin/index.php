@@ -9,73 +9,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Admin - Cavalos</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        /* Reset básico */
+        * {
             margin: 0;
             padding: 0;
-            height: 100vh; /* Altura mínima para a centralização vertical funcionar */
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh; /* Garante que o conteúdo ocupe a tela toda */
         }
 
+        /* Container do painel */
         .container {
             display: flex;
-            justify-content: center;
-            align-items: center; /* Centralização vertical */
-            flex-wrap: wrap; /* Responsivo para quebrar linha em telas menores */
-            text-align: center;
+            justify-content: space-around; /* Alinha os cards horizontalmente */
+            max-width: 1200px;
             padding: 20px;
-            gap: 20px; /* Espaçamento entre os cards */
+            gap: 20px;
+            width: 100%; /* Ocupar toda a largura disponível */
         }
 
+        /* Estilo dos cards */
         .box {
             background-color: #fff;
             padding: 20px;
-            margin: 0 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px; /* Largura fixa para os cards */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 200px; /* Altura fixa */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1; /* Garantir que todos os cards tenham a mesma largura */
+            max-width: 300px;
         }
 
+        /* Animação ao passar o mouse */
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Título dos cards */
+        .box p {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        /* Lista de opções */
         .box ul {
             list-style: none;
             padding: 0;
-            flex-grow: 1; /* Expande o conteúdo para preencher o card */
         }
 
-        .box p {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .box li, .box a {
-            margin: 10px 0;
-            font-size: 1em;
+        /* Estilo dos links */
+        .box li a {
+            display: block;
+            font-size: 1.1em;
+            color: black;
             text-decoration: none;
-            color: #007bff;
-            transition: color 0.3s ease;
+            padding: 10px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .box a:hover {
+        /* Cor ao passar o mouse */
+        .box li a:hover {
+            background-color: #f0f0f0;
             color: #0056b3;
-        }
-
-        .box ul li {
-            margin: 15px 0;
         }
 
         /* Responsividade para telas menores */
         @media (max-width: 768px) {
             .container {
-                flex-direction: column;
+                flex-direction: column; /* Em telas pequenas, os cards ficam verticais */
+                align-items: center;
+            }
+
+            .box {
+                max-width: 90%; /* Os cards ocupam 90% da largura da tela em dispositivos móveis */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .box p {
+                font-size: 1.2em;
+            }
+
+            .box li a {
+                font-size: 1em;
             }
         }
     </style>
@@ -83,39 +113,25 @@
 <body>
     <div class="container">
         <div class="box">
+            <p>Cavalos</p>
             <ul>
-                <p>Cavalos</p>
-                <li>
-                    <a href="/public/dashboard/admin/cavalo/index.php?view=table">Visualização em Tabela</a>
-                </li>
-                <li>
-                    <a href="/public/dashboard/admin/cavalo/index.php?view=card">Visualização Otimizada</a>
-                </li>
+                <li><a href="/public/dashboard/admin/cavalo/index.php?view=table">Visualização em Tabela</a></li>
+                <li><a href="/public/dashboard/admin/cavalo/index.php?view=card">Visualização Otimizada</a></li>
             </ul>
         </div>
         <div class="box">
+            <p>Lances</p>
             <ul>
-                <p>Lances</p>
-                <li>
-                    <a href="/public/dashboard/admin/lance/index.php">Específicos</a>
-                </li>
-                <li>
-                    <a href="/public/dashboard/admin/lance/index.php">Gerais</a>
-                </li>
+                <li><a href="/public/dashboard/admin/lance/index.php">Específicos</a></li>
+                <li><a href="/public/dashboard/admin/lance/index.php">Gerais</a></li>
             </ul>
         </div>
         <div class="box">
+            <p>Lotes</p>
             <ul>
-                <p>Lotes</p>
-                <li>
-                    <a href="/public/dashboard/admin/lote/index.php">Ativos</a>
-                </li>
-                <li>
-                    <a href="/public/dashboard/admin/lote/index.php">Encerrados</a>
-                </li>
-                <li>
-                    <a href="/public/dashboard/admin/lote/index.php">Novo</a>
-                </li>
+                <li><a href="/public/dashboard/admin/lote/index.php">Ativos</a></li>
+                <li><a href="/public/dashboard/admin/lote/index.php">Encerrados</a></li>
+                <li><a href="/public/dashboard/admin/lote/form_lote.php">Novo</a></li>
             </ul>
         </div>
     </div>
