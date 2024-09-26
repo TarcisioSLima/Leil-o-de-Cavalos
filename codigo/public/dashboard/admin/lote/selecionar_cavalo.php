@@ -244,71 +244,12 @@
     </ul>
 </div>
 
-<?php if ($view == 'table') { ?>
-    <!-- Tabela com os dados do cavalo! -->
-    <!-- <div>   
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Raça</th>
-                    <th>Pelagem</th>
-                    <th>Premio</th>
-                    <th>Modalidade</th>
-                    <th>Situação</th>
-                    <th>Destaque</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>        
-            <tbody> -->
-                <!-- <?php
-                include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-                $sql = "SELECT * FROM tb_cavalo";
-                $retorno = conectarDB("select", $sql, [], "");
-
-                foreach ($retorno[1] as $dados) { 
-                    $situacao_cavalo = $dados["situacao_cavalo"]; 
-                    $id_cavalo = $dados['id_cavalo'];
-                ?>
-                <tr>
-                    <td><?= $dados["nome_cavalo"]; ?></td>
-                    <td><?= $dados["raca_cavalo"]; ?></td>
-                    <td><?= $dados["pelagem_cavalo"]; ?></td>
-                    <td><?= $dados["premio_cavalo"]; ?></td>
-                    <td><?= $dados["modalidade_cavalo"]; ?></td>
-                    <td><?= $dados["situacao_cavalo"]; ?></td>
-                    <td><?= $dados["destaque"]; ?></td>
-                    <td class="acao">
-                        <?php 
-                        // switch ($situacao_cavalo) {
-                        //     case 'Ativo':
-                        //         echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view'>Ver propostas</a>";
-                        //         break;
-                        //     case 'Inativo':
-                        //         echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view'>Editar</a>
-                        //                 <div></div>
-                        //             <a href='/controle/controle_cavalo.php?caso=anunciar&id_cavalo=$id_cavalo&view=$view'>Anunciar</a>";
-                        //         break;
-                        //     case 'Vendido':
-                        //         echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo&view=$view'>Remover</a>";
-                        //         break;
-                        //     default:
-                        //         echo '-';
-                        //         break;
-                        //} ?>
-                    </td>
-                </tr>
-                <?php //} ?> -->
-            <!-- </tbody>
-        </table>
-    </div> -->
-    <?php //} 
-    if ($view == 'card') { ?>
+    <?php if ($view == 'card') { ?>
     <!-- Cards com os dados do cavalo -->
         <div class="cards-container">
             <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-                $sql = "SELECT * FROM tb_cavalo";
+                $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Ativo'";
                 $retorno = conectarDB("select", $sql, [], "");
 
                 foreach ($retorno[1] as $dados) { 
@@ -333,29 +274,15 @@
                             <p class="card-text"><strong>Situação:</strong> <?= $situacao_cavalo ?></p>
                             <p class="card-text"><strong>Destaque:</strong> <?= $destaque ?></p>
                         <div class="card-actions">
-                            <?php 
-                            switch ($situacao_cavalo) {
-                                case 'Ativo':
-                                    echo '<a href="#" class="card-link">Ver propostas</a>';
-                                    break;
-                                case 'Inativo':
-                                    echo '<a href="#" class="card-link">Editar</a>';
-                                    echo '<a href="#" class="card-link">Anunciar</a>';
-                                    break;
-                                case 'Vendido':
-                                    echo '<a href="#" class="card-link">Remover</a>';
-                                    break;
-                                default:
-                                    // Caso não faça nada
-                                    break;
-                            }?>
-                        </div>
+                            <a href="#" class="card-link">Ver propostas</a>
+                         </div>
                         </div>
                     </div>
-                <?php } ?>
+
+                   <?php  } ?>
         </div>
         
-    <?php } else redirecionar("pagina_inicial", "")?>
+    <?php  } else redirecionar("pagina_inicial", "")?>
 
     
 </body>

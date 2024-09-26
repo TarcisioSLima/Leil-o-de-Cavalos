@@ -13,59 +13,115 @@
     <link rel="stylesheet" href="/public/assets/css/form.css">
 </head>
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    .t_header{
-        background-color: #282e09;
-    }
+    /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .t_header ul {
-        list-style: none; 
-        margin: 0; 
-        padding: 0; 
-        display: flex; 
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
 
-    .t_header li {
-        margin-right: 10px;
-    }
+        .header {
+            background-color: #b6ab9e;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+        }
 
-    .t_header li:last-child { 
-        margin-right: 0; 
-    }
-    .t_header li:first-child { 
-        margin-left: 10px; 
-    }
+        .t_header {
+            background-color: #282e09;
+        }
 
-    .t_header a {
-        display: block; 
-        padding: 10px 15px; 
-        background-color:#282e09; 
-        color: #b6ab9e; 
-        text-decoration: none; 
-        border-radius: 5px; 
-    }
+        .t_header ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
 
-    .t_header a:hover {
-        background-color: #53422a;
-    }    
+        .t_header li {
+            margin-right: 10px;
+        }
 
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f8f8;
-        margin: 0;
-        padding: 0;
-    }
+        .t_header a {
+            display: block;
+            padding: 10px 15px;
+            background-color: #282e09;
+            color: #b6ab9e;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 
-    .header {
-        background-color: #b6ab9e;
-        color: white;
-        padding: 5px 10px;
-        text-align: center;
-    }
+        .t_header a:hover {
+            background-color: #53422a;
+        }
+
+        /* Estilos para o formulário */
+        
+        /* Layout para a imagem e formulário */
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        /* Estilo para a imagem */
+        .img-container {
+            text-align: center;
+            
+        }
+        .img-container li {
+            text-decoration: none;
+            list-style: none;
+        }
+
+        .img-container img {
+            max-width: 300px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botão de editar imagem */
+        .img-container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .img-container button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .img-container img {
+                max-width: 90%;
+            }
+
+            .div_form {
+                width: 100%;
+                max-width: 90%;
+            }
+        }
+
 </style>
 <body>
     <header class="header">
@@ -118,17 +174,25 @@
             $dados = $retorno[1][0];
         //editar sem a imagem ->
             if (!isset($_REQUEST['edit_img'])) { ?>
-                <div style="display: flex;">
-                <!--estilizar ess parte da imagem!!!! {-->
-                    <div class="div_form">
+                
+                <!--estilizar essa parte da imagem!!!! {-->
+                <div class="form-container">
+                    <div class="img-container">
                         <ul>
                             <li>
-                                <img src="<?=$dados['img_cavalo']?>" alt="">
+                                <h3>Imagem do atual do Cavalo</h3> <br>
+                            </li>
+                            <li>
+                                <img src="<?=$dados['img_cavalo']?>" alt="Imagem do Cavalo"><br>
+                            </li>
+                            <li>
+                                <button>Editar Imagem</button>
                             </li>
                         </ul>
                     </div>
                 <!--estilizar ess parte da imagem!!!! }-->
-                    <div class="div_form">
+                <div class="div_form">
+                        
                         <form action="/controle/controle_cavalo.php?caso=editar&view=<?=$view?>" enctype="multipart/form-data" method="POST">
                         
                             <ul>
