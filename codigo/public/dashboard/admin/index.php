@@ -114,7 +114,7 @@
                     <a href="/public/dashboard/admin/lote/index.php?view=encerrado">Encerrados</a>
                 </li>
                 <li>
-                    <a href="/public/dashboard/admin/lote/form_lote.php">Novo</a>
+                    <a href="/public/dashboard/admin/lote/selecionar_cavalo.php">Novo</a>
                 </li>
             </ul>
         </div>
