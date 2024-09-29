@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/css/nav.css">
     <script src="https://kit.fontawesome.com/bc42253982.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="assets/css/cards.css">
+    
     <style>
        /* Container geral */
         .container {
