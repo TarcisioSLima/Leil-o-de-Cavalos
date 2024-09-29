@@ -242,7 +242,7 @@
                 $retorno = conectarDB("select", $sql, [], "");
 
                 foreach ($retorno[1] as $dados) { 
-                    // Dados do cavalo
+                    $id_cavalo = $dados['id_cavalo'];
                     $nome_cavalo = $dados["nome_cavalo"];
                     $raca_cavalo = $dados["raca_cavalo"];
                     $pelagem_cavalo = $dados["pelagem_cavalo"];
@@ -266,14 +266,14 @@
                                 <?php 
                                 switch ($situacao_cavalo) {
                                     case 'Ativo':
-                                        echo '<a href="#" class="card-link">Ver propostas</a>';
+                                        echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view' class='card-link' >Ver propostas</a>";
                                         break;
                                     case 'Inativo':
-                                        echo '<a href="#" class="card-link">Editar</a>';
-                                        echo '<a href="#" class="card-link">Anunciar</a>';
+                                        echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view' class='card-link' >Editar</a>";
+                                        echo "<a href='/controle/controle_cavalo.php?caso=anunciar&id_cavalo=$id_cavalo&view=$view' class='card-link' >Anunciar</a>";
                                         break;
                                     case 'Vendido':
-                                        echo '<a href="#" class="card-link">Remover</a>';
+                                        echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo&view=$view' class='card-link' >Remover</a>";
                                         break;
                                 } ?>
                             </div>
