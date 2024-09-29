@@ -233,29 +233,24 @@
 
     <div class="container">
         <!-- Menu lateral de cavalos em destaque -->
+        
         <div class="card_categorias">
-            <ul class="u_categorias">
+        <ul class="u_categorias">
                 <li><a href="index.php">
                     <i class="fa-solid fa-horse"></i>Cavalos em Destaque</a>
+                </li>    
+        <?php 
+            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
+            $retorno = conectarDB("select", $sql, [], "");
+            $num = 1;
+            foreach ($retorno[1] as $dados) { ?>
+                 <li><a href="index.php?cavalo_d=<?=$num?>">
+                    <i class="fa-solid fa-<?=$num?>"></i>Cavalo em destaque</a>
                 </li>
-                <li><a href="index.php?cavalo_d=1">
-                    <i class="fa-solid fa-1"></i>Cavalo em destaque</a>
-                </li>
-                <li><a href="index.php?cavalo_d=2">
-                    <i class="fa-solid fa-2"></i>Cavalo em destaque</a>
-                </li>
-                <li><a href="index.php?cavalo_d=3">
-                    <i class="fa-solid fa-3"></i>Cavalo em destaque</a>
-                </li>
-                <li><a href="index.php?cavalo_d=4">
-                    <i class="fa-solid fa-4"></i>Cavalo em destaque</a>
-                </li>
-                <li><a href="index.php?cavalo_d=5">
-                    <i class="fa-solid fa-5"></i>Cavalo em destaque</a>
-                </li>
-                <li><a href="index.php?cavalo_d=6">
-                    <i class="fa-solid fa-6"></i>Cavalo em destaque</a>
-                </li>
+            <?php
+                $num += 1; 
+            }?>
+        
             </ul>
         </div>
 
