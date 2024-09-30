@@ -126,12 +126,12 @@
                 <li><a href="/public/dashboard/admin/lance/index.php">Gerais</a></li>
             </ul>
         </div>
-        <div class="box">
+        <div class="box">            
             <p>Lotes</p>
             <ul>
                 <li><a href="/public/dashboard/admin/lote/index.php">Ativos</a></li>
                 <li><a href="/public/dashboard/admin/lote/index.php">Encerrados</a></li>
-                <li><a href="/public/dashboard/admin/lote/form_lote.php">Novo</a></li>
+                <li><a href="/public/dashboard/admin/lote/selecionar_cavalo.php?view=card">Novo</a></li>
             </ul>
         </div>
     </div>

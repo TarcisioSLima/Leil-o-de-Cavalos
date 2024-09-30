@@ -92,7 +92,8 @@
         }
 
         /* Botão de editar imagem */
-        .img-container button {
+        .img-container a.blue {
+            text-decoration: none;
             padding: 10px 20px;
             background-color: #007bff;
             color: white;
@@ -101,8 +102,23 @@
             cursor: pointer;
         }
 
-        .img-container button:hover {
+        .img-container a.blue:hover {
             background-color: #0056b3;
+        }
+        .img-container a.red {
+            margin-top: auto;
+            margin-left: 0.5%;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .img-container a.red:hover {
+            background-color: #e60000;
         }
 
         /* Responsividade */
@@ -172,6 +188,8 @@
             $sql = "SELECT * FROM tb_cavalo WHERE id_cavalo = ?";
             $retorno = conectarDB("select", $sql, [$id_cavalo], "i");
             $dados = $retorno[1][0];
+            $destaque = $dados['destaque'];
+            $situacao_cavalo = $dados['situacao_cavalo'];
         //editar sem a imagem ->
             if (!isset($_REQUEST['edit_img'])) { ?>
                 
@@ -186,14 +204,14 @@
                                 <img src="<?=$dados['img_cavalo']?>" alt="Imagem do Cavalo"><br>
                             </li>
                             <li>
-                                <button>Editar Imagem</button>
+                                <a href="form.php?id_cavalo=<?=$id_cavalo?>&view=<?=$view?>&edit_img=1" class="blue">Editar Imagem</a>
                             </li>
                         </ul>
                     </div>
                 <!--estilizar ess parte da imagem!!!! }-->
                 <div class="div_form">
                         
-                        <form action="/controle/controle_cavalo.php?caso=editar&view=<?=$view?>" enctype="multipart/form-data" method="POST">
+                        <form action="/controle/controle_cavalo.php?caso=editar&view=<?=$view?>&id_cavalo=<?=$id_cavalo?>" enctype="multipart/form-data" method="POST">
                         
                             <ul>
                                 <li>
@@ -209,17 +227,71 @@
                                     <input type="text" name="premio_cavalo" placeholder="Premio" value="<?= $dados['premio_cavalo']?>"> 
                                 </li>
                                     <select name="modalidade_cavalo" id="">
-                                        <option value="3 Tambores" <?php if ($dados['modalidade_cavalo'] == "3 Tambores") echo "selected"; ?>>3 Tambores</option>
-                                        <option value="Laço" <?php if ($dados['modalidade_cavalo'] == "Laço") echo "selected"; ?>>Laço</option>
-                                        <option value="Vaquejada" <?php if ($dados['modalidade_cavalo'] == "Vaquejada") echo "selected"; ?>>Vaquejada</option>
+                                        <option value="3 Tambores" <?php if ($dados['modalidade_cavalo'] == "3 Tambores") echo "selected"; ?>>Modalidade - 3 Tambores</option>
+                                        <option value="Laço" <?php if ($dados['modalidade_cavalo'] == "Laço") echo "selected"; ?>>Modalidade - Laço</option>
+                                        <option value="Vaquejada" <?php if ($dados['modalidade_cavalo'] == "Vaquejada") echo "selected"; ?>>Modalidade - Vaquejada</option>
                                     </select>
-                                </li>
+                                    <select name="destaque" id="">
+                                        <option value="Sim" <?php if ($dados['destaque'] == "Sim") echo "selected"; ?>>Destaque - Sim</option>
+                                        <option value="Não" <?php if ($dados['destaque'] == "Não") echo "selected"; ?>>Destaque - Não</option>
+                                    </select>
                             </ul>
                             <button type="submit" id="green">Salvar</button>
                         </form>
                     </div>
                 </div>
-            <?php }?>
+    <?php }else{ ?>
+            <!--estilizar essa parte da imagem!!!! {-->
+            <div class="form-container">
+                    <div class="img-container">
+                        <ul>
+                            <li>
+                                <h3>Imagem do atual do Cavalo</h3> <br>
+                            </li>
+                            <li>
+                                <img src="<?=$dados['img_cavalo']?>" alt="Imagem do Cavalo"><br>
+                            </li>
+                        </ul>               
+                    
+                <!--estilizar ess parte da imagem!!!! }-->
+                        
+                        <form action="/controle/controle_cavalo.php?caso=editar&view=<?=$view?>&id_cavalo=<?=$id_cavalo?>&img=1" enctype="multipart/form-data" method="POST"> 
+                            <div style="display: flex;">
+                                <input type="file" name="imagem_cavalo">
+                                <a href="form.php?id_cavalo=<?=$id_cavalo?>&view=<?=$view?>" class="red">Cancelar</a>
+                            </div>
+                        </div>
+                            <div class="div_form">
+                                <ul>
+                                    <li>
+                                        <input type="text" name="nome_cavalo" placeholder="Nome" value="<?= $dados['nome_cavalo']?>">
+                                    </li>
+                                    <li>
+                                        <input type="text" name="raca_cavalo" placeholder="Raça" value="<?= $dados['raca_cavalo']?>"> 
+                                    </li>
+                                    <li>
+                                        <input type="text" name="pelagem_cavalo" placeholder="Pelagem" value="<?= $dados['pelagem_cavalo']?>"> 
+                                    </li>
+                                    <li>
+                                        <input type="text" name="premio_cavalo" placeholder="Premio" value="<?= $dados['premio_cavalo']?>"> 
+                                    </li>
+                                    <select name="modalidade_cavalo" id="">
+                                        <option value="3 Tambores" <?php if ($dados['modalidade_cavalo'] == "3 Tambores") echo "selected"; ?>>Modalidade - 3 Tambores</option>
+                                        <option value="Laço" <?php if ($dados['modalidade_cavalo'] == "Laço") echo "selected"; ?>>Modalidade - Laço</option>
+                                        <option value="Vaquejada" <?php if ($dados['modalidade_cavalo'] == "Vaquejada") echo "selected"; ?>>Modalidade - Vaquejada</option>
+                                    </select>
+                                    <select name="destaque" id="">
+                                        <option value="Sim" <?php if ($dados['destaque'] == "Sim") echo "selected"; ?>>Destaque - Sim</option>
+                                        <option value="Não" <?php if ($dados['destaque'] == "Não") echo "selected"; ?>>Destaque - Não</option>
+                                    </select>
+                                </ul>
+                                <button type="submit" id="green">Salvar</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+    <?php } ?>
                 
     <?php } ?>
 

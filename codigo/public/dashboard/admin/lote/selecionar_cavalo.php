@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/assets/css/cards.css">
 </head>
 <style>
     /* CSS da navbar */
@@ -66,7 +65,79 @@
             text-align: center;
         }
 
-    
+    /* CSS dos cards */
+        /* Container dos cards */
+            .cards-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            /* Card individual */
+            .card {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                overflow: hidden;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Imagem no card */
+            .card-img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-bottom: 2px solid #ccc;
+            }
+
+            /* Conteúdo do card */
+            .card-content {
+                padding: 15px;
+                text-align: center;
+            }
+
+            /* Título do card */
+            .card-title {
+                font-size: 1.5em;
+                margin-bottom: 10px;
+                color: #333;
+            }
+
+            /* Texto do card */
+            .card-text {
+                font-size: 1em;
+                color: #666;
+                margin-bottom: 8px;
+            }
+
+            /* Links para ações no card */
+            .card-actions {
+                margin-top: 10px;
+            }
+
+            .card-link {
+                display: inline-block;
+                margin: 5px 10px;
+                padding: 8px 12px;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            }
+
+            .card-link:hover {
+                background-color: #0056b3;
+            }
+
     /* Estilização da tabela */    
             table {
                 width: 100%;
@@ -157,92 +228,32 @@
             
 </style>
 <body>
+<header class="header">
+    <div>
+       <img src="/public/assets/img/logo_estendida_verde.png" alt="" style='max-width: 350px; max-height: 350px;'>
+    </div>   
+</header>
+<?php $view = $_REQUEST['view']; ?>
 
-<!-- nav bar -> -->
-    <header class="header">
-        <div>
-        <img src="/public/assets/img/logo_estendida_verde.png" alt="" style='max-width: 350px; max-height: 350px;'>
-        </div>   
-    </header>
-    <?php $view = $_REQUEST['view']; ?>
+<div class="t_header">
+    <ul>
+        <li><a href="/public/index.php">Início</a></li>
+        <li><a href="/public/dashboard/admin/index.php">Voltar</a></li><?php if($view == "card"){?>
+        <li><a href="/public/dashboard/admin/cavalo/form.php?view=card">Cadastrar novo cavalo</a></li><?php } else { ?>
+        <li><a href="/public/dashboard/admin/cavalo/form.php?view=table">Cadastrar novo cavalo</a></li><?php } ?>
+    </ul>
+</div>
 
-    <div class="t_header">
-        <ul>
-            <li><a href="/public/index.php">Início</a></li>
-            <li><a href="/public/dashboard/admin/index.php">Voltar</a></li><?php if($view == "card"){?>
-            <li><a href="/public/dashboard/admin/cavalo/form.php?view=card">Cadastrar novo cavalo</a></li><?php } else { ?>
-            <li><a href="/public/dashboard/admin/cavalo/form.php?view=table">Cadastrar novo cavalo</a></li><?php } ?>
-        </ul>
-    </div>
-
-<?php if ($view == 'table') { ?>
-    <!-- Tabela com os dados do cavalo! -->
-        <div>   
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Raça</th>
-                        <th>Pelagem</th>
-                        <th>Premio</th>
-                        <th>Modalidade</th>
-                        <th>Situação</th>
-                        <th>Destaque</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>        
-                <tbody>
-                    <?php
-                    include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-                    $sql = "SELECT * FROM tb_cavalo";
-                    $retorno = conectarDB("select", $sql, [], "");
-
-                    foreach ($retorno[1] as $dados) { 
-                        $situacao_cavalo = $dados["situacao_cavalo"]; 
-                        $id_cavalo = $dados['id_cavalo'];
-                    ?>
-                    <tr>
-                        <td><?= $dados["nome_cavalo"]; ?></td>
-                        <td><?= $dados["raca_cavalo"]; ?></td>
-                        <td><?= $dados["pelagem_cavalo"]; ?></td>
-                        <td><?= $dados["premio_cavalo"]; ?></td>
-                        <td><?= $dados["modalidade_cavalo"]; ?></td>
-                        <td><?= $dados["situacao_cavalo"]; ?></td>
-                        <td><?= $dados["destaque"]; ?></td>
-                        <td class="acao">
-                            <?php 
-                            switch ($situacao_cavalo) {
-                                case 'Ativo':
-                                    echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view'>Ver propostas</a>";
-                                    break;
-                                case 'Inativo':
-                                    echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view'>Editar</a>
-                                            <div></div>
-                                        <a href='/controle/controle_cavalo.php?caso=anunciar&id_cavalo=$id_cavalo&view=$view'>Anunciar</a>";
-                                    break;
-                                case 'Vendido':
-                                    echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo&view=$view'>Remover</a>";
-                                    break;
-                                default:
-                                    echo '-';
-                                    break;
-                            } ?>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-<?php } elseif ($view == 'card') { ?>
+    <?php if ($view == 'card') { ?>
     <!-- Cards com os dados do cavalo -->
         <div class="cards-container">
             <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-                $sql = "SELECT * FROM tb_cavalo";
+                $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Ativo'";
                 $retorno = conectarDB("select", $sql, [], "");
 
                 foreach ($retorno[1] as $dados) { 
-                    $id_cavalo = $dados['id_cavalo'];
+                    // Dados do cavalo
                     $nome_cavalo = $dados["nome_cavalo"];
                     $raca_cavalo = $dados["raca_cavalo"];
                     $pelagem_cavalo = $dados["pelagem_cavalo"];
@@ -253,7 +264,7 @@
                     $img_cavalo = $dados["img_cavalo"];
             ?>
                     <div class="card">
-                        <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                        <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                         <div class="card-content">
                             <h3 class="card-title"><?= $nome_cavalo ?></h3>
                             <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
@@ -262,28 +273,16 @@
                             <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
                             <p class="card-text"><strong>Situação:</strong> <?= $situacao_cavalo ?></p>
                             <p class="card-text"><strong>Destaque:</strong> <?= $destaque ?></p>
-                            <div class="card-actions">
-                                <?php 
-                                switch ($situacao_cavalo) {
-                                    case 'Ativo':
-                                        echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view' class='card-link' >Ver propostas</a>";
-                                        break;
-                                    case 'Inativo':
-                                        echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view' class='card-link' >Editar</a>";
-                                        echo "<a href='/controle/controle_cavalo.php?caso=anunciar&id_cavalo=$id_cavalo&view=$view' class='card-link' >Anunciar</a>";
-                                        break;
-                                    case 'Vendido':
-                                        echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo&view=$view' class='card-link' >Remover</a>";
-                                        break;
-                                } ?>
-                            </div>
+                        <div class="card-actions">
+                            <a href="#" class="card-link">Ver propostas</a>
+                         </div>
                         </div>
                     </div>
 
-                <?php } ?>
+                   <?php  } ?>
         </div>
         
-<?php } else redirecionar("pagina_inicial", "")?>
+    <?php  } else redirecionar("pagina_inicial", "")?>
 
     
 </body>
