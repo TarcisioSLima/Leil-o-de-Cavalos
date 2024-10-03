@@ -167,10 +167,10 @@
         </div>
 
         <div class="search-container">
-            <input type="text" placeholder="Pesquisar..." class="search-box">
-            <button type="submit" class="search-button">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            </button>
+                <input type="text" placeholder="Pesquisar..." class="search-box">
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                </button>
           </div>    
         
         <div class="auth-buttons">

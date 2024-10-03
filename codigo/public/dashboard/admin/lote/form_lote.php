@@ -1,6 +1,6 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
-
+    include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
     session_start(); verificar_sessao("Admin");
 
 ?>
@@ -154,45 +154,42 @@
         </ul>
     </div>
     
-    <div class="card">
-                        <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
-                        <div class="card-content">
-                            <h3 class="card-title"><?= $nome_cavalo ?></h3>
-                            <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
-                            <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
-                            <p class="card-text"><strong>Prêmio:</strong> <?= $premio_cavalo ?></p>
-                            <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
-                            <p class="card-text"><strong>Situação:</strong> <?= $situacao_cavalo ?></p>
-                            <p class="card-text"><strong>Destaque:</strong> <?= $destaque ?></p>
-                        <div class="card-actions">
-                            <a href="/public/dashboard/admin/lote/form_lote.php" class="card-link">Selecionar</a>
-                         </div>
-                        </div>
-                    </div>
-        <div class="div_form">
-            <form action="/controle/controle_cavalo.php?caso=cadastro" enctype="multipart/form-data" method="POST">
-                <ul>
-                    <li>
-                        <input type="text" name="titulo_lote" placeholder="Título">
-                    </li>
-                    <li>
-                        <input type="text" name="valor_lote" placeholder="Valor"> 
-                    </li>
-                    <li>
-                        <input type="text" name="data_fechamento" placeholder="Data fechamento"> 
-                    </li>
-                        <select name="cavalo" id="">
-                            <option value="3 Tambores">3 Tambores</option>
-                            <option value="Laço">Laço</option>
-                            <option value="Vaquejada">Vaquejada</option>
-                        </select>
-                    </li>
-                    <!-- <li>
-                        <input type="file" name="imagem_cavalo">
-                    </li> -->
-                </ul>
-                <button type="submit" id="green">Salvar</button>
-            </form>
-        </div>
+    <?php 
+        $data_hoje = new DateTime();
+        $data_hoje ->modify('+7 days');
+        $data_fechamento = $data_hoje ->format('d-m-y');
+        $id_cavalo = $_REQUEST['id_cavalo'];
+        $sql = "SELECT img_cavalo FROM tb_cavalo WHERE id_cavalo = ?";
+        $retorno = conectarDB("select", $sql, [$id_cavalo], "i");
+        $dados = $retorno[1][0];
+    ?>
+
+    <div class="div_form">
+        <form action="/controle/controle_lote.php?caso=cadastro&id_cavalo=<?= $id_cavalo?>&view=card" enctype="multipart/form-data" method="POST">
+            <ul>
+                <img src="<?= $dados['img_cavalo']?>" alt="">
+                <li>
+                    <input type="text" name="titulo_lote" placeholder="Título">
+                </li>
+                <li>
+                    <input type="text" name="valor_lote" placeholder="Valor"> 
+                </li>
+                <li>
+                    <input type="text" name="data_fechamento" value="<?= $data_fechamento?>"readonly> 
+                </li>
+                <li>
+                    <input type="text" name="estado_lote" value="Ativo" hidden> 
+                </li>
+                <!-- <li>
+                    <select name="cavalo" id="">
+                        <option value="3 Tambores">3 Tambores</option>
+                        <option value="Laço">Laço</option>
+                        <option value="Vaquejada">Vaquejada</option>
+                    </select>
+                </li> -->
+            </ul>
+            <button type="submit" id="green">Salvar</button>
+        </form>
+    </div>
 </body>
-</html>
+</html> 

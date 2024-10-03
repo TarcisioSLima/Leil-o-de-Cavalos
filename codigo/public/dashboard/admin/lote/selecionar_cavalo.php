@@ -178,6 +178,7 @@
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo
+                    $id_cavalo = $dados["id_cavalo"];
                     $nome_cavalo = $dados["nome_cavalo"];
                     $raca_cavalo = $dados["raca_cavalo"];
                     $pelagem_cavalo = $dados["pelagem_cavalo"];
@@ -198,7 +199,7 @@
                             <p class="card-text"><strong>Situação:</strong> <?= $situacao_cavalo ?></p>
                             <p class="card-text"><strong>Destaque:</strong> <?= $destaque ?></p>
                         <div class="card-actions">
-                            <a href="/public/dashboard/admin/lote/form_lote.php" class="card-link">Selecionar</a>
+                            <a href="/public/dashboard/admin/lote/form_lote.php?id_cavalo=<?= $id_cavalo?>" class="card-link">Selecionar</a>
                          </div>
                         </div>
                     </div>
