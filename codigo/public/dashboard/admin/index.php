@@ -129,8 +129,8 @@
         <div class="box">            
             <p>Lotes</p>
             <ul>
-                <li><a href="/public/dashboard/admin/lote/index.php">Ativos</a></li>
-                <li><a href="/public/dashboard/admin/lote/index.php">Encerrados</a></li>
+                <li><a href="/public/dashboard/admin/lote/index.php?view=card">Ativos</a></li>
+                <li><a href="/public/dashboard/admin/lote/index.php?view=card">Encerrados</a></li>
                 <li><a href="/public/dashboard/admin/lote/selecionar_cavalo.php?view=card">Novo</a></li>
             </ul>
         </div>

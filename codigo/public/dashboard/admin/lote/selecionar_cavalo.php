@@ -138,83 +138,7 @@
                 background-color: #0056b3;
             }
 
-    /* Estilização da tabela */    
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin: 20px 0;
-                font-size: 1em;
-                font-family: Arial, sans-serif;
-                background-color: #fff;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            }
-
-            th, td {
-                padding: 12px 15px;
-                text-align: left;
-                text-align: center;
-            }
-
-            th {
-                background-color: #282e09;
-                color: #fff;
-                text-transform: uppercase;
-                letter-spacing: 0.03em;
-                
-            }
-
-            td {
-                border-bottom: 1px solid #dddddd;
-            }
-            /* Estilos para a célula de ações */
-                td.acao {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: 10px; /* Espaçamento entre os botões */
-                }
-
-                /* Estilo base para o link dentro das ações - Botões */
-                td.acao a {
-                    flex: 1;
-                    text-align: center;
-                    padding: 10px 15px; /* Espaçamento interno dos botões */
-                    color: #b6ab9e; /* Cor do texto igual a .t_header a */
-                    border-radius: 5px; /* Bordas arredondadas */
-                    text-decoration: none; /* Remove o sublinhado */
-                    transition: background-color 0.3s ease, transform 0.2s ease; /* Animações de hover */
-                    font-size: 14px;
-                    font-weight: bold;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra dos botões */
-                    width: 100%; /* Largura total */
-                    display: inline-block;
-                    background-color: #282e09;  /* Cor de fundo igual a .t_header a */
-                }
-
-                td.acao a:hover {
-                    background-color: #53422a; /* Cor de fundo no hover igual a .t_header a:hover */
-                    transform: translateY(-2px); /* Leve efeito de elevação no hover */
-                }
-
-                /* Ajusta o tamanho proporcionalmente quando há dois botões */
-                td.acao a:nth-child(1), 
-                td.acao a:nth-child(2) {
-                    width: calc(50% - 5px); /* Dois botões, dividem o espaço */
-                }
-
-                /* Quando houver apenas um botão, ele ocupa a largura total */
-                td.acao a:only-child {
-                    width: 100%; /* Largura total quando houver um único botão */
-                }
-
-            tr:hover {
-                background-color: #f1f1f1;
-            }
-
-            /* Alterna a cor das linhas para melhor visualização */
-            tr:nth-child(even) {
-                background-color: #f8f8f8;
-            }
-
+   
             /* Responsividade para dispositivos móveis */
             @media (max-width: 768px) {
                 table {
@@ -249,11 +173,12 @@
         <div class="cards-container">
             <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-                $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Ativo'";
+                $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Inativo'";
                 $retorno = conectarDB("select", $sql, [], "");
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo
+                    $id_cavalo = $dados["id_cavalo"];
                     $nome_cavalo = $dados["nome_cavalo"];
                     $raca_cavalo = $dados["raca_cavalo"];
                     $pelagem_cavalo = $dados["pelagem_cavalo"];
@@ -274,7 +199,7 @@
                             <p class="card-text"><strong>Situação:</strong> <?= $situacao_cavalo ?></p>
                             <p class="card-text"><strong>Destaque:</strong> <?= $destaque ?></p>
                         <div class="card-actions">
-                            <a href="#" class="card-link">Ver propostas</a>
+                            <a href="/public/dashboard/admin/lote/form_lote.php?id_cavalo=<?= $id_cavalo?>" class="card-link">Selecionar</a>
                          </div>
                         </div>
                     </div>

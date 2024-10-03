@@ -1,6 +1,6 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
-
+    include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
     session_start(); verificar_sessao("Admin");
 
 ?>
@@ -66,6 +66,80 @@
         padding: 5px 10px;
         text-align: center;
     }
+
+        /* CSS dos cards */
+        /* Container dos cards */
+        .cards-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            /* Card individual */
+            .card {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                overflow: hidden;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Imagem no card */
+            .card-img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-bottom: 2px solid #ccc;
+            }
+
+            /* Conteúdo do card */
+            .card-content {
+                padding: 15px;
+                text-align: center;
+            }
+
+            /* Título do card */
+            .card-title {
+                font-size: 1.5em;
+                margin-bottom: 10px;
+                color: #333;
+            }
+
+            /* Texto do card */
+            .card-text {
+                font-size: 1em;
+                color: #666;
+                margin-bottom: 8px;
+            }
+
+            /* Links para ações no card */
+            .card-actions {
+                margin-top: 10px;
+            }
+
+            .card-link {
+                display: inline-block;
+                margin: 5px 10px;
+                padding: 8px 12px;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            }
+
+            .card-link:hover {
+                background-color: #0056b3;
+            }
+
 </style>
 <body>
     <header class="header">
@@ -80,30 +154,47 @@
         </ul>
     </div>
     
+    <?php 
+        $data_hoje = new DateTime();
+        $data_hoje ->modify('+7 days');
+        $data_fechamento = $data_hoje ->format('d-m-y');
+        $id_cavalo = $_REQUEST['id_cavalo'];
+        $sql = "SELECT img_cavalo FROM tb_cavalo WHERE id_cavalo = ?";
+        $retorno = conectarDB("select", $sql, [$id_cavalo], "i");
+        $dados = $retorno[1][0];
+    ?>
+
     <div class="div_form">
-        <form action="/controle/controle_cavalo.php?caso=cadastro" enctype="multipart/form-data" method="POST">
+
+        <form action="/controle/controle_lote.php?caso=cadastro&id_cavalo=<?= $id_cavalo?>&view=card" enctype="multipart/form-data" method="POST">
+
             <ul>
+                <img src="<?= $dados['img_cavalo']?>" alt="" class="card-img">
+                <h3 class="card-title"></h3>
                 <li>
                     <input type="text" name="titulo_lote" placeholder="Título">
                 </li>
                 <li>
-                    <input type="text" name="valor_lote" placeholder="Valor"> 
+                    <input type="text" name="valor_lote" id="valor" onkeyup="valorEmReais()" placeholder="Valor"> 
+                </li>
+                <p class="card-text">Data de fechamento:</p>
+                <li>
+                    <input type="text" name="data_fechamento" value="<?= $data_fechamento?>"readonly> 
                 </li>
                 <li>
-                    <input type="text" name="data_fechamento" placeholder="Data fechamento"> 
+                    <input type="text" name="estado_lote" value="Ativo" hidden> 
                 </li>
+                <!-- <li>
                     <select name="cavalo" id="">
                         <option value="3 Tambores">3 Tambores</option>
                         <option value="Laço">Laço</option>
                         <option value="Vaquejada">Vaquejada</option>
                     </select>
-                </li>
-                <!-- <li>
-                    <input type="file" name="imagem_cavalo">
                 </li> -->
             </ul>
             <button type="submit" id="green">Salvar</button>
         </form>
     </div>
+    <script src="/public/assets/js/script.js"></script>
 </body>
-</html>
+</html> 

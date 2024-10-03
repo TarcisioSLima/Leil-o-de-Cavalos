@@ -166,6 +166,7 @@
            <img src="assets/img/logo_verde.png" alt="" style="max-width: 200px; max-height: 200px;">
         </div>
 
+<<<<<<< HEAD
         <form action="">
             <div class="search-container">
                 <select name="" id="">
@@ -178,12 +179,19 @@
                     <option value=""></option>
                     <option value=""></option>
                 </select>
+=======
+        <div class="search-container">
+>>>>>>> 326f1961b410a216344902303221d65d954d6d0b
                 <input type="text" placeholder="Pesquisar..." class="search-box">
                 <button type="submit" class="search-button">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 </button>
+<<<<<<< HEAD
             </div>    
         </form>
+=======
+          </div>    
+>>>>>>> 326f1961b410a216344902303221d65d954d6d0b
         
         <div class="auth-buttons">
             <ul> 
