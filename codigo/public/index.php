@@ -166,12 +166,24 @@
            <img src="assets/img/logo_verde.png" alt="" style="max-width: 200px; max-height: 200px;">
         </div>
 
-        <div class="search-container">
-            <input type="text" placeholder="Pesquisar..." class="search-box">
-            <button type="submit" class="search-button">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            </button>
-          </div>    
+        <form action="">
+            <div class="search-container">
+                <select name="" id="">
+                    <option value="">Modalidade</option>
+                    <option value="">Raça</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+                <select name="" id="">
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+                <input type="text" placeholder="Pesquisar..." class="search-box">
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                </button>
+            </div>    
+        </form>
         
         <div class="auth-buttons">
             <ul> 
@@ -248,9 +260,7 @@
                     <i class="fa-solid fa-<?=$num?>"></i>Cavalo em destaque</a>
                 </li>
             <?php
-                if ($num >= 10) {
-                    break;
-                }
+                if ($num >= 10) break;
                 $num += 1; 
             }?>
         
