@@ -165,15 +165,19 @@
     ?>
 
     <div class="div_form">
+
         <form action="/controle/controle_lote.php?caso=cadastro&id_cavalo=<?= $id_cavalo?>&view=card" enctype="multipart/form-data" method="POST">
+
             <ul>
-                <img src="<?= $dados['img_cavalo']?>" alt="">
+                <img src="<?= $dados['img_cavalo']?>" alt="" class="card-img">
+                <h3 class="card-title"></h3>
                 <li>
                     <input type="text" name="titulo_lote" placeholder="Título">
                 </li>
                 <li>
-                    <input type="text" name="valor_lote" placeholder="Valor"> 
+                    <input type="text" name="valor_lote" id="valor" onkeyup="valorEmReais()" placeholder="Valor"> 
                 </li>
+                <p class="card-text">Data de fechamento:</p>
                 <li>
                     <input type="text" name="data_fechamento" value="<?= $data_fechamento?>"readonly> 
                 </li>
@@ -191,5 +195,6 @@
             <button type="submit" id="green">Salvar</button>
         </form>
     </div>
+    <script src="/public/assets/js/script.js"></script>
 </body>
 </html> 
