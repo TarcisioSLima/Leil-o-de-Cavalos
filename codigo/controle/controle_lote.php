@@ -10,7 +10,7 @@
             $titulo_lote = $_REQUEST["titulo_lote"];
             $valor_lote = $_REQUEST['valor_lote'];
             $data_fechamento = $_REQUEST["data_fechamento"];
-            $estado_lote = $_REQUEST["estado_lote"];
+            $estado_lote = "Ativo";
             $id_cavalo = $_REQUEST["id_cavalo"];
 
             // if (isset($_REQUEST['valor'])) {
@@ -25,7 +25,7 @@
             // }
 
             $sql = "INSERT INTO tb_lote VALUES (NULL, ?, ?, ?, ?, ?)";
-            $retorno = conectarDB("insert_update", $sql, "ssssi",
+            $retorno = conectarDB("insert_update", $sql, "sdssi",
             [$titulo_lote, $valor, $data_fechamento, $estado_lote, $id_cavalo]);
             redirecionar("index_lote", "$view");
             break;    
