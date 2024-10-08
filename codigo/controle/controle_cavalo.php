@@ -79,11 +79,22 @@
 
             break;
         case 'remover':
+            
+            // Parte que faz com que o cavalo só seja excluido se ja estiver sido vendido. {-----
             $id_cavalo = $_REQUEST['id_cavalo'];
             $view =  $_REQUEST['view'];
-            $sql = "DELETE FROM tb_cavalo WHERE id_cavalo = ? ";
-            conectarDB("insert_update", $sql, "i", [$id_cavalo]);
-            redirecionar("index_cavalo", $view);
+            
+            
+            $sql = "SELECT situacao_cavalo FROM tb_cavalo WHERE id_cavalo = ?";
+            $retorno = conectarDB("select", $sql, [$id_cavalo], "i");
+            $dados =  $retorno[1][0];
+            $situacao_cavalo = $dados["situacao_cavalo"];
+            if ($situacao_cavalo == "Vendido") {
+            // ----------------------------------------------------------------------------------}
+                $sql = "DELETE FROM tb_cavalo WHERE id_cavalo = ? ";
+                conectarDB("insert_update", $sql, "i", [$id_cavalo]);
+                redirecionar("index_cavalo", $view);
+            }else redirecionar("index_cavalo", $view);
             break;
         
         default:

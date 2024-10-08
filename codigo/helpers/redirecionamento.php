@@ -35,6 +35,13 @@ function redirecionar($action, $mensagem){
                 window.location.href='/public/dashboard/admin/cavalo/index.php?view=$mensagem';
             </script>";
             break;
+        case 'index_lote':
+            echo "
+            <script>
+                window.location.href='/public/dashboard/admin/lote/index.php?view=$mensagem';
+            </script>";
+            break;
+            
         default:
             # code...
             break;

@@ -165,13 +165,20 @@
         <div class="logo" >
            <img src="assets/img/logo_verde.png" alt="" style="max-width: 200px; max-height: 200px;">
         </div>
-
+        <form action="index.php?pesquisa=W80pl">
         <div class="search-container">
-            <input type="text" placeholder="Pesquisar..." class="search-box">
-            <button type="submit" class="search-button">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            </button>
-          </div>    
+                <select name="filtro" id="" class="search-box">
+                    <option value="raca_cavalo">Raça</option>
+                    <option value="pelagem_cavalo">Pelagem</option>
+                    <option value="premio_cavalo">Prêmio</option>
+                </select>    
+                <input type="text" placeholder="Digite aqui" class="search-box" name="texto">
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                </button>
+                
+            </div>    
+        </form>
         
         <div class="auth-buttons">
             <ul> 
@@ -230,32 +237,31 @@
             <li><a href="/public/quarter_horse.php">Quem Somos</a></li>
         </ul>
     </div>
-
-    <div class="container">
-        <!-- Menu lateral de cavalos em destaque -->
-        
-        <div class="card_categorias">
-        <ul class="u_categorias">
-                <li><a href="index.php">
-                    <i class="fa-solid fa-horse"></i>Cavalos em Destaque</a>
+    <?php 
+        if (!isset($_REQUEST["pesquisa"])) { ?>
+            <div class="container">
+                <!-- Menu lateral de cavalos em destaque -->
+                
+                <div class="card_categorias">
+                    <ul class="u_categorias">
+                        <li><a href="index.php">
+                            <i class="fa-solid fa-horse"></i>Cavalos em Destaque</a>
                 </li>    
-        <?php 
+                <?php 
             $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
             $retorno = conectarDB("select", $sql, [], "");
             $num = 1;
             foreach ($retorno[1] as $dados) { ?>
                  <li><a href="index.php?cavalo_d=<?=$num?>">
-                    <i class="fa-solid fa-<?=$num?>"></i>Cavalo em destaque</a>
-                </li>
-            <?php
-                if ($num >= 10) {
-                    break;
-                }
+                     <i class="fa-solid fa-<?=$num?>"></i>Cavalo em destaque</a>
+                    </li>
+                    <?php
+                if ($num >= 10) break;
                 $num += 1; 
             }?>
         
-            </ul>
-        </div>
+    </ul>
+</div>
 
         <!-- Card com o cavalo em destaque -->
         <?php if (isset($_REQUEST["cavalo_d"])) {
@@ -266,6 +272,7 @@
             $contador = 1;
             foreach ($retorno[1] as $dados) { 
                 if ($contador == $cavalo_d) {
+                    $id_cavalo = $dados['id_cavalo'];
                     $dados_basicos = [
                         $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
                         $raca_cavalo = ("Raça: " . $dados["raca_cavalo"]),
@@ -282,23 +289,27 @@
         <div class="card">
             <ul>
                 <?php foreach ($dados_basicos as $dado) { ?>
-                <li><?= $dado; ?></li>
-                <?php } ?>
-            </ul>
-            <ul>
-                <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
-            </ul>
-        </div>
-        <?php } else { ?>
-            <div class="main-content"> 
+                    <li><?= $dado; ?></li>
+                    <?php } ?>
+                </ul>
+                <ul>
+                    <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
+                </ul>
+                <ul>
+                    
+                    <a href="lances.php?id_cavalo=<?=$id_cavalo?>">Ver lances</a>
+                </ul>
+            </div>
+            <?php } else { ?>
+                <div class="main-content"> 
                 <img src="assets/img/test.png" alt="" class="img_i"> 
             </div>
-        <?php } ?>
-</div>
-
-<!-- Lotes de cavalos -->
-<div class="lotes">
-    <?php
+            <?php } ?>
+        </div>
+        
+        <!-- Lotes de cavalos -->
+        <div class="lotes">
+            <?php
        $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
        $retorno = conectarDB("select", $sql, [], "");
        foreach ($retorno[1] as $dados) { 
@@ -310,7 +321,7 @@
            $situacao_cavalo = $dados['situacao_cavalo'];
            $modalidade_cavalo = $dados['modalidade_cavalo'];
            $img_cavalo = $dados['img_cavalo'];
-    ?>
+           ?>
     <div class="ls">
         <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
         <hr>
@@ -324,24 +335,51 @@
     </div>
     <?php } ?>
 </div>
+<?php } else {
+        $filtro = $_REQUEST["filtro"];
+        $texto = $_REQUEST["texto"];
+        switch ($filtro) {
+            case 'raca_cavalo':
+                $sql = "SELECT * FROM tb_cavalo WHERE raca_cavalo like %?%";
+                $retorno = conectarDB("select", $sql, [$texto], "s");
+                if (sizeof($retorno[1]) > 0) {
+                   
+                }
+                break;
+            case 'pelagem_cavalo':
+                $sql = "SELECT * FROM tb_cavalo WHERE pelagem_cavalo like %?%";
+                conectarDB("select", $sql, [$texto], "s");
+                break;
+            case 'premio_cavalo':
+                $sql = "SELECT * FROM tb_cavalo WHERE premio_cavalo like %?%";
+                conectarDB("select", $sql, [$texto], "s");
+                break;
+            
+            default:
+                
+                break;
+        }
+        
 
-
-    <!-- <div class="lotes">
-        <div class="ls">
-             <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
-            <hr> <br>
-            <h4>
-                Item de Exemplo 1
-            </h4> <br>
-            <hr><br>
-            <p>R$ 12.000,00</p>
-            <br>
-            <hr>
+    ?>
+        
+<?php } ?>
+<!-- <div class="lotes">
+    <div class="ls">
+        <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
+        <hr> <br>
+        <h4>
+            Item de Exemplo 1
+        </h4> <br>
+        <hr><br>
+        <p>R$ 12.000,00</p>
+        <br>
+        <hr>
         <div class="uls">
-                <ul class="ul_dias">
-                    <li class="nuns">4</li>
-                    <li>Dias</li>
-                </ul>
+            <ul class="ul_dias">
+                <li class="nuns">4</li>
+                <li>Dias</li>
+            </ul>
                 <ul class="ul_horas">
                     <li class="nuns">7</li>
                     <li>Horas</li>
