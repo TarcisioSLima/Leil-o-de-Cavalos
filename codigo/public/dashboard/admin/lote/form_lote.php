@@ -157,7 +157,7 @@
     <?php 
         $data_hoje = new DateTime();
         $data_hoje ->modify('+7 days');
-        $data_fechamento = $data_hoje ->format('d-m-y');
+        $data_fechamento = $data_hoje ->format('d/m/Y');
         $id_cavalo = $_REQUEST['id_cavalo'];
         $sql = "SELECT img_cavalo FROM tb_cavalo WHERE id_cavalo = ?";
         $retorno = conectarDB("select", $sql, [$id_cavalo], "i");
@@ -166,7 +166,7 @@
 
     <div class="div_form">
 
-        <form action="/controle/controle_lote.php?caso=cadastro&id_cavalo=<?= $id_cavalo?>&view=card" enctype="multipart/form-data" method="POST">
+        <form action="/controle/controle_lote.php?caso=cadastro&id_cavalo=<?= $id_cavalo?>&view=cardativo" enctype="multipart/form-data" method="POST">
 
             <ul>
                 <img src="<?= $dados['img_cavalo']?>" alt="" class="card-img">
