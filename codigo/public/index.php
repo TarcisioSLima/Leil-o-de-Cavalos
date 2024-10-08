@@ -298,7 +298,7 @@
                 </ul>
                 <ul>
                     
-                    <a href="lances.php?id_cavalo=<?=$id_cavalo?>">Ver lances</a>
+                    <a href="lance.php?id_cavalo=<?=$id_cavalo?>">Ver lances</a>
                 </ul>
             </div>
             <?php } else { ?>
@@ -395,6 +395,12 @@
 
 
     ?>
+<<<<<<< HEAD
+=======
+        
+<?php } ?>
+
+>>>>>>> c10a14585b77354903ec819959fc1fbe6eca5b07
 <br><br><br><br><br><br>
 
     <script>
