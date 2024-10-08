@@ -1,32 +1,3 @@
-<!-- <?php
-    // include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
-    // session_start(); verificar_sessao("Admin");
-    // include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-
-
-    // $sql = "SELECT * FROM tb_lote";
-    // $retorno = conectarDB("select", $sql, [], "");
-    // foreach ($retorno[1] as $dados) { 
-    //     $id_lote = $dados['id_lote'];
-    //     $titulo_lote = $dados['titulo_lote'];
-    //     $valor_lote = $dados['valor_lote'];
-    //     $estado_lote = $dados['estado_lote'];
-    //     $tb_cavalo_id_cavalo = $dados['tb_cavalo_id_cavalo'];
-
-    //     // Obter a data atual
-    //     $data_atual = new DateTime();
-    //     $data_fechamento = new DateTime('+7 days');
-
-    //     // Calcular a diferença
-    //     $diferenca = $data_atual->diff($data_fechamento);
-
-    //     // Obter dias, horas, minutos e segundos
-    //     $dias = $diferenca->d;
-    //     $horas = $diferenca->h;
-    //     $minutos = $diferenca->i;
-    //     $segundos = $diferenca->s;
-    // }
-?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,7 +168,7 @@
         <li><a href="/public/dashboard/admin/lote/index.php?view=tableativo">Ver em tabela</a></li>
         <li><a href="/public/dashboard/admin/lote/selecionar_cavalo.php?view=card">Cadastrar novo lote</a></li><?php } else { ?>
         <li><a href="/public/dashboard/admin/lote/index.php?view=cardativo">Ver em card</a></li>
-        <li><a href="/public/dashboard/admin/lote/selecionar_cavalo.php?view=table">Cadastrar novo lote</a></li><?php } ?>
+        <li><a href="/public/dashboard/admin/lote/selecionar_cavalo.php?view=card">Cadastrar novo lote</a></li><?php } ?>
     </ul>
 </div>
 

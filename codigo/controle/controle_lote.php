@@ -27,7 +27,7 @@
 
             $sql = "INSERT INTO tb_lote VALUES (NULL, ?, ?, ?, ?, ?)";
             $retorno = conectarDB("insert_update", $sql, "ssssi",
-            [$titulo_lote, $valor, $data_fechamento, $estado_lote, $id_cavalo]);
+            [$titulo_lote, $valor, $dataParaInserir, $estado_lote, $id_cavalo]);
             redirecionar("index_lote", "$view");
             break;    
     }
