@@ -183,7 +183,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Título</th>
                     <th>Valor</th>
                     <th>Data Fechamento</th>
                     <th>Estado</th>
@@ -197,7 +196,6 @@
                 $retorno = conectarDB("select", $sql, [], "");
 
                 foreach ($retorno[1] as $dados) { 
-                    $titulo_lote = $dados["titulo_lote"]; 
                     $valor_lote = $dados['valor_lote'];
                     $data_fechamento = $dados['data_fechamento'];
                     $data_fechamento_conversao = new DateTime($data_fechamento);
@@ -206,7 +204,6 @@
 
                 ?>
                 <tr>
-                    <td><?= $dados["titulo_lote"]; ?></td>
                     <td><?= $dados["valor_lote"]; ?></td>
                     <td><?= $data_final; ?></td>
                     <td><?= $dados["estado_lote"]; ?></td>
@@ -227,7 +224,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Título</th>
                     <th>Valor</th>
                     <th>Data Fechamento</th>
                     <th>Estado</th>
@@ -240,14 +236,12 @@
                 $retorno = conectarDB("select", $sql, [], "");
 
                 foreach ($retorno[1] as $dados) { 
-                    $titulo_lote = $dados["titulo_lote"]; 
                     $valor_lote = $dados['valor_lote'];
                     $data_fechamento = $dados['data_fechamento'];
                     $estado_lote = $dados['estado_lote'];
 
                 ?>
                 <tr>
-                    <td><?= $dados["titulo_lote"]; ?></td>
                     <td><?= $dados["valor_lote"]; ?></td>
                     <td><?= $dados["data_fechamento"]; ?></td>
                     <td><?= $dados["estado_lote"]; ?></td>
@@ -275,7 +269,6 @@
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo
-                    $titulo_lote = $dados["titulo_lote"];
                     $valor_lote = $dados["valor_lote"];
                     $estado_lote = $dados["estado_lote"];
                     $data_fechamento = $dados["data_fechamento"];
@@ -284,9 +277,8 @@
 
             ?>
             <div class="card">
-                <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $titulo_lote ?>" class="card-img">
+                <img src="<?= $img_cavalo?>" alt="Imagem do cavalo " class="card-img">
                 <div class="card-content">
-                    <h3 class="card-title"><?= $titulo_lote ?></h3>
                     <p class="card-text"><strong>Valor:</strong> <?= $valor_lote ?></p>
                     <p class="card-text"><strong>Data de fechamento:</strong> <?= $data_final ?></p>
                     <p class="card-text"><strong>Situação:</strong> <?= $estado_lote ?></p>
@@ -313,15 +305,13 @@
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo
-                    $titulo_lote = $dados["titulo_lote"];
                     $valor_lote = $dados["valor_lote"];
                     $data_fechamento = $dados["data_fechamento"];
                     $estado_lote = $dados["estado_lote"];
             ?>
             <div class="card">
-                <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $titulo_lote ?>" class="card-img">
+                <img src="<?= $img_cavalo?>" alt="Imagem do cavalo" class="card-img">
                 <div class="card-content">
-                    <h3 class="card-title"><?= $titulo_lote ?></h3>
                     <p class="card-text"><strong>Valor:</strong> <?= $valor_lote ?></p>
                     <p class="card-text"><strong>Data de fechamento:</strong> <?= $data_fechamento ?></p>
                     <p class="card-text"><strong>Situação:</strong> <?= $estado_lote ?></p>

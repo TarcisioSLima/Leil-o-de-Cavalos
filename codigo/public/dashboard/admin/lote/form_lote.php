@@ -172,9 +172,6 @@
                 <img src="<?= $dados['img_cavalo']?>" alt="" class="card-img">
                 <h3 class="card-title"></h3>
                 <li>
-                    <input type="text" name="titulo_lote" placeholder="Título">
-                </li>
-                <li>
                     <input type="text" name="valor_lote" id="valor" onkeyup="valorEmReais()" placeholder="Valor"> 
                 </li>
                 <p class="card-text">Data de fechamento:</p>
