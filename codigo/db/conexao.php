@@ -29,12 +29,12 @@
                 $r_fun = select($conexao, $sql, $tipos_dados, $dados);
                 return $r_fun;
                 break;
-            /*---------------------------------------------------------*/
-            /*---------------------------------------------------------*/
+               /*---------------------------------------------------------*/
+               /*---------------------------------------------------------*/
             case 'insert_update':
                 insert_update($conexao, $sql, $tipos_dados, $dados);
                 break;
-            /*---------------------------------------------------------*/
+              /*---------------------------------------------------------*/
             case 'delete':
                 # code...
                 break;
@@ -61,7 +61,7 @@ function select($conexao, $sql, $dados = null, $tipos_dados = null) {
     mysqli_close($conexao);
 
     return [$retorno, $resultados];
-}
+    }
 
 function insert_update($conexao, $sql, $tipos_dados, $dados){
     $stmt = mysqli_prepare($conexao, $sql);
@@ -75,6 +75,6 @@ function insert_update($conexao, $sql, $tipos_dados, $dados){
     mysqli_stmt_close($stmt);
     
     return $id;
-}
+    }
     
 ?>
