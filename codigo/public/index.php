@@ -165,14 +165,20 @@
         <div class="logo" >
            <img src="assets/img/logo_verde.png" alt="" style="max-width: 200px; max-height: 200px;">
         </div>
-        
+        <form action="">
         <div class="search-container">
-
-                <input type="text" placeholder="Pesquisar..." class="search-box">
+                <select name="" id="" class="search-box">
+                    <option value="">Raça</option>
+                    <option value="">Pelagem</option>
+                    <option value="">Prêmio</option>
+                </select>    
+                <input type="text" placeholder="Digite aqui" class="search-box">
                 <button type="submit" class="search-button">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 </button>
-          </div>    
+                
+            </div>    
+        </form>
         
         <div class="auth-buttons">
             <ul> 
