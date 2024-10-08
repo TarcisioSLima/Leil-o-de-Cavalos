@@ -297,7 +297,7 @@
                 </ul>
                 <ul>
                     
-                    <a href="lances.php?id_cavalo=<?=$id_cavalo?>">Ver lances</a>
+                    <a href="lance.php?id_cavalo=<?=$id_cavalo?>">Ver lances</a>
                 </ul>
             </div>
             <?php } else { ?>
@@ -364,129 +364,7 @@
     ?>
         
 <?php } ?>
-<!-- <div class="lotes">
-    <div class="ls">
-        <img src="assets/img/horse.jpg" alt="" style="max-width: 100%; border-radius: 10px;  object-fit: cover;"> <br>
-        <hr> <br>
-        <h4>
-            Item de Exemplo 1
-        </h4> <br>
-        <hr><br>
-        <p>R$ 12.000,00</p>
-        <br>
-        <hr>
-        <div class="uls">
-            <ul class="ul_dias">
-                <li class="nuns">4</li>
-                <li>Dias</li>
-            </ul>
-                <ul class="ul_horas">
-                    <li class="nuns">7</li>
-                    <li>Horas</li>
-                </ul>
-                <ul class="ul_minutos">       
-                    <li class="nuns">40</li>
-                    <li>Minutos</li>
-                </ul>
-                <ul class="ul_segundos">
-                    <li class="nuns">10</li>
-                    <li>Segundos</li>
-                </ul>
-            
-        </div> -->
-<!--         
-        </div>
-        <div class="ls">
-            <img src="assets/img/horse.jpg" alt="" style="overflow: hidden;"> <br>
-            <hr> <br>
-            <h4>
-                Item de Exemplo 2
-            </h4>
-            <br><hr>
-            <br>
-            <p>R$ 4.700,00</p>
-            <br><hr>
-        <div class="uls">
 
-            <ul class="ul_dias">
-                <li class="nuns">4</li>
-                <li>Dias</li>
-            </ul>
-            <ul class="ul_horas">
-                <li class="nuns">7</li>
-                <li>Horas</li>
-            </ul>
-            <ul class="ul_minutos">       
-                <li class="nuns">40</li>
-                <li>Minutos</li>
-            </ul>
-            <ul class="ul_segundos">
-                <li class="nuns">10</li>
-                <li>Segundos</li>
-            </ul>
-        </div>
-        
-
-        </div>
-        <div class="ls">
-            <img src="assets/img/horse.jpg" alt=""> <br>
-            <hr> <br>
-            <h4>
-                Item de Exemplo 3
-            </h4>
-            <br> <hr><br>
-            <p>R$ 9.000,00</p>
-            <br><hr>
-            <div class="uls">
-                <ul class="ul_dias">
-                    <li class="nuns">4</li>
-                    <li>Dias</li>
-                </ul>
-                <ul class="ul_horas">
-                    <li class="nuns">7</li>
-                    <li>Horas</li>
-                </ul>
-                <ul class="ul_minutos">       
-                    <li class="nuns">40</li>
-                    <li>Minutos</li>
-                </ul>
-                <ul class="ul_segundos">
-                    <li class="nuns">10</li>
-                    <li>Segundos</li>
-                </ul>
-            </div>
-               
-        </div>
-        <div class="ls">
-                <img src="assets/img/horse.jpg" alt=""> <br> <hr> <br>
-                <h4>
-                    Item de Exemplo 4
-                </h4>
-                <br> <hr><br>
-                <p>R$ 4.000,00</p>
-                <br><hr>
-                <div class="uls">
-                    <ul class="ul_dias">
-                        <li class="nuns">4</li>
-                        <li>Dias</li>
-                    </ul>
-                    <ul class="ul_horas">
-                        <li class="nuns">7</li>
-                        <li>Horas</li>
-                    </ul>
-                    <ul class="ul_minutos">       
-                        <li class="nuns">40</li>
-                        <li>Minutos</li>
-                    </ul>
-                    <ul class="ul_segundos">
-                        <li class="nuns">10</li>
-                        <li>Segundos</li>
-                    </ul>
-                </div>
-                
-        </div>
-            
-    </div> --> 
 <br><br><br><br><br><br>
 
     <script>
