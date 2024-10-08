@@ -272,6 +272,7 @@
             $contador = 1;
             foreach ($retorno[1] as $dados) { 
                 if ($contador == $cavalo_d) {
+                    $id_cavalo = $dados['id_cavalo'];
                     $dados_basicos = [
                         $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
                         $raca_cavalo = ("Raça: " . $dados["raca_cavalo"]),
@@ -293,6 +294,10 @@
                 </ul>
                 <ul>
                     <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
+                </ul>
+                <ul>
+                    
+                    <a href="lances.php?id_cavalo=<?=$id_cavalo?>">Ver lances</a>
                 </ul>
             </div>
             <?php } else { ?>
