@@ -181,9 +181,7 @@
                 <li>
                     <input type="text" name="data_fechamento" value="<?= $data_fechamento?>"readonly> 
                 </li>
-                <li>
-                    <input type="text" name="estado_lote" value="Ativo" hidden> 
-                </li>
+                
                 <!-- <li>
                     <select name="cavalo" id="">
                         <option value="3 Tambores">3 Tambores</option>
