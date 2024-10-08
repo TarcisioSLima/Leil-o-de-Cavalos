@@ -43,7 +43,7 @@
     //Leve em consideração que é necessário que o Cliente tenha dado um valor em um formulário
         //Esse valor precisa ser > do que o valor atual do lote. 
             //que pode ser tanto o maior lance do usuário ou incial caso não tenha nenhum lance ainda 
-    //O Cliente só pode confirmar o lance obedecendo os parametros acima e após confirmando seu email e senha.
+    //O Cliente só pode confirmar o lance obedecendo os parametros acima e após confirmando senha.
 
 
         $lance_usuario = $_REQUEST['lance_usuario'];
