@@ -86,9 +86,10 @@ body {
   border-radius: 10px;
   overflow: hidden;
   background-color: #282e09 ;
-  color: #b6ab9e;
+  
 }
 .search-box {
+  color: #b6ab9e;
   padding: 10px;
   border: none;
   width: 100%;
