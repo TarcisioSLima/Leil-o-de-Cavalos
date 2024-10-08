@@ -1,32 +1,32 @@
-<?php
-    include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
-    session_start(); verificar_sessao("Admin");
-    include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
+<!-- <?php
+    // include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
+    // session_start(); verificar_sessao("Admin");
+    // include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
 
 
-    $sql = "SELECT * FROM tb_lote";
-    $retorno = conectarDB("select", $sql, [], "");
-    foreach ($retorno[1] as $dados) { 
-        $id_lote = $dados['id_lote'];
-        $titulo_lote = $dados['titulo_lote'];
-        $valor_lote = $dados['valor_lote'];
-        $estado_lote = $dados['estado_lote'];
-        $tb_cavalo_id_cavalo = $dados['tb_cavalo_id_cavalo'];
+    // $sql = "SELECT * FROM tb_lote";
+    // $retorno = conectarDB("select", $sql, [], "");
+    // foreach ($retorno[1] as $dados) { 
+    //     $id_lote = $dados['id_lote'];
+    //     $titulo_lote = $dados['titulo_lote'];
+    //     $valor_lote = $dados['valor_lote'];
+    //     $estado_lote = $dados['estado_lote'];
+    //     $tb_cavalo_id_cavalo = $dados['tb_cavalo_id_cavalo'];
 
-        // Obter a data atual
-        $data_atual = new DateTime();
-        $data_fechamento = new DateTime('+7 days');
+    //     // Obter a data atual
+    //     $data_atual = new DateTime();
+    //     $data_fechamento = new DateTime('+7 days');
 
-        // Calcular a diferença
-        $diferenca = $data_atual->diff($data_fechamento);
+    //     // Calcular a diferença
+    //     $diferenca = $data_atual->diff($data_fechamento);
 
-        // Obter dias, horas, minutos e segundos
-        $dias = $diferenca->d;
-        $horas = $diferenca->h;
-        $minutos = $diferenca->i;
-        $segundos = $diferenca->s;
-    }
-?>
+    //     // Obter dias, horas, minutos e segundos
+    //     $dias = $diferenca->d;
+    //     $horas = $diferenca->h;
+    //     $minutos = $diferenca->i;
+    //     $segundos = $diferenca->s;
+    // }
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,14 +192,66 @@
 <div class="t_header">
     <ul>
         <li><a href="/public/index.php">Início</a></li>
-        <li><a href="/public/dashboard/admin/index.php">Voltar</a></li><?php if($view == "card"){?>
+        <li><a href="/public/dashboard/admin/index.php">Voltar</a></li>
+        <?php if($view == "cardativo"){?>
+        <li><a href="/public/dashboard/admin/lote/index.php?view=tableativo">Ver em tabela</a></li>
         <li><a href="/public/dashboard/admin/lote/selecionar_cavalo.php?view=card">Cadastrar novo lote</a></li><?php } else { ?>
+        <li><a href="/public/dashboard/admin/lote/index.php?view=cardativo">Ver em card</a></li>
         <li><a href="/public/dashboard/admin/lote/selecionar_cavalo.php?view=table">Cadastrar novo lote</a></li><?php } ?>
     </ul>
 </div>
 
-<?php if ($view == 'table') { ?>
-    <!-- Tabela com os dados do cavalo! -->
+        <!--Tabela com os ativos!   -->
+    <?php 
+
+    $view = $_REQUEST['view'];     
+
+    if ($view == 'tableativo') { ?>
+   
+    <div>   
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Valor</th>
+                    <th>Data Fechamento</th>
+                    <th>Estado</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>        
+            <tbody>
+                <?php
+                include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
+                $sql = "SELECT * FROM tb_lote WHERE estado_lote = 'Ativo'";
+                $retorno = conectarDB("select", $sql, [], "");
+
+                foreach ($retorno[1] as $dados) { 
+                    $titulo_lote = $dados["titulo_lote"]; 
+                    $valor_lote = $dados['valor_lote'];
+                    $data_fechamento = $dados['data_fechamento'];
+                    $data_fechamento_conversao = new DateTime($data_fechamento);
+                    $data_final = $data_fechamento_conversao ->format('d/m/Y');
+                    $estado_lote = $dados['estado_lote'];
+
+                ?>
+                <tr>
+                    <td><?= $dados["titulo_lote"]; ?></td>
+                    <td><?= $dados["valor_lote"]; ?></td>
+                    <td><?= $data_final; ?></td>
+                    <td><?= $dados["estado_lote"]; ?></td>
+                    <td class="acao">
+
+                    <a href='?caso=propostas'>Ver propostas</a>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+        <!-- Tabela com os inativos! -->  
+        <?php }
+        elseif ($view == 'tableinativo') { ?>
     <div>   
         <table>
             <thead>
@@ -213,7 +265,7 @@
             <tbody>
                 <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-                $sql = "SELECT * FROM tb_lote";
+                $sql = "SELECT * FROM tb_lote WHERE estado_lote = 'Inativo'";
                 $retorno = conectarDB("select", $sql, [], "");
 
                 foreach ($retorno[1] as $dados) { 
@@ -229,33 +281,63 @@
                     <td><?= $dados["data_fechamento"]; ?></td>
                     <td><?= $dados["estado_lote"]; ?></td>
                     <td class="acao">
-                        <?php  
-                        switch ($estado_lote) {
-                            case 'Ativo':
-                                echo "<a href='?caso=propostas'>Ver propostas</a>";
-                                break;
-                            case 'Inativo':
-                                echo "<a href='?caso=editar'>Editar</a><div></div><a href='?caso=anunciar'>Anunciar</a>";
-                                break;
-                            case 'Vendido':
-                                echo "<a href='/controle/controle_lote.php?caso=remover&id_lote=$id_lote'>Remover</a>";
-                                break;
-                            default:
-                                echo '-';
-                                break;
-                        } ?>
+                            
+                    <a href='?caso=editar'>Editar</a><div></div>
+                    <a href='?caso=anunciar'>Anunciar</a>
+                    <a href='/controle/controle_lote.php?caso=remover&id_lote=$id_lote'>Remover</a>
+                  
                     </td>
                 </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
-    <?php } elseif ($view == 'card') { ?>
-    <!-- Cards com os dados do cavalo -->
+    <?php } 
+    
+    elseif ($view == 'cardativo') { ?>
+    <!-- Card ativos -->
         <div class="cards-container">
             <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-                $sql = "SELECT * FROM tb_lote";
+                $sql = "SELECT * FROM tb_lote WHERE estado_lote = 'Ativo'";
+                $retorno = conectarDB("select", $sql, [], "");
+
+                foreach ($retorno[1] as $dados) { 
+                    // Dados do cavalo
+                    $titulo_lote = $dados["titulo_lote"];
+                    $valor_lote = $dados["valor_lote"];
+                    $estado_lote = $dados["estado_lote"];
+                    $data_fechamento = $dados["data_fechamento"];
+                    $data_fechamento_conversao = new DateTime($data_fechamento);
+                    $data_final = $data_fechamento_conversao ->format('d/m/Y');
+
+            ?>
+            <div class="card">
+                <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $titulo_lote ?>" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title"><?= $titulo_lote ?></h3>
+                    <p class="card-text"><strong>Valor:</strong> <?= $valor_lote ?></p>
+                    <p class="card-text"><strong>Data de fechamento:</strong> <?= $data_final ?></p>
+                    <p class="card-text"><strong>Situação:</strong> <?= $estado_lote ?></p>
+                <div class="card-actions">
+                    <a href="#" class="card-link">Ver propostas</a>
+                    <a href="#" class="card-link">Pausar anuncio</a>
+                </div>
+                </div>
+            </div>
+                    <?php } ?>
+        </div>
+        
+    <?php }
+    elseif ($view == 'cardinativo') { ?>
+    <!-- Card inativos -->
+        <div class="cards-container">
+            <?php
+                include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
+                $sql = "SELECT * FROM tb_lote WHERE estado_lote = 'Inativo'";
+                if (isset($sql)) {
+                    echo "<h2>Nada por aqui ainda :(</h2>";
+                }
                 $retorno = conectarDB("select", $sql, [], "");
 
                 foreach ($retorno[1] as $dados) { 
@@ -265,37 +347,25 @@
                     $data_fechamento = $dados["data_fechamento"];
                     $estado_lote = $dados["estado_lote"];
             ?>
-                    <div class="card">
-                        <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $titulo_lote ?>" class="card-img">
-                        <div class="card-content">
-                            <h3 class="card-title"><?= $titulo_lote ?></h3>
-                            <p class="card-text"><strong>Valor:</strong> <?= $valor_lote ?></p>
-                            <p class="card-text"><strong>Data de fechamento:</strong> <?= $data_fechamento ?></p>
-                            <p class="card-text"><strong>Situação:</strong> <?= $estado_lote ?></p>
-                        <div class="card-actions">
-                            <?php 
-                            switch ($estado_lote) {
-                                case 'Ativo':
-                                    echo '<a href="#" class="card-link">Ver propostas</a>';
-                                    break;
-                                case 'Inativo':
-                                    echo '<a href="#" class="card-link">Editar</a>';
-                                    echo '<a href="#" class="card-link">Anunciar</a>';
-                                    break;
-                                case 'Vendido':
-                                    echo '<a href="#" class="card-link">Remover</a>';
-                                    break;
-                                default:
-                                    // Caso não faça nada
-                                    break;
-                            }?>
-                        </div>
-                        </div>
-                    </div>
-                <?php } ?>
+            <div class="card">
+                <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $titulo_lote ?>" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title"><?= $titulo_lote ?></h3>
+                    <p class="card-text"><strong>Valor:</strong> <?= $valor_lote ?></p>
+                    <p class="card-text"><strong>Data de fechamento:</strong> <?= $data_fechamento ?></p>
+                    <p class="card-text"><strong>Situação:</strong> <?= $estado_lote ?></p>
+                <div class="card-actions">                            
+                        <a href="#" class="card-link">Editar</a>
+                        <a href="#" class="card-link">Anunciar</a>
+                        <a href="#" class="card-link">Remover</a>
+                </div>
+                </div>
+            </div>
+                    <?php } ?>
         </div>
         
-    <?php } else redirecionar("pagina_inicial", "")?>
+    <?php } 
+    // else redirecionar("pagina_inicial", "")?>
 
 </body>
 </html>

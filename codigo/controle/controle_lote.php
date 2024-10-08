@@ -12,6 +12,7 @@
             $data_fechamento = $_REQUEST["data_fechamento"];
             $estado_lote = $_REQUEST["estado_lote"];
             $id_cavalo = $_REQUEST["id_cavalo"];
+            $dataParaInserir = DateTime::createFromFormat('d/m/Y', $data_fechamento)->format('Y-m-d');
 
             // if (isset($_REQUEST['valor'])) {
             //     $valor = $_REQUEST['valor'];
@@ -26,7 +27,7 @@
 
             $sql = "INSERT INTO tb_lote VALUES (NULL, ?, ?, ?, ?, ?)";
             $retorno = conectarDB("insert_update", $sql, "ssssi",
-            [$titulo_lote, $valor, $data_fechamento, $estado_lote, $id_cavalo]);
+            [$titulo_lote, $valor, $dataParaInserir, $estado_lote, $id_cavalo]);
             redirecionar("index_lote", "$view");
             break;    
     }
