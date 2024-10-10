@@ -235,6 +235,8 @@
         <ul>
             <li><a href="/public/index.php">Início</a></li>
             <li><a href="/public/quarter_horse.php">Quem Somos</a></li>
+            <li><a href="../public/dashboard/cliente/lote.php?view=cardativo">Ver cavalos</a></li>
+
         </ul>
     </div>
     <?php 
