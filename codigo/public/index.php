@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="assets/css/nav.css">
     <script src="https://kit.fontawesome.com/bc42253982.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
+
     <style>
-       /* Container geral */
+        /* Container geral  */
         .container {
             display: flex;
             max-width: 1200px;
@@ -22,11 +22,11 @@
             padding: 20px;
         }
 
-        /* Menu de Categorias */
-        .card_categorias {
+         /* Menu de Categorias  */
+         .card_categorias {
             width: 25%;
             margin-right: 20px;
-        }
+        }  
 
         .u_categorias {
             display: flex;
@@ -101,7 +101,7 @@
             max-height: 300px;
             border: 2px solid #b6ab9e;
             margin-left: 10px;
-        }
+        }  
 
         /* Estilo dos lotes de cavalos */
         .lotes {
@@ -159,6 +159,7 @@
         }
 
     </style>
+
 </head>
 <body>
     <header class="header">
@@ -354,12 +355,13 @@
                         $premio_cavalo = $dados["premio_cavalo"];
                         $modalidade_cavalo = $dados["modalidade_cavalo"];
                         $img_cavalo = $dados["img_cavalo"];
-
+                    }
+                }
 
                         // $data_fechamento_conversao = new DateTime($data_fechamento);
                         // $data_final = $data_fechamento_conversao ->format('d/m/Y');
                 ?>
-                        <div class="card">
+                        <div class="card lotes">
                             <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                             <div class="card-content">
                                 <h3 class="card-title"><?= $nome_cavalo ?></h3>
@@ -373,34 +375,86 @@
                             </div>
                             </div>
                         </div>
+                
                 <?php  
+                break;
+            case 'pelagem_cavalo':
+                $sql = "SELECT * FROM tb_cavalo WHERE pelagem_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
+                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
+                $retorno = conectarDB("select", $sql, [$param], "s");
+                if (sizeof($retorno[1]) > 0) {
+                    foreach ($retorno[1] as $dados) { 
+                        // Dados do cavalo
+                        $id_cavalo = $dados["id_cavalo"];
+                        $nome_cavalo = $dados["nome_cavalo"];
+                        $raca_cavalo = $dados["raca_cavalo"];
+                        $pelagem_cavalo = $dados["pelagem_cavalo"];
+                        $premio_cavalo = $dados["premio_cavalo"];
+                        $modalidade_cavalo = $dados["modalidade_cavalo"];
+                        $img_cavalo = $dados["img_cavalo"];
+
+
+                        // $data_fechamento_conversao = new DateTime($data_fechamento);
+                        // $data_final = $data_fechamento_conversao ->format('d/m/Y');
+                ?>
+                        <div class="card lotes">
+                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                            <div class="card-content">
+                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
+                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
+                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
+                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
+
+                            <div class="card-actions">
+                                <a href="#" class="card-link">Dar lance</a>
+                            </div>
+                            </div>
+                        </div>
+                <?php
                     }
                 }
                 break;
-            case 'pelagem_cavalo':
-                $sql = "SELECT * FROM tb_cavalo WHERE pelagem_cavalo like %?%";
-                conectarDB("select", $sql, [$texto], "s");
-                break;
             case 'premio_cavalo':
-                $sql = "SELECT * FROM tb_cavalo WHERE premio_cavalo like %?%";
-                conectarDB("select", $sql, [$texto], "s");
-                break;
+                $sql = "SELECT * FROM tb_cavalo WHERE premio_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
+                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
+                $retorno = conectarDB("select", $sql, [$param], "s");
+                if (sizeof($retorno[1]) > 0) {
+                    foreach ($retorno[1] as $dados) { 
+                        // Dados do cavalo
+                        $id_cavalo = $dados["id_cavalo"];
+                        $nome_cavalo = $dados["nome_cavalo"];
+                        $raca_cavalo = $dados["raca_cavalo"];
+                        $pelagem_cavalo = $dados["pelagem_cavalo"];
+                        $premio_cavalo = $dados["premio_cavalo"];
+                        $modalidade_cavalo = $dados["modalidade_cavalo"];
+                        $img_cavalo = $dados["img_cavalo"];
+                ?>
+                                  <div class="card lotes">
+                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                            <div class="card-content">
+                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
+                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
+                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
+                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
 
+                            <div class="card-actions">
+                                <a href="#" class="card-link">Dar lance</a>
+                            </div>
+                            </div>
+                        </div>
+            <?php
+            }
+        }
             default:
                 
                 break;
-            }
+
         }
-        
+    }
+  ?>
 
-
-    ?>
-<<<<<<< HEAD
-=======
-        
-<?php } ?>
-
->>>>>>> c10a14585b77354903ec819959fc1fbe6eca5b07
 <br><br><br><br><br><br>
 
     <script>
