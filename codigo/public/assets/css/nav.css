@@ -98,6 +98,12 @@ body {
   
 }
 
+.search-box option:disabled {
+    color: #999; /* Cor mais clara para indicar que está desativado */
+    background-color: #f0f0f0; /* Fundo mais claro */
+    font-style: italic; /* Itálico para diferenciar */
+}
+
 .search-box::placeholder {
   color: #b6ab9e; 
 }

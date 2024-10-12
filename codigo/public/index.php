@@ -145,6 +145,7 @@
             border: 1px solid #d1d1d1;
         }
 
+
         /* Responsividade */
         @media (max-width: 768px) {
             .ls {
@@ -170,11 +171,12 @@
         <div class="search-container">
             <!-- <input type="hidden" name="pesquisa" value = "qualquercoisa"> -->
                 <select name="filtro" id="" class="search-box">
-                    <option value="raca_cavalo">Raça</option>
-                    <option value="pelagem_cavalo">Pelagem</option>
-                    <option value="premio_cavalo">Prêmio</option>
+                    <option disabled selected >Filtrar</option>
+                    <option value="raca_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'raca_cavalo') {echo 'selected';} ?>>Raça</option>
+                    <option value="pelagem_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'pelagem_cavalo') {echo 'selected';} ?>>Pelagem</option>
+                    <option value="premio_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'premio_cavalo') {echo 'selected';} ?>>Prêmio</option>
                 </select>    
-                <input type="text" placeholder="Digite aqui" class="search-box" name="texto">
+                <input type="text" placeholder="Digite aqui" class="search-box" value="<?= isset($_REQUEST['texto']) ? $_REQUEST['texto'] : '' ?>" name="texto">
                 <button type="submit" class="search-button">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 </button>
@@ -313,32 +315,32 @@
         
         <!-- Lotes de cavalos -->
         <div class="lotes">
-            <?php
-       $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
-       $retorno = conectarDB("select", $sql, [], "");
-       foreach ($retorno[1] as $dados) { 
-           $id_cavalo = $dados['id_cavalo'];
-           $nome_cavalo = $dados['nome_cavalo'];
-           $raca_cavalo = $dados['raca_cavalo'];
-           $pelagem_cavalo = $dados['pelagem_cavalo'];
-           $premio_cavalo = $dados['premio_cavalo'];
-           $situacao_cavalo = $dados['situacao_cavalo'];
-           $modalidade_cavalo = $dados['modalidade_cavalo'];
-           $img_cavalo = $dados['img_cavalo'];
-           ?>
-    <div class="ls">
-        <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
-        <hr>
-        <h4>Nome: <?= $nome_cavalo ?></h4>
-        <hr>
-        <p>Raça: <?= $raca_cavalo ?></p>
-        <hr>
-        <p>Prêmios: <?= $premio_cavalo ?></p>
-        <hr>
-        <p>Modalidade: <?= $modalidade_cavalo ?></p>  
-    </div>
-    <?php } ?>
-</div>
+                    <?php
+            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
+            $retorno = conectarDB("select", $sql, [], "");
+            foreach ($retorno[1] as $dados) { 
+                $id_cavalo = $dados['id_cavalo'];
+                $nome_cavalo = $dados['nome_cavalo'];
+                $raca_cavalo = $dados['raca_cavalo'];
+                $pelagem_cavalo = $dados['pelagem_cavalo'];
+                $premio_cavalo = $dados['premio_cavalo'];
+                $situacao_cavalo = $dados['situacao_cavalo'];
+                $modalidade_cavalo = $dados['modalidade_cavalo'];
+                $img_cavalo = $dados['img_cavalo'];
+                ?>
+            <div class="ls">
+                <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
+                <hr>
+                <h4>Nome: <?= $nome_cavalo ?></h4>
+                <hr>
+                <p>Raça: <?= $raca_cavalo ?></p>
+                <hr>
+                <p>Prêmios: <?= $premio_cavalo ?></p>
+                <hr>
+                <p>Modalidade: <?= $modalidade_cavalo ?></p>  
+            </div>
+            <?php } ?>
+        </div>
 <?php } else {
         $filtro = $_REQUEST["filtro"];
         $texto = $_REQUEST["texto"];
