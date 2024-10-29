@@ -53,7 +53,6 @@ CREATE TABLE `tb_lance` (
 DROP TABLE IF EXISTS `tb_lote`;
 CREATE TABLE `tb_lote` (
   `id_lote` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo_lote` varchar(55) NOT NULL,
   `valor_lote` decimal(10,2) NOT NULL,
   `data_fechamento` datetime NOT NULL,
   `estado_lote` enum('Ativo','Inativo') NOT NULL,
@@ -63,6 +62,8 @@ CREATE TABLE `tb_lote` (
   CONSTRAINT `tb_lote_ibfk_1` FOREIGN KEY (`tb_cavalo_id_cavalo`) REFERENCES `tb_cavalo` (`id_cavalo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `tb_lote` (`id_lote`, `valor_lote`, `data_fechamento`, `estado_lote`, `tb_cavalo_id_cavalo`) VALUES
+(1,	30.00,	'2024-11-05 00:00:00',	'Ativo',	4);
 
 DROP TABLE IF EXISTS `tb_usuario`;
 CREATE TABLE `tb_usuario` (
@@ -82,4 +83,4 @@ INSERT INTO `tb_usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_
 (8,	'Rayssa',	'rayrbm@gmail.com',	'lilas',	'Cliente',	'3 Tambores'),
 (9,	'tarcisio',	'tarcisioara9@gmail.com',	'senha',	'Cliente',	'Laço');
 
--- 2024-10-03 14:43:34
+-- 2024-10-29 11:34:26
