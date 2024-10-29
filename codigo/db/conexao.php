@@ -1,80 +1,108 @@
 <?php
-    function conectarDB($tipo, $sql, $tipos_dados, $dados){
-        $servidor = "db";
-        $usuario ="root";
-        $senha = "123";
-        $nome_banco ="db_quarter_horse";
-        $conexao = mysqli_connect($servidor, $usuario, $senha, $nome_banco );
-        
-        switch ($tipo) {
-            case 'select':
-                /*{ 
-                    Inversão da ordem dos parâmetros:
-                    
-                    $dados é agora o parâmetro obrigatório, pois é essencial para consultas com parâmetros.
-                    $tipos_dados é opcional, pois apenas é necessário quando os parâmetros são fornecidos. 
-                    
-                    A ordem foi invertida para atender às melhores práticas do PHP, 
-                    onde parâmetros obrigatórios devem vir antes de parâmetros opcionais.
-                    
-                    !is_null($tipos_dados): Verifica se o parâmetro $tipos_dados foi passado como argumento. 
-                    Se ele for null, significa que a função foi chamada sem os tipos de dados, 
-                    
-                    e a verificação de empty() não precisa ser realizada.
-                    !empty($tipos_dados): Verifica se $tipos_dados é uma string não vazia. 
-                    Essa verificação adicional é necessária para garantir que os tipos de dados não sejam uma string vazia 
-                    (``), o que causaria erros na função mysqli_stmt_bind_param() 
-                        }
-                    */    
-                $r_fun = select($conexao, $sql, $tipos_dados, $dados);
-                return $r_fun;
-                break;
-               /*---------------------------------------------------------*/
-               /*---------------------------------------------------------*/
-            case 'insert_update':
-                insert_update($conexao, $sql, $tipos_dados, $dados);
-                break;
-              /*---------------------------------------------------------*/
-            case 'delete':
-                # code...
-                break;
-            default:
-                
-                break;
-        } 
+
+/**
+ * Conexão e Operações com Banco de Dados
+ * 
+ * Este arquivo contém funções para conectar ao banco de dados MySQL e executar operações de consulta (select),
+ * inserção e atualização (insert/update) com segurança usando prepared statements.
+ * 
+ * @file conexao.php
+ */
+
+/**
+ * Conecta ao banco de dados e executa uma operação SQL
+ * 
+ * @param string $tipo Tipo de operação SQL: 'select', 'insert_update' ou 'delete'
+ * @param string $sql  Consulta SQL a ser executada
+ * @param string $tipos_dados Tipos de dados dos parâmetros para binding (ex: 'ssi' para string, string, inteiro)
+ * @param array  $dados Parâmetros para binding na consulta SQL
+ * 
+ * @return mixed Retorna os resultados de uma consulta select ou o ID de inserção para insert/update
+ */
+function conectarDB($tipo, $sql, $tipos_dados, $dados) {
+    // Parâmetros de conexão
+    $servidor = "db";
+    $usuario = "root";
+    $senha = "123";
+    $nome_banco = "db_quarter_horse";
+
+    // Conexão com o banco de dados
+    $conexao = mysqli_connect($servidor, $usuario, $senha, $nome_banco);
+
+    // Seleção do tipo de operação
+    switch ($tipo) {
+        case 'select':
+            /** Executa a função select e retorna os resultados */
+            return select($conexao, $sql, $tipos_dados, $dados);
+            break;
+
+        case 'insert_update':
+            /** Executa a função insert_update para inserir ou atualizar dados */
+            return insert_update($conexao, $sql, $tipos_dados, $dados);
+            break;
+
+        case 'delete':
+            /** Implementação futura de delete */
+            break;
+
+        default:
+            // Tipo de operação inválido
+            break;
     }
-    
-function select($conexao, $sql, $dados = null, $tipos_dados = null) {
+}
+
+/**
+ * Função de Seleção (SELECT) com prepared statement
+ * 
+ * @param object $conexao Conexão MySQL
+ * @param string $sql Consulta SQL a ser executada
+ * @param array|null $dados Parâmetros para binding na consulta SQL
+ * @param string|null $tipos_dados Tipos de dados dos parâmetros para binding
+ * 
+ * @return array Retorna um array com status de execução e resultados da consulta
+ */
+function select($conexao, $sql, $tipos_dados = null, $dados = null) {
     $stmt = mysqli_prepare($conexao, $sql);
-    
+
+    // Verifica e associa parâmetros
     if (!is_null($tipos_dados) && !empty($tipos_dados)) {
         mysqli_stmt_bind_param($stmt, $tipos_dados, ...$dados);
     }
-    $retorno = mysqli_stmt_execute($stmt);
-    $resultados = mysqli_stmt_get_result($stmt);
+
+    $retorno = mysqli_stmt_execute($stmt); // Executa a consulta
+    $resultados = mysqli_stmt_get_result($stmt); // Armazena o resultado
 
     if ($resultados) {
         $resultados = mysqli_fetch_all($resultados, MYSQLI_ASSOC);
     }
 
-    mysqli_stmt_close($stmt);
-    mysqli_close($conexao);
+    mysqli_stmt_close($stmt); // Fecha o statement
+    mysqli_close($conexao);   // Fecha a conexão
 
     return [$retorno, $resultados];
-    }
+}
 
-function insert_update($conexao, $sql, $tipos_dados, $dados){
+/**
+ * Função de Inserção/Atualização (INSERT/UPDATE) com prepared statement
+ * 
+ * @param object $conexao Conexão MySQL
+ * @param string $sql Consulta SQL a ser executada
+ * @param string $tipos_dados Tipos de dados dos parâmetros para binding
+ * @param array  $dados Parâmetros para binding na consulta SQL
+ * 
+ * @return int Retorna o ID do registro inserido (ou atualizado)
+ */
+function insert_update($conexao, $sql, $tipos_dados, $dados) {
     $stmt = mysqli_prepare($conexao, $sql);
-            
-    mysqli_stmt_bind_param($stmt, $tipos_dados, ...$dados);
 
+    // Associa parâmetros e executa a consulta
+    mysqli_stmt_bind_param($stmt, $tipos_dados, ...$dados);
     mysqli_stmt_execute($stmt);
 
-    $id = mysqli_stmt_insert_id($stmt);
+    $id = mysqli_stmt_insert_id($stmt); // Armazena o ID do último registro inserido
 
-    mysqli_stmt_close($stmt);
-    
+    mysqli_stmt_close($stmt); // Fecha o statement
     return $id;
-    }
-    
+}
+
 ?>

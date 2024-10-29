@@ -1,7 +1,20 @@
 <?php
+    /**
+     * Painel Admin - Cavalos
+     * 
+     * Este arquivo renderiza o painel administrativo com opções de navegação para gerenciar cavalos, lances e lotes.
+     * 
+     * @requires session_usuarios.php Responsável pela verificação de sessão do usuário
+     * 
+     * @autor Admin <admin@email.com>
+     */
+
+    // Importa o arquivo de sessão e inicia/verifica se o usuário possui nível de acesso "Admin"
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
-    session_start(); verificar_sessao("Admin");
+    session_start();
+    verificar_sessao("Admin");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
