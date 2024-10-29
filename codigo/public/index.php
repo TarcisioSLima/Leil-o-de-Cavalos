@@ -250,7 +250,7 @@
                             <i class="fa-solid fa-horse"></i>Cavalos em Destaque</a>
                 </li>    
                 <?php 
-            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
+            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' AND situacao_cavalo = 'Ativo'";
             $retorno = conectarDB("select", $sql, "", []);
             $num = 1;
             foreach ($retorno[1] as $dados) { ?>
@@ -269,7 +269,7 @@
         <?php if (isset($_REQUEST["cavalo_d"])) {
             
             $cavalo_d = $_REQUEST['cavalo_d'];
-            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
+            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' AND situacao_cavalo = 'Ativo' ORDER BY id_cavalo";
             $retorno = conectarDB("select", $sql, "", []);
             $contador = 1;
             foreach ($retorno[1] as $dados) { 
