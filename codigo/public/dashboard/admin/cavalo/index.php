@@ -113,7 +113,7 @@
                 <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
                 $sql = "SELECT * FROM tb_cavalo";
-                $retorno = conectarDB("select", $sql, [], "");
+                $retorno = conectarDB("select", $sql, "", []);
 
                 foreach ($retorno[1] as $dados) { 
                     $situacao_cavalo = $dados["situacao_cavalo"]; 
@@ -157,7 +157,7 @@
         <?php
             include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
             $sql = "SELECT * FROM tb_cavalo";
-            $retorno = conectarDB("select", $sql, [], "");
+            $retorno = conectarDB("select", $sql, "", []);
 
             foreach ($retorno[1] as $dados) { 
                 $id_cavalo = $dados['id_cavalo'];

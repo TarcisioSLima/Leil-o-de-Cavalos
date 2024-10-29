@@ -34,7 +34,7 @@ switch ($case) {
         $email_usuario = $_REQUEST["email_usuario"];
         $senha_usuario = $_REQUEST["senha_usuario"];
         $sql = "SELECT * FROM tb_usuario WHERE email_usuario = ? AND senha_usuario = ?";
-        $retorno = conectarDB("select", $sql, [$email_usuario, $senha_usuario], "ss");
+        $retorno = conectarDB("select", $sql, "ss", [$email_usuario, $senha_usuario]);
 
         if (sizeof($retorno[1]) > 0) {
             /** Inicia sessão e armazena informações do usuário */
@@ -83,7 +83,7 @@ switch ($case) {
         $p_modalidade = $_REQUEST["p_modalidade"];
         
         $sql = "SELECT * FROM tb_usuario WHERE email_usuario = '?'";
-        $retorno = conectarDB("select", $sql, [$email_usuario], "s");
+        $retorno = conectarDB("select", $sql, "s", [$email_usuario]);
 
         if (sizeof($retorno[1]) > 0) {
             /** Insere novo usuário no banco de dados */
@@ -113,7 +113,7 @@ switch ($case) {
         $email_digitado = $_REQUEST["email_usuario"];
         
         $sql = "SELECT * FROM tb_usuario WHERE id_usuario = ?";
-        $retorno = conectarDB("select", $sql, [$id_usuario], "i");
+        $retorno = conectarDB("select", $sql, "i", [$id_usuario]);
         $dados = $retorno[1][0];
         $senha_usuario = $dados["senha_usuario"];
         $email_usuario = $dados["email_usuario"];

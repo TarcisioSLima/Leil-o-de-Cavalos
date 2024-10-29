@@ -11,7 +11,7 @@
     // Lote {--------------------------------------------------------------
     $sql = "SELECT * FROM tb_lote WHERE tb_cavalo_id_cavalo	= ?";
 
-    $retorno = conectarDB("select" , $sql, [$id_cavalo] ,"i");
+    $retorno = conectarDB("select", $sql, "i", [$id_cavalo]);
     $dados = $retorno[1][0];
     $id_lote = $dados["id_lote"];
     $valor_inicial_lote = $dados["valor_lote"];

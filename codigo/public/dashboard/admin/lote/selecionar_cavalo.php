@@ -174,7 +174,7 @@
             <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
                 $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Inativo'";
-                $retorno = conectarDB("select", $sql, [], "");
+                $retorno = conectarDB("select", $sql, "", []);
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo

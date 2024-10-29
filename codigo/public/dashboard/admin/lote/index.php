@@ -193,7 +193,7 @@
                 <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
                 $sql = "SELECT * FROM tb_lote WHERE estado_lote = 'Ativo'";
-                $retorno = conectarDB("select", $sql, [], "");
+                $retorno = conectarDB("select", $sql, "", []);
 
                 foreach ($retorno[1] as $dados) { 
                     $valor_lote = $dados['valor_lote'];
@@ -233,7 +233,7 @@
                 <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
                 $sql = "SELECT * FROM tb_lote WHERE estado_lote = 'Inativo'";
-                $retorno = conectarDB("select", $sql, [], "");
+                $retorno = conectarDB("select", $sql, "", []);
 
                 foreach ($retorno[1] as $dados) { 
                     $valor_lote = $dados['valor_lote'];
@@ -265,7 +265,7 @@
             <?php
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
                 $sql = "SELECT * FROM tb_lote WHERE estado_lote = 'Ativo'";
-                $retorno = conectarDB("select", $sql, [], "");
+                $retorno = conectarDB("select", $sql, "", []);
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo
@@ -301,7 +301,7 @@
                 if (isset($sql)) {
                     echo "<h2>Nada por aqui ainda :(</h2>";
                 }
-                $retorno = conectarDB("select", $sql, [], "");
+                $retorno = conectarDB("select", $sql, "", []);
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo

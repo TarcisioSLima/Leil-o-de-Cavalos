@@ -251,7 +251,7 @@
                 </li>    
                 <?php 
             $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
-            $retorno = conectarDB("select", $sql, [], "");
+            $retorno = conectarDB("select", $sql, "", []);
             $num = 1;
             foreach ($retorno[1] as $dados) { ?>
                  <li><a href="index.php?cavalo_d=<?=$num?>">
@@ -270,7 +270,7 @@
             
             $cavalo_d = $_REQUEST['cavalo_d'];
             $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' ORDER BY id_cavalo";
-            $retorno = conectarDB("select", $sql, [], "");
+            $retorno = conectarDB("select", $sql, "", []);
             $contador = 1;
             foreach ($retorno[1] as $dados) { 
                 if ($contador == $cavalo_d) {
@@ -313,7 +313,7 @@
         <div class="lotes">
             <?php
        $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
-       $retorno = conectarDB("select", $sql, [], "");
+       $retorno = conectarDB("select", $sql, "", []);
        foreach ($retorno[1] as $dados) { 
            $id_cavalo = $dados['id_cavalo'];
            $nome_cavalo = $dados['nome_cavalo'];
@@ -344,7 +344,7 @@
             case 'raca_cavalo':
                 $sql = "SELECT * FROM tb_cavalo WHERE raca_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
                 $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
-                $retorno = conectarDB("select", $sql, [$param], "s");
+                $retorno = conectarDB("select", $sql, "s", [$param]);
                 if (sizeof($retorno[1]) > 0) {
                     foreach ($retorno[1] as $dados) { 
                         // Dados do cavalo
@@ -381,7 +381,7 @@
             case 'pelagem_cavalo':
                 $sql = "SELECT * FROM tb_cavalo WHERE pelagem_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
                 $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
-                $retorno = conectarDB("select", $sql, [$param], "s");
+                $retorno = conectarDB("select", $sql, "s", [$param]);
                 if (sizeof($retorno[1]) > 0) {
                     foreach ($retorno[1] as $dados) { 
                         // Dados do cavalo
@@ -418,7 +418,7 @@
             case 'premio_cavalo':
                 $sql = "SELECT * FROM tb_cavalo WHERE premio_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
                 $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
-                $retorno = conectarDB("select", $sql, [$param], "s");
+                $retorno = conectarDB("select", $sql, "s", [$param]);
                 if (sizeof($retorno[1]) > 0) {
                     foreach ($retorno[1] as $dados) { 
                         // Dados do cavalo

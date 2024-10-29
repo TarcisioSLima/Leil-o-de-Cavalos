@@ -136,7 +136,7 @@ switch ($case) {
         $view = $_REQUEST['view'];
 
         $sql = "SELECT situacao_cavalo FROM tb_cavalo WHERE id_cavalo = ?";
-        $retorno = conectarDB("select", $sql, [$id_cavalo], "i");
+        $retorno = conectarDB("select", $sql, "i", [$id_cavalo]);
         $dados = $retorno[1][0];
         $situacao_cavalo = $dados["situacao_cavalo"];
 

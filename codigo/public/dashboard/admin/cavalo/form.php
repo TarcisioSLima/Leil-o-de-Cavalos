@@ -92,7 +92,7 @@
         include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
         $id_cavalo = $_REQUEST['id_cavalo'];
         $sql = "SELECT * FROM tb_cavalo WHERE id_cavalo = ?";
-        $retorno = conectarDB("select", $sql, [$id_cavalo], "i");
+        $retorno = conectarDB("select", $sql, "i", [$id_cavalo]);
         $dados = $retorno[1][0];
     ?>
     
