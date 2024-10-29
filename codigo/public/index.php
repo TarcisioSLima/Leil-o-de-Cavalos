@@ -181,7 +181,7 @@
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 </button>
                 
-            </div>    
+            </div>
         </form>
         
         <div class="auth-buttons">

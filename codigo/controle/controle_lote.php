@@ -51,6 +51,11 @@ switch ($case) {
         $sql = "INSERT INTO tb_lote VALUES (NULL, ?, ?, ?, ?)";
         $retorno = conectarDB("insert_update", $sql, "dssi", [$valor, $dataParaInserir, $estado_lote, $id_cavalo]);
 
+         /** Atuliza o campo situacao_cavalo da tabela tb_cavalo no banco de dados */
+         $situacao_cavalo = 'Ativo';
+         $sql = "UPDATE  tb_cavalo SET situacao_cavalo = ? WHERE id_cavalo = ?";
+         $retorno = conectarDB("insert_update", $sql, "si", [$situacao_cavalo, $id_cavalo]); 
+
         /** Redireciona para a visão especificada */
         redirecionar("index_lote", "$view");
         break;
