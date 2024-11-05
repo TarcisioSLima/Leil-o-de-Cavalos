@@ -14,7 +14,7 @@ require_once "../db/conexao.php";
 require_once "../helpers/redirecionamento.php";
 
 /**
- * @var string $case Ação a ser executada
+ * @var string case Ação a ser executada
  */
 $case = $_REQUEST['caso'];
 
@@ -27,9 +27,9 @@ switch ($case) {
         /**
          * Autenticação do usuário
          * 
-         * @var string $email_usuario   Email do usuário
-         * @var string $senha_usuario   Senha do usuário
-         * @var array  $dados           Dados do usuário retornados da consulta
+         * @var string email_usuario   Email do usuário
+         * @var string senha_usuario   Senha do usuário
+         * @var array  dados           Dados do usuário retornados da consulta
          */
         $email_usuario = $_REQUEST["email_usuario"];
         $senha_usuario = $_REQUEST["senha_usuario"];

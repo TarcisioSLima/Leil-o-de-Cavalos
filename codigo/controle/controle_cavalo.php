@@ -28,16 +28,16 @@ switch ($case) {
         /**
          * Cadastro de um novo cavalo
          * 
-         * @var string $nome_cavalo             Nome do cavalo
-         * @var string $raca_cavalo             Raça do cavalo
-         * @var string $pelagem_cavalo          Cor da pelagem do cavalo
-         * @var float  $premio_cavalo           Valor do prêmio associado ao cavalo
-         * @var string $modalidade_cavalo       Modalidade esportiva do cavalo
-         * @var string $view                    Nome da visão para redirecionamento
-         * @var string $pasta_server            Caminho da pasta para salvar imagem no servidor
-         * @var string $pasta_banco             Caminho da imagem para salvar no banco de dados
-         * @var string $arquivo_servidor_cavalo Caminho completo do arquivo no servidor
-         * @var string $arquivo_banco_cavalo    Caminho da imagem a ser armazenado no banco de dados
+         * @var string nome_cavalo             Nome do cavalo
+         * @var string raca_cavalo             Raça do cavalo
+         * @var string pelagem_cavalo          Cor da pelagem do cavalo
+         * @var float  premio_cavalo           Valor do prêmio associado ao cavalo
+         * @var string modalidade_cavalo       Modalidade esportiva do cavalo
+         * @var string view                    Nome da visão para redirecionamento
+         * @var string pasta_server            Caminho da pasta para salvar imagem no servidor
+         * @var string pasta_banco             Caminho da imagem para salvar no banco de dados
+         * @var string arquivo_servidor_cavalo Caminho completo do arquivo no servidor
+         * @var string arquivo_banco_cavalo    Caminho da imagem a ser armazenado no banco de dados
          */
         $nome_cavalo = $_REQUEST["nome_cavalo"];
         $raca_cavalo = $_REQUEST["raca_cavalo"];
@@ -69,7 +69,7 @@ switch ($case) {
         /**
          * Manipulação de propostas
          * 
-         * @var int $id_cavalo Identificador do cavalo
+         * @var int id_cavalo Identificador do cavalo
          */
         $id_cavalo = $_REQUEST['id_cavalo'];
         // Aqui entrariam as operações relacionadas às propostas de compra/venda do cavalo
@@ -79,8 +79,8 @@ switch ($case) {
         /**
          * Edição dos dados do cavalo
          * 
-         * @var int    $id_cavalo           Identificador do cavalo
-         * @var string $destaque            Status de destaque do cavalo
+         * @var int    id_cavalo           Identificador do cavalo
+         * @var string destaque            Status de destaque do cavalo
          */
         $id_cavalo = $_REQUEST['id_cavalo'];
         $nome_cavalo = $_REQUEST["nome_cavalo"];
@@ -117,7 +117,7 @@ switch ($case) {
         /**
          * Anúncio de venda ou destaque do cavalo
          * 
-         * @var int $id_cavalo Identificador do cavalo
+         * @var int id_cavalo Identificador do cavalo
          */
         $id_cavalo = $_REQUEST['id_cavalo'];
         // Código para anunciar o cavalo
@@ -129,8 +129,8 @@ switch ($case) {
          * 
          * A remoção só ocorre se o cavalo estiver com status de "Vendido".
          * 
-         * @var int    $id_cavalo         Identificador do cavalo
-         * @var string $situacao_cavalo   Situação do cavalo (deve ser "Vendido" para exclusão)
+         * @var int    id_cavalo         Identificador do cavalo
+         * @var string situacao_cavalo   Situação do cavalo (deve ser "Vendido" para exclusão)
          */
         $id_cavalo = $_REQUEST['id_cavalo'];
         $view = $_REQUEST['view'];
