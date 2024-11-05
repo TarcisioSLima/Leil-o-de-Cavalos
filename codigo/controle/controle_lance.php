@@ -1,10 +1,11 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
-    session_start(); verificar_sessao("Cliente");
 
+$action = $_REQUEST['action'];
 
-//Essa parte é responsável por mostrar os dados do lote, quando fecha, valor atual e titulo. {---------------------
+switch ($action) {
+    case 'ver_lances':
+        //Essa parte é responsável por mostrar os dados do lote, quando fecha, valor atual e titulo. {---------------------
 
     $id_cavalo = $_REQUEST["id_cavalo"];
     
@@ -38,25 +39,39 @@
         echo "</pre>";
         //-------------------------------------------------------------------------------------------------------------------}
     
-    //Essa parte é responsável pela lógica de dar os lances no cavalo.{--------------------------------------------------
+     //Essa parte é responsável pela lógica de dar os lances no cavalo.{--------------------------------------------------
         //Leve em consideração que é necessário que o Cliente tenha dado um valor em um formulário
             //Esse valor precisa ser > do que o valor atual do lote. 
                 //que pode ser tanto o maior lance do usuário ou incial caso não tenha nenhum lance ainda 
         //O Cliente só pode confirmar o lance obedecendo os parametros acima e após confirmar senha.
-    
-    
-        
-            $lance_usuario = $_REQUEST['lance_usuario'];
+        }elseif (sizeof($retorno[1]) == 0) {
+            echo "Esse Cavalo não está a lote!";
+        }
+        break;
+    case 'n_lance':
+        $lance_usuario = $_REQUEST['lance_usuario'];
     
             if ($lance_usuario > $lance_atual) {
                 $sql = "INSERT INTO tb_lance VALUES( )";
             }
-    }elseif (sizeof($retorno[1]) == 0) {
-        echo "Esse Cavalo não está a lote!";
-    }
+        break;
+    
+    default:
+        # code...
+        break;
+}
+
+    
+
+
+
+    
+    
+        
+            
+    
 
 
     // --------------------------------------------------------------------------------------------------------------}
-
 ?>
 

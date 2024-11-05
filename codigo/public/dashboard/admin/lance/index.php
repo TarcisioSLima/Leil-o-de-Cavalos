@@ -1,7 +1,7 @@
 <?php
+    include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
-    session_start(); verificar_sessao("Admin");
-    include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/navbar.html';
+    session_start(); verificar_sessao("Cliente");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,6 @@
     <title>Document</title>
 </head>
 <body>
-    
+    Uma Página Incrivel
 </body>
 </html>
