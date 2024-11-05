@@ -337,7 +337,7 @@
         <!-- Lotes de cavalos -->
         <div class="lotes">
             <?php
-            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim' AND situacao_cavalo = 'Ativo' ";
+            $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Ativo' ";
             $retorno = conectarDB("select", $sql, "", []);
             foreach ($retorno[1] as $dados) { 
                 $id_cavalo = $dados['id_cavalo'];
