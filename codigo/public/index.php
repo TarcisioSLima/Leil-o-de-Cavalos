@@ -279,12 +279,33 @@
             foreach ($retorno[1] as $dados) { 
                 if ($contador == $cavalo_d) {
                     $id_cavalo = $dados['id_cavalo'];
+                    $sql_2 = "SELECT * FROM tb_lote WHERE tb_cavalo_id_cavalo = ?";
+                    $retorno_2 = conectarDB("select", $sql_2, "i", [$id_cavalo]);
+                    if (sizeof($retorno_2[1]) > 0) {
+                        $dados_2 = $retorno_2[1][0];
+                        $id_lote = $dados_2["id_lote"];
+                        $valor_inicial_lote = $dados_2["valor_lote"];
+                        $data_de_fechamento = $dados_2["data_fechamento"];
+                    
+                        // --------------------------------------------------------------------}
+                        // Maior Lance {------------------------------------------------------------------
+                        $sql = "SELECT * FROM tb_lance WHERE tb_lote_id_lote = ? ORDER BY valor_lance";
+                        $retorno = conectarDB("select", $sql, "i", [$id_lote]);
+                        if (sizeof($retorno[1]) == 0) {
+                            $lance_atual = $valor_inicial_lote;
+                        }else {
+                            $dados = $retorno[1][0];
+                            $lance_atual = $dados["valor_lance"];
+                        }
+                    }
                     $dados_basicos = [
                         $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
                         $raca_cavalo = ("Raça: " . $dados["raca_cavalo"]),
                         $pelagem_cavalo = ("Pelagem: " . $dados["pelagem_cavalo"]),
                         $premio_cavalo = ("Prêmio: " . $dados["premio_cavalo"]),
                         $modalidade_cavalo = ("Modalidade: " . $dados["modalidade_cavalo"]),
+                        $valor_lote_atual = ("Valor atual do Lote: " . $lance_atual),
+                        $fechamento =  ("Data de fechamento: " . $data_de_fechamento)
                     ];
                     $img_cavalo = $dados["img_cavalo"];
                     $situacao_cavalo = $dados["situacao_cavalo"];
@@ -303,7 +324,7 @@
                 </ul>
                 <ul>
                     
-                    <a href="lance.php?id_cavalo=<?=$id_cavalo?>">Ver lances</a>
+                    <a href="lance.php?id_cavalo=<?=$id_cavalo?>&action=dar_lance">Ver lances</a>
                 </ul>
             </div>
             <?php } else { ?>
@@ -316,34 +337,8 @@
         <!-- Lotes de cavalos -->
         <div class="lotes">
             <?php
-       $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
-       $retorno = conectarDB("select", $sql, "", []);
-       foreach ($retorno[1] as $dados) { 
-           $id_cavalo = $dados['id_cavalo'];
-           $nome_cavalo = $dados['nome_cavalo'];
-           $raca_cavalo = $dados['raca_cavalo'];
-           $pelagem_cavalo = $dados['pelagem_cavalo'];
-           $premio_cavalo = $dados['premio_cavalo'];
-           $situacao_cavalo = $dados['situacao_cavalo'];
-           $modalidade_cavalo = $dados['modalidade_cavalo'];
-           $img_cavalo = $dados['img_cavalo'];
-           ?>
-    <div class="ls">
-        <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
-        <hr>
-        <h4>Nome: <?= $nome_cavalo ?></h4>
-        <hr>
-        <p>Raça: <?= $raca_cavalo ?></p>
-        <hr>
-        <p>Prêmios: <?= $premio_cavalo ?></p>
-        <hr>
-        <p>Modalidade: <?= $modalidade_cavalo ?></p>  
-    </div>
-    <?php } ?>
-</div>
-                    <?php
-            $sql = "SELECT * FROM tb_cavalo WHERE destaque = 'Sim'";
-            $retorno = conectarDB("select", $sql, [], "");
+            $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Ativo' ";
+            $retorno = conectarDB("select", $sql, "", []);
             foreach ($retorno[1] as $dados) { 
                 $id_cavalo = $dados['id_cavalo'];
                 $nome_cavalo = $dados['nome_cavalo'];
@@ -353,20 +348,45 @@
                 $situacao_cavalo = $dados['situacao_cavalo'];
                 $modalidade_cavalo = $dados['modalidade_cavalo'];
                 $img_cavalo = $dados['img_cavalo'];
-                ?>
-            <div class="ls">
-                <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
-                <hr>
-                <h4>Nome: <?= $nome_cavalo ?></h4>
-                <hr>
-                <p>Raça: <?= $raca_cavalo ?></p>
-                <hr>
-                <p>Prêmios: <?= $premio_cavalo ?></p>
-                <hr>
-                <p>Modalidade: <?= $modalidade_cavalo ?></p>  
-            </div>
-            <?php } ?>
-        </div>
+
+                $sql_2 = "SELECT * FROM tb_lote WHERE tb_cavalo_id_cavalo = ?";
+                $retorno_2 = conectarDB("select", $sql_2, "i", [$id_cavalo]);
+                if (sizeof($retorno_2[1]) > 0) {
+                    $dados_2 = $retorno_2[1][0];
+                    $id_lote = $dados_2["id_lote"];
+                    $valor_inicial_lote = $dados_2["valor_lote"];
+                    $data_de_fechamento = $dados_2["data_fechamento"];
+                
+                    // --------------------------------------------------------------------}
+                    // Maior Lance {------------------------------------------------------------------
+                    $sql = "SELECT * FROM tb_lance WHERE tb_lote_id_lote = ? ORDER BY valor_lance";
+                    $retorno = conectarDB("select", $sql, "i", [$id_lote]);
+                    if (sizeof($retorno[1]) == 0) {
+                        $lance_atual = $valor_inicial_lote;
+                    }else {
+                        $dados = $retorno[1][0];
+                        $lance_atual = $dados["valor_lance"];
+                    }
+                }
+           ?>
+    <div class="ls">
+        <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
+        
+        <h4>Nome: <?= $nome_cavalo ?></h4>
+        
+        <p>Raça: <?= $raca_cavalo ?></p>
+        
+        <p>Prêmios: <?= $premio_cavalo ?></p>
+        
+        <p>Modalidade: <?= $modalidade_cavalo ?></p>
+
+        <p>Valor atual do lote: <?= $lance_atual ?></p> 
+        
+        <p>Data de fechamento: <?= $data_de_fechamento ?></p> 
+        
+    </div>
+    <?php } ?>
+</div>
 <?php } else {
         $filtro = $_REQUEST["filtro"];
         $texto = $_REQUEST["texto"];

@@ -1,3 +1,4 @@
-# RewriteEngine On
-
-# Redireciona automaticamente a raiz do site para o diretório /public
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} !^/controle/
+RewriteRule ^(.*)$ /public/$1 [L]

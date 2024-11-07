@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 5.5.5-10.5.26-MariaDB-ubu2004 dump
+-- Adminer 4.8.1 MySQL 5.5.5-10.5.20-MariaDB-1:10.5.20+maria~ubu2004 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -6,6 +6,10 @@ SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
+
+DROP DATABASE IF EXISTS `db_quarter_horse`;
+CREATE DATABASE `db_quarter_horse` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `db_quarter_horse`;
 
 DROP TABLE IF EXISTS `tb_cavalo`;
 CREATE TABLE `tb_cavalo` (
@@ -22,18 +26,19 @@ CREATE TABLE `tb_cavalo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `tb_cavalo` (`id_cavalo`, `nome_cavalo`, `raca_cavalo`, `pelagem_cavalo`, `premio_cavalo`, `situacao_cavalo`, `modalidade_cavalo`, `destaque`, `img_cavalo`) VALUES
-(1,	'Tornado',	'Puro Sangue',	'Alazão',	'Troféu de Velocidade',	'Ativo',	'3 Tambores',	'Sim',	'tornado.jpg'),
-(2,	'Relâmpago',	'Mangalarga',	'Tordilho',	'Troféu de Resistência',	'Vendido',	'Laço',	'Não',	'relampago.jpg'),
-(3,	'Ventania',	'Crioulo',	'Baio',	'Medalha de Ouro',	'Ativo',	'Vaquejada',	'Sim',	'ventania.jpg'),
-(4,	'Estrela',	'Árabe',	'Preto',	'Troféu de Agilidade',	'Inativo',	'3 Tambores',	'Não',	'/public/assets/img/172770821769b9621bddf91556683b0af20cdf27af69.PNG'),
-(5,	'Diamante',	'Lusitano',	'Castanho',	'Certificado de Excelência',	'Ativo',	'Laço',	'Sim',	'diamante.jpg'),
-(6,	'Pegasus',	'Appaloosa',	'Malhado',	NULL,	'Vendido',	'Vaquejada',	'Não',	'pegasus.jpg'),
-(7,	'Fênix',	'Puro Sangue',	'Alazão',	'Troféu de Participação',	'Ativo',	'3 Tambores',	'Sim',	'fenix.jpg'),
+(1,	'Tornado',	'Puro Sangue',	'Alazão',	'Troféu de Velocidade',	'Inativo',	'3 Tambores',	'Sim',	'tornado.jpg'),
+(2,	'Relâmpago',	'Mangalarga',	'Tordilho',	'Troféu de Resistência',	'Inativo',	'Laço',	'Não',	'relampago.jpg'),
+(3,	'Ventania',	'Crioulo',	'Baio',	'Medalha de Ouro',	'Inativo',	'Vaquejada',	'Sim',	'ventania.jpg'),
+(4,	'Estrela',	'Árabe',	'Preto',	'Troféu de Agilidade',	'Ativo',	'3 Tambores',	'Sim',	'/public/assets/img/172770821769b9621bddf91556683b0af20cdf27af69.PNG'),
+(5,	'Diamante',	'Lusitano',	'Castanho',	'Certificado de Excelência',	'Inativo',	'Laço',	'Sim',	'diamante.jpg'),
+(6,	'Pegasus',	'Appaloosa',	'Malhado',	NULL,	'Inativo',	'Vaquejada',	'Não',	'pegasus.jpg'),
+(7,	'Fênix',	'Puro Sangue',	'Alazão',	'Troféu de Participação',	'Inativo',	'3 Tambores',	'Sim',	'fenix.jpg'),
 (8,	'Jatobá',	'Mangalarga Marchador',	'Lobuno',	NULL,	'Inativo',	'Laço',	'Não',	'jatoba.jpg'),
-(9,	'Caramelo',	'Andaluz',	'Palomino',	'Troféu de Estilo',	'Vendido',	'Vaquejada',	'Sim',	'caramelo.jpg'),
-(10,	'Aurora',	'Quarto de Milha',	'Rosilho',	'Medalha de Prata',	'Ativo',	'3 Tambores',	'Sim',	'aurora.jpg'),
+(9,	'Caramelo',	'Andaluz',	'Palomino',	'Troféu de Estilo',	'Inativo',	'Vaquejada',	'Sim',	'caramelo.jpg'),
+(10,	'Aurora',	'Quarto de Milha',	'Rosilho',	'Medalha de Prata',	'Inativo',	'3 Tambores',	'Sim',	'aurora.jpg'),
 (11,	'Cleber',	'Bravo',	'Azul',	'Mortal de 2 patas',	'Inativo',	'Laço',	'Não',	'../public/assets/img/1726794310a47fdd2ae7a0a0f6f24d9a3fc2b3232727.png'),
-(12,	'kjjo',	'bhunjmk,l',	'numk',	' hujm',	'Inativo',	'Vaquejada',	'Não',	'/public/assets/img/172719067879278245a252ad584cf32899b049033f20.png');
+(12,	'kjjo',	'bhunjmk,l',	'numk',	' hujm',	'Ativo',	'Vaquejada',	'Não',	'/public/assets/img/172719067879278245a252ad584cf32899b049033f20.png')
+ON DUPLICATE KEY UPDATE `id_cavalo` = VALUES(`id_cavalo`), `nome_cavalo` = VALUES(`nome_cavalo`), `raca_cavalo` = VALUES(`raca_cavalo`), `pelagem_cavalo` = VALUES(`pelagem_cavalo`), `premio_cavalo` = VALUES(`premio_cavalo`), `situacao_cavalo` = VALUES(`situacao_cavalo`), `modalidade_cavalo` = VALUES(`modalidade_cavalo`), `destaque` = VALUES(`destaque`), `img_cavalo` = VALUES(`img_cavalo`);
 
 DROP TABLE IF EXISTS `tb_lance`;
 CREATE TABLE `tb_lance` (
@@ -63,7 +68,10 @@ CREATE TABLE `tb_lote` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `tb_lote` (`id_lote`, `valor_lote`, `data_fechamento`, `estado_lote`, `tb_cavalo_id_cavalo`) VALUES
-(1,	30.00,	'2024-11-05 00:00:00',	'Ativo',	4);
+(1,	30.00,	'2024-11-05 00:00:00',	'Ativo',	4),
+(2,	900.00,	'2024-11-05 00:00:00',	'Ativo',	4),
+(3,	0.01,	'2024-11-12 00:00:00',	'Ativo',	12)
+ON DUPLICATE KEY UPDATE `id_lote` = VALUES(`id_lote`), `valor_lote` = VALUES(`valor_lote`), `data_fechamento` = VALUES(`data_fechamento`), `estado_lote` = VALUES(`estado_lote`), `tb_cavalo_id_cavalo` = VALUES(`tb_cavalo_id_cavalo`);
 
 DROP TABLE IF EXISTS `tb_usuario`;
 CREATE TABLE `tb_usuario` (
@@ -81,6 +89,7 @@ INSERT INTO `tb_usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_
 (6,	'Fernando',	'mortinboludo@gmail.com',	'321',	'Cliente',	'Laço'),
 (7,	'Samuel',	'leumas@gmail.com',	'4321',	'Cliente',	'3 Tambores'),
 (8,	'Rayssa',	'rayrbm@gmail.com',	'lilas',	'Cliente',	'3 Tambores'),
-(9,	'tarcisio',	'tarcisioara9@gmail.com',	'senha',	'Cliente',	'Laço');
+(9,	'tarcisio',	'tarcisioara9@gmail.com',	'senha',	'Cliente',	'Laço')
+ON DUPLICATE KEY UPDATE `id_usuario` = VALUES(`id_usuario`), `nome_usuario` = VALUES(`nome_usuario`), `email_usuario` = VALUES(`email_usuario`), `senha_usuario` = VALUES(`senha_usuario`), `tipo_usuario` = VALUES(`tipo_usuario`), `p_modalidade` = VALUES(`p_modalidade`);
 
--- 2024-10-29 11:34:26
+-- 2024-11-05 12:56:28
