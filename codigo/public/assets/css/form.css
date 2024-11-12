@@ -116,7 +116,11 @@ input[type="file"]::-webkit-file-upload-button {
     cursor: pointer !important;
 }
 
-
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none;
+  }
 
 
 /* div{
