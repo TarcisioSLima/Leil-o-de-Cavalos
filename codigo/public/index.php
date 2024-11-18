@@ -363,7 +363,7 @@
                     $retorno = conectarDB("select", $sql, "i", [$id_lote]);
                     if (sizeof($retorno[1]) == 0) {
                         $lance_atual = $valor_inicial_lote;
-                    }else {
+                     }else {
                         $dados = $retorno[1][0];
                         $lance_atual = $dados["valor_lance"];
                     }
