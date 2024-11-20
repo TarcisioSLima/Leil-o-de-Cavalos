@@ -149,6 +149,23 @@ switch ($case) {
         redirecionar("index_cavalo", $view);
         break;
 
+    case 'a_destaque':
+        $id_cavalo = $_REQUEST['id_cavalo'];
+        $view = $_REQUEST['view'];
+
+        $sql = "UPDATE tb_cavalo SET destaque = 'Sim' WHERE id_cavalo = ?";
+        conectarDB("insert_update", $sql, 'i', [$id_cavalo]);
+        redirecionar('index_cavalo', $view);
+
+        break;
+    case 'r_destaque':
+        $id_cavalo = $_REQUEST['id_cavalo'];
+        $view = $_REQUEST['view'];
+
+        $sql = "UPDATE tb_cavalo SET destaque = 'Não' WHERE id_cavalo = ?";
+        conectarDB("insert_update", $sql, 'i', [$id_cavalo]);
+        redirecionar('index_cavalo', $view);
+        break;
     default:
         /**
          * @ignore Caso não entre em nenhuma das opções acima
