@@ -29,13 +29,14 @@
         // --------------------------------------------------------------------}
         // Maior Lance {------------------------------------------------------------------
         $sql = "SELECT * FROM tb_lance WHERE tb_lote_id_lote = ? ORDER BY valor_lance";
-        $retorno = conectarDB("select", $sql, "i", [$id_lote]);
-        if (sizeof($retorno[1]) == 0) {
+        $retorno_3 = conectarDB("select", $sql, "i", [$id_lote]);
+        if (sizeof($retorno_3[1]) == 0) {
             $lance_atual = $valor_inicial_lote;
             }else {
-            $dados = $retorno[1][0];
-            $lance_atual = $dados["valor_lance"];
-        }
+                $indice = sizeof($retorno_3[1]) -1;
+                $dados = $retorno_3[1][$indice];
+                $lance_atual = $dados["valor_lance"];
+            }
     }
     $_SESSION['id_cavalo'] = $id_cavalo;
     $valor_min = $lance_atual + 100;
@@ -51,9 +52,7 @@
 </head>
 <body>
 <?php
-echo"<pre>";
-    print_r($_SESSION);
-echo"</pre>";
+
 ?>
 <div class="lance">
 

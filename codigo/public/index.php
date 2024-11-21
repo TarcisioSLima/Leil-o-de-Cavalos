@@ -297,8 +297,10 @@
                         if (sizeof($retorno_3[1]) == 0) {
                             $lance_atual = $valor_inicial_lote;
                         }else {
-                            $dados_1 = $retorno_3[1][0];
+                            $indice = sizeof($retorno_3[1]) -1;
+                            $dados_1 = $retorno_3[1][$indice];
                             $lance_atual = $dados_1["valor_lance"];
+
                         }
                     }
                     
