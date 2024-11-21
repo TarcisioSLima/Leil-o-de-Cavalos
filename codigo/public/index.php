@@ -324,7 +324,7 @@
                 </ul>
                 <ul>
                     
-                    <a href="lance.php?id_cavalo=<?=$id_cavalo?>&action=dar_lance">Ver lances</a>
+                    <a href="lance_form.php?id_cavalo=<?=$id_cavalo?>&action=dar_lance">Dar lance</a>
                 </ul>
             </div>
             <?php } else { ?>
