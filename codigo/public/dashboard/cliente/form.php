@@ -12,19 +12,22 @@
 <body>
     <div class="div_form">
         <p>Preencha os campos abaixo para criar sua conta!</p> <br>
-        <form action="/controle/controle_usuario.php?caso=cadastro_usuario" method="POST">
+        <form id = "form_cadastro"action="/controle/controle_usuario.php?caso=cadastro_usuario" method="POST">
             <ul>
                 <li>
-                    <input type="text" name="nome_usuario" placeholder="Nome">
+                    <input type="text" name="nome_usuario" placeholder="Nome" class="inputs" id="nome" > <br>
+                    <small class="error-message" id="nomeError"></small>
                 </li>
                 <li>
-                    <input type="text" name="email_usuario" placeholder="Email"> 
+                    <input type="text" name="email_usuario" placeholder="Email" class="inputs" id="email" > <br>
+                    <small class="error-message" id="emailError"></small>       
                 </li>
                 <li>
-                    <input type="text" name="senha_usuario" placeholder="Senha"> 
+                    <input type="text" name="senha_usuario" placeholder="Senha" class="inputs" id="senha" > <br>
+                    <small class="error-message" id="senhaError"></small>
                 </li>
                 
-                    <select name="p_modalidade" id="">
+                    <select name="p_modalidade" id="P_modalidade">
                         <option value="Sem preferência">Sem preferência</option>
                         <option value="3 Tambores">3 Tambores</option>
                         <option value="Laço">Laço</option>
@@ -36,4 +39,6 @@
         </form>
     </div>
 </body>
+    <script src="../../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/js/script.js"></script>
 </html>

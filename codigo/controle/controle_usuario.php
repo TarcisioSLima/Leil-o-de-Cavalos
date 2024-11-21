@@ -82,9 +82,10 @@ switch ($case) {
         $senha_usuario = $_REQUEST["senha_usuario"];
         $p_modalidade = $_REQUEST["p_modalidade"];
         
-        $sql = "SELECT * FROM tb_usuario WHERE email_usuario = ? ";
+        $sql = "SELECT * FROM tb_usuario WHERE email_usuario = ?";
         $retorno = conectarDB("select", $sql, "s", [$email_usuario]);
 
+        if (sizeof($retorno[1]) == 0) {
         if (sizeof($retorno[1]) == 0) {
             /** Insere novo usuário no banco de dados */
             $sql = "INSERT INTO tb_usuario VALUES (NULL, ?, ?, ?, ?, ?)";
