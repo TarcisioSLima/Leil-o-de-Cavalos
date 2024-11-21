@@ -116,6 +116,27 @@ input[type="file"]::-webkit-file-upload-button {
     cursor: pointer !important;
 }
 
+.lance {
+    display: flex;
+}
+.op_buttons {
+    border: solid 1px black;
+}
+.op_buttons ul{
+    display: flex;
+    list-style: none;
+}
+.op_buttons a{
+    text-decoration: none;
+}
+
+.op_buttons li{
+    border: solid 1px black;
+    border-radius: 5px;
+    margin: 30px;
+    padding: 10px;
+}
+
 
 
 
