@@ -37,7 +37,7 @@
             $lance_atual = $dados["valor_lance"];
         }
     }
-
+    $_SESSION['id_cavalo'] = $id_cavalo;
     $valor_min = $lance_atual + 100;
 
 ?>
@@ -50,7 +50,11 @@
     <link rel="stylesheet" href="/public/assets/css/form.css">
 </head>
 <body>
-
+<?php
+echo"<pre>";
+    print_r($_SESSION);
+echo"</pre>";
+?>
 <div class="lance">
 
     <div>
@@ -77,18 +81,19 @@
             <ul>
     
     <?php 
-        $opcao = $lance_atual + 500;
+        $opcao = $lance_atual + 100;
         $o = 1;
         for ($i=0; $i < 5; $i++) { 
     ?>
-        <a href="/controle/controle_lance?o=<?= $o?>"><li><?= $opcao ?></li></a>
+        <a href="/controle/controle_lance.php?lance_usuario=<?= $o?>&action=n_lance"><li><?= $opcao ?></li></a>
     
-    <?php $opcao += 500; $o += 1;} ?>          
+    <?php $opcao += 100; $o += 1;} ?>          
             </ul>
         </div>
         <div>
             <form action="/controle/controle_lance.php" class="div_form">
-                <input type="text" placeholder="Valor mínimo <?= $valor_min ?>">
+                <input type="hidden" value="n_lance" name="action">
+                <input type="text" placeholder="Valor mínimo <?= $valor_min ?>" name="lance_usuario">
                 <button type="submit" id="green">Enviar</button>
             </form>
         </div>

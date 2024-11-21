@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
+    
 ?>
 
 <!DOCTYPE html>
@@ -258,6 +259,7 @@
             $retorno = conectarDB("select", $sql, "", []);
             $num = 1;
             foreach ($retorno[1] as $dados) { ?>
+            
                  <li><a href="index.php?cavalo_d=<?=$num?>">
                      <i class="fa-solid fa-<?=$num?>"></i>Cavalo em destaque</a>
                     </li>
@@ -281,6 +283,7 @@
                     $id_cavalo = $dados['id_cavalo'];
                     $sql_2 = "SELECT * FROM tb_lote WHERE tb_cavalo_id_cavalo = ?";
                     $retorno_2 = conectarDB("select", $sql_2, "i", [$id_cavalo]);
+                    
                     if (sizeof($retorno_2[1]) > 0) {
                         $dados_2 = $retorno_2[1][0];
                         $id_lote = $dados_2["id_lote"];
@@ -290,14 +293,15 @@
                         // --------------------------------------------------------------------}
                         // Maior Lance {------------------------------------------------------------------
                         $sql = "SELECT * FROM tb_lance WHERE tb_lote_id_lote = ? ORDER BY valor_lance";
-                        $retorno = conectarDB("select", $sql, "i", [$id_lote]);
-                        if (sizeof($retorno[1]) == 0) {
+                        $retorno_3 = conectarDB("select", $sql, "i", [$id_lote]);
+                        if (sizeof($retorno_3[1]) == 0) {
                             $lance_atual = $valor_inicial_lote;
                         }else {
-                            $dados = $retorno[1][0];
-                            $lance_atual = $dados["valor_lance"];
+                            $dados_1 = $retorno_3[1][0];
+                            $lance_atual = $dados_1["valor_lance"];
                         }
                     }
+                    
                     $dados_basicos = [
                         $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
                         $raca_cavalo = ("Raça: " . $dados["raca_cavalo"]),

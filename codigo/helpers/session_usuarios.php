@@ -12,6 +12,7 @@ include_once "redirecionamento.php";
  * @param string $usuario Tipo de usuário que a página requer, por exemplo, 'Cliente' ou 'Admin'.
  */
 function verificar_sessao($usuario) {
+    if (isset($_SESSION['id_cavalo'])) { unset($_SESSION['id_cavalo']); }
     switch ($usuario) {
         
         case 'Cliente':

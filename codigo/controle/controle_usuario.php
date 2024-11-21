@@ -68,7 +68,7 @@ switch ($case) {
         redirecionar('pagina_inicial', '');
         break;
     
-    case 'cadastro_usuario':
+    case 'cadastro_usuario': 
         /**
          * Cadastro de novo usuário
          * 
@@ -85,7 +85,6 @@ switch ($case) {
         $sql = "SELECT * FROM tb_usuario WHERE email_usuario = ?";
         $retorno = conectarDB("select", $sql, "s", [$email_usuario]);
 
-        if (sizeof($retorno[1]) == 0) {
         if (sizeof($retorno[1]) == 0) {
             /** Insere novo usuário no banco de dados */
             $sql = "INSERT INTO tb_usuario VALUES (NULL, ?, ?, ?, ?, ?)";
@@ -164,5 +163,6 @@ switch ($case) {
     default:
         /** @ignore Opção inválida */
         break;
+        
 }
 ?>
