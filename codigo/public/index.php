@@ -169,10 +169,10 @@
            <img src="assets/img/logo_verde.png" alt="" style="max-width: 200px; max-height: 200px;">
         </div>
         <form action="index.php">
-        <div class="search-container">
+            <div class="search-container">
             <!-- <input type="hidden" name="pesquisa" value = "qualquercoisa"> -->
                 <select name="filtro" id="" class="search-box">
-                    <option disabled selected >Filtrar</option>
+                    <option value="sem_filtro" selected >Sem filtro</option>
                     <option value="raca_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'raca_cavalo') {echo 'selected';} ?>>Raça</option>
                     <option value="pelagem_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'pelagem_cavalo') {echo 'selected';} ?>>Pelagem</option>
                     <option value="premio_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'premio_cavalo') {echo 'selected';} ?>>Prêmio</option>
@@ -245,7 +245,7 @@
         </ul>
     </div>
     <?php 
-        if (!isset($_REQUEST["texto"])) { ?>
+        if (!isset($_REQUEST["texto"]) && !isset($_REQUEST["filtro"])) { ?>
             <div class="container">
                 <!-- Menu lateral de cavalos em destaque -->
                 
@@ -397,6 +397,43 @@
         $filtro = $_REQUEST["filtro"];
         $texto = $_REQUEST["texto"];
         switch ($filtro) {
+            case 'sem_filtro':
+                $sql = "SELECT * FROM tb_cavalo WHERE raca_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
+                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
+                $retorno = conectarDB("select", $sql, "s", [$param]);
+                if (sizeof($retorno[1]) > 0) {
+                    foreach ($retorno[1] as $dados) { 
+                        // Dados do cavalo
+                        $id_cavalo = $dados["id_cavalo"];
+                        $nome_cavalo = $dados["nome_cavalo"];
+                        $raca_cavalo = $dados["raca_cavalo"];
+                        $pelagem_cavalo = $dados["pelagem_cavalo"];
+                        $premio_cavalo = $dados["premio_cavalo"];
+                        $modalidade_cavalo = $dados["modalidade_cavalo"];
+                        $img_cavalo = $dados["img_cavalo"];
+                    }
+                }
+
+                        // $data_fechamento_conversao = new DateTime($data_fechamento);
+                        // $data_final = $data_fechamento_conversao ->format('d/m/Y');
+                ?>
+                        <div class="card lotes">
+                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                            <div class="card-content">
+                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
+                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
+                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
+                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
+
+                            <div class="card-actions">
+                                <a href="#" class="card-link">Dar lance</a>
+                            </div>
+                            </div>
+                        </div>
+                
+                <?php  
+                break;
             case 'raca_cavalo':
                 $sql = "SELECT * FROM tb_cavalo WHERE raca_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
                 $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto

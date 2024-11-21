@@ -159,7 +159,7 @@ switch ($case) {
         /** Redireciona para o perfil */
         redirecionar("perfil", "");
         break;
-
+    
     default:
         /** @ignore Opção inválida */
         break;
