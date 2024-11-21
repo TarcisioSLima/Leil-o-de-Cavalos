@@ -132,6 +132,11 @@
                         switch ($situacao_cavalo) {
                             case 'Ativo':
                                 echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view'>Ver propostas</a>";
+                                if ($dados['destaque'] == "Sim") {
+                                    echo "<a href='/controle/controle_cavalo.php?caso=r_destaque&id_cavalo=$id_cavalo&view=$view'>Remover Destaque</a>";
+                                }elseif ($dados['destaque'] == "Não") {
+                                    echo "<a href='/controle/controle_cavalo.php?caso=r_destaque&id_cavalo=$id_cavalo&view=$view'>Adicionar Destaque</a>";
+                                }
                                 break;
                             case 'Inativo':
                                 echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view'>Editar</a>
