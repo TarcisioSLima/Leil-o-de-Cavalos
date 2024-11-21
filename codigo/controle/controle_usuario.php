@@ -86,7 +86,6 @@ switch ($case) {
         $retorno = conectarDB("select", $sql, "s", [$email_usuario]);
 
         if (sizeof($retorno[1]) == 0) {
-        if (sizeof($retorno[1]) == 0) {
             /** Insere novo usuário no banco de dados */
             $sql = "INSERT INTO tb_usuario VALUES (NULL, ?, ?, ?, ?, ?)";
             conectarDB("insert_update", $sql, "sssss", [$nome_usuario, $email_usuario, $senha_usuario, 'Cliente', $p_modalidade]);
@@ -160,7 +159,7 @@ switch ($case) {
         /** Redireciona para o perfil */
         redirecionar("perfil", "");
         break;
-
+    
     default:
         /** @ignore Opção inválida */
         break;
