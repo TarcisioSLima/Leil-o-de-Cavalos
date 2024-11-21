@@ -14,13 +14,15 @@
         <div class="div_form">
             <div>
                 <p>Primeiro confirme seu email e senha!</p> <br>
-                <form action="/controle/controle_usuario.php?caso=direcionar&id_usuario=<?php echo $id_usuario ;?>" method="POST">
+                <form action="/controle/controle_usuario.php?caso=direcionar&id_usuario=<?php echo $id_usuario ;?>" method="POST" id="form_editar">
                     <ul>
+                    <li>
+                            <input type="text" name="email_usuario" placeholder="Email" class="inputs" id="email" > <br>
+                            <small class="error-message" id="emailError"></small>
+                        </li>        
                         <li>
-                            <input type="text" name="email_usuario" placeholder="Email" class="inputs">    
-                        </li>
-                        <li>
-                            <input type="text" name="senha_usuario" placeholder="Senha" class="inputs">
+                            <input type="text" name="senha_usuario" placeholder="Senha" class="inputs" id="senha" ><br>
+                            <small class="error-message" id="senhaError"></small>
                         </li>
                         <button type="submit" id="green">Acessar</button>
                     </ul>

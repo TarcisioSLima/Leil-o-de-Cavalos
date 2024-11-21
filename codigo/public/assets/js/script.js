@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#form_login").on("submit", function(event){
+    $("#form_login, #form_editar").on("submit", function(event){
         event.preventDefault();
         $(".error-message").hide();
 
