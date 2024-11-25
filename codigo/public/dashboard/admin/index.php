@@ -135,8 +135,8 @@
         <div class="box">
             <p>Lances</p>
             <ul>
-                <li><a href="/public/dashboard/admin/lance/index.php">Específicos</a></li>
-                <li><a href="/public/dashboard/admin/lance/index.php">Gerais</a></li>
+                <li><a href="/public/dashboard/admin/lance/index.php?e=t">Específicos</a></li>
+                <li><a href="/public/dashboard/admin/lance/index.php?e=f">Gerais</a></li>
             </ul>
         </div>
         <div class="box">            
