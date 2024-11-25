@@ -499,45 +499,43 @@
     <div class="swiper-button-prev"></div>
 </div>
 
-<!-- JavaScript para Inicializar os Carrosséis -->
-<script>
-    var corridaCarousel = new Swiper('.corrida-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.corrida-carousel .swiper-button-next',
-            prevEl: '.corrida-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3, /* Apenas 3 cards na tela */
-        spaceBetween: 30, /* Espaço entre os cards */
-    });
-
-    var saltoCarousel = new Swiper('.salto-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.salto-carousel .swiper-button-next',
-            prevEl: '.salto-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3,
-        spaceBetween: 30,
-    });
-
-    var exposicaoCarousel = new Swiper('.exposicao-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.exposicao-carousel .swiper-button-next',
-            prevEl: '.exposicao-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3,
-        spaceBetween: 30,
-    });
-</script>
-
-
-<br><br><br><br><br><br>
+ 
+<?php } ?>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
+    // JavaScript para Inicializar os Carrosséis
+
+        var corridaCarousel = new Swiper('.corrida-carousel', {
+            loop: true,
+            navigation: {
+                nextEl: '.corrida-carousel .swiper-button-next',
+                prevEl: '.corrida-carousel .swiper-button-prev',
+            },
+            slidesPerView: 3, /* Apenas 3 cards na tela */
+            spaceBetween: 30, /* Espaço entre os cards */
+        });
+
+        var saltoCarousel = new Swiper('.salto-carousel', {
+            loop: true,
+            navigation: {
+                nextEl: '.salto-carousel .swiper-button-next',
+                prevEl: '.salto-carousel .swiper-button-prev',
+            },
+            slidesPerView: 3,
+            spaceBetween: 30,
+        });
+
+        var exposicaoCarousel = new Swiper('.exposicao-carousel', {
+            loop: true,
+            navigation: {
+                nextEl: '.exposicao-carousel .swiper-button-next',
+                prevEl: '.exposicao-carousel .swiper-button-prev',
+            },
+            slidesPerView: 3,
+            spaceBetween: 30,
+        });
         function animate_y1() {
             document.getElementById("button1").classList.add('animate__animated', 'animate__pulse')
         }
@@ -550,219 +548,6 @@
         function animate_n2() {
             document.getElementById("button2").classList.remove('animate__animated', 'animate__pulse')
         }
-    </script>
-        
-        <!-- Lotes de cavalos -->
-        <!-- <div class="lotes">
-            <?php
-            $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Ativo' ";
-            $retorno = conectarDB("select", $sql, "", []);
-            foreach ($retorno[1] as $dados) { 
-                $id_cavalo = $dados['id_cavalo'];
-                $nome_cavalo = $dados['nome_cavalo'];
-                $raca_cavalo = $dados['raca_cavalo'];
-                $pelagem_cavalo = $dados['pelagem_cavalo'];
-                $premio_cavalo = $dados['premio_cavalo'];
-                $situacao_cavalo = $dados['situacao_cavalo'];
-                $modalidade_cavalo = $dados['modalidade_cavalo'];
-                $img_cavalo = $dados['img_cavalo'];
-
-                $sql_2 = "SELECT * FROM tb_lote WHERE tb_cavalo_id_cavalo = ?";
-                $retorno_2 = conectarDB("select", $sql_2, "i", [$id_cavalo]);
-                if (sizeof($retorno_2[1]) > 0) {
-                    $dados_2 = $retorno_2[1][0];
-                    $id_lote = $dados_2["id_lote"];
-                    $valor_inicial_lote = $dados_2["valor_lote"];
-                    $data_de_fechamento = $dados_2["data_fechamento"];
-                
-                    // --------------------------------------------------------------------}
-                    // Maior Lance {------------------------------------------------------------------
-                    $sql = "SELECT * FROM tb_lance WHERE tb_lote_id_lote = ? ORDER BY valor_lance";
-                    $retorno = conectarDB("select", $sql, "i", [$id_lote]);
-                    if (sizeof($retorno[1]) == 0) {
-                        $lance_atual = $valor_inicial_lote;
-                     }else {
-                        $dados = $retorno[1][0];
-                        $lance_atual = $dados["valor_lance"];
-                    }
-                }
-           ?>
-    <div class="ls">
-        <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
-        
-        <h4>Nome: <?= $nome_cavalo ?></h4>
-        
-        <p>Raça: <?= $raca_cavalo ?></p>
-        
-        <p>Prêmios: <?= $premio_cavalo ?></p>
-        
-        <p>Modalidade: <?= $modalidade_cavalo ?></p>
-
-        <p>Valor atual do lote: <?= $lance_atual ?></p> 
-        
-        <p>Data de fechamento: <?= $data_de_fechamento ?></p> 
-        
-    </div>
-    <?php } ?>
-</div>
-<?php } else {
-        $filtro = $_REQUEST["filtro"];
-        $texto = $_REQUEST["texto"];
-        switch ($filtro) {
-            case 'sem_filtro':
-                $sql = "SELECT * FROM tb_cavalo WHERE raca_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
-                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
-                $retorno = conectarDB("select", $sql, "s", [$param]);
-                if (sizeof($retorno[1]) > 0) {
-                    foreach ($retorno[1] as $dados) { 
-                        // Dados do cavalo
-                        $id_cavalo = $dados["id_cavalo"];
-                        $nome_cavalo = $dados["nome_cavalo"];
-                        $raca_cavalo = $dados["raca_cavalo"];
-                        $pelagem_cavalo = $dados["pelagem_cavalo"];
-                        $premio_cavalo = $dados["premio_cavalo"];
-                        $modalidade_cavalo = $dados["modalidade_cavalo"];
-                        $img_cavalo = $dados["img_cavalo"];
-                    }
-                }
-
-                        // $data_fechamento_conversao = new DateTime($data_fechamento);
-                        // $data_final = $data_fechamento_conversao ->format('d/m/Y');
-                ?>
-                        <div class="card lotes">
-                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
-                            <div class="card-content">
-                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
-                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
-                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
-                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
-                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
-
-                            <div class="card-actions">
-                                <a href="#" class="card-link">Dar lance</a>
-                            </div>
-                            </div>
-                        </div>
-                
-                <?php  
-                break;
-            case 'raca_cavalo':
-                $sql = "SELECT * FROM tb_cavalo WHERE raca_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
-                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
-                $retorno = conectarDB("select", $sql, "s", [$param]);
-                if (sizeof($retorno[1]) > 0) {
-                    foreach ($retorno[1] as $dados) { 
-                        // Dados do cavalo
-                        $id_cavalo = $dados["id_cavalo"];
-                        $nome_cavalo = $dados["nome_cavalo"];
-                        $raca_cavalo = $dados["raca_cavalo"];
-                        $pelagem_cavalo = $dados["pelagem_cavalo"];
-                        $premio_cavalo = $dados["premio_cavalo"];
-                        $modalidade_cavalo = $dados["modalidade_cavalo"];
-                        $img_cavalo = $dados["img_cavalo"];
-                    }
-                }
-
-                        // $data_fechamento_conversao = new DateTime($data_fechamento);
-                        // $data_final = $data_fechamento_conversao ->format('d/m/Y');
-                ?>
-                        <div class="card lotes">
-                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
-                            <div class="card-content">
-                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
-                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
-                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
-                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
-                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
-
-                            <div class="card-actions">
-                                <a href="#" class="card-link">Dar lance</a>
-                            </div>
-                            </div>
-                        </div>
-                
-                <?php  
-                break;
-            case 'pelagem_cavalo':
-                $sql = "SELECT * FROM tb_cavalo WHERE pelagem_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
-                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
-                $retorno = conectarDB("select", $sql, "s", [$param]);
-                if (sizeof($retorno[1]) > 0) {
-                    foreach ($retorno[1] as $dados) { 
-                        // Dados do cavalo
-                        $id_cavalo = $dados["id_cavalo"];
-                        $nome_cavalo = $dados["nome_cavalo"];
-                        $raca_cavalo = $dados["raca_cavalo"];
-                        $pelagem_cavalo = $dados["pelagem_cavalo"];
-                        $premio_cavalo = $dados["premio_cavalo"];
-                        $modalidade_cavalo = $dados["modalidade_cavalo"];
-                        $img_cavalo = $dados["img_cavalo"];
-
-
-                        // $data_fechamento_conversao = new DateTime($data_fechamento);
-                        // $data_final = $data_fechamento_conversao ->format('d/m/Y');
-                ?>
-                        <div class="card lotes">
-                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
-                            <div class="card-content">
-                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
-                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
-                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
-                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
-                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
-
-                            <div class="card-actions">
-                                <a href="#" class="card-link">Dar lance</a>
-                            </div>
-                            </div>
-                        </div>
-                <?php
-                    }
-                }
-                break;
-            case 'premio_cavalo':
-                $sql = "SELECT * FROM tb_cavalo WHERE premio_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
-                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
-                $retorno = conectarDB("select", $sql, "s", [$param]);
-                if (sizeof($retorno[1]) > 0) {
-                    foreach ($retorno[1] as $dados) { 
-                        // Dados do cavalo
-                        $id_cavalo = $dados["id_cavalo"];
-                        $nome_cavalo = $dados["nome_cavalo"];
-                        $raca_cavalo = $dados["raca_cavalo"];
-                        $pelagem_cavalo = $dados["pelagem_cavalo"];
-                        $premio_cavalo = $dados["premio_cavalo"];
-                        $modalidade_cavalo = $dados["modalidade_cavalo"];
-                        $img_cavalo = $dados["img_cavalo"];
-                ?>
-                                  <div class="card lotes">
-                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
-                            <div class="card-content">
-                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
-                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
-                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
-                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
-                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
-
-                            <div class="card-actions">
-                                <a href="#" class="card-link">Dar lance</a>
-                            </div>
-                            </div>
-                        </div>
-            <?php
-            }
-        }
-            default:
-                
-                break;
-
-        }
-    }
-  ?>
-
-<br><br><br><br><br><br> -->
-
-    <script>
         function animate_y1() {
             document.getElementById("button1").classList.add('animate__animated', 'animate__pulse')
         }
