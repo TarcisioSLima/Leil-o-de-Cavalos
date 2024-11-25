@@ -64,6 +64,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/navbar.html';
                             <?php if ($premio_cavalo == null) echo "<li> Esse Cavalo não possui nenhum prêmio </li>"; ?>
 
                         </ul>
+                        <ul class="ul_pdf">
+                            <li>
+                                <a href=""><i class="fa-solid fa-file-pdf fa-xl" style="color: #c20000;"></i></a>
+                            </li>
+                        </ul>
                 <?php
                 
                 ?></div><?php
