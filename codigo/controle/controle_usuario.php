@@ -68,7 +68,7 @@ switch ($case) {
         redirecionar('pagina_inicial', '');
         break;
     
-    case 'cadastro_usuario':
+    case 'cadastro_usuario': 
         /**
          * Cadastro de novo usuário
          * 
@@ -82,10 +82,10 @@ switch ($case) {
         $senha_usuario = $_REQUEST["senha_usuario"];
         $p_modalidade = $_REQUEST["p_modalidade"];
         
-        $sql = "SELECT * FROM tb_usuario WHERE email_usuario = '?'";
+        $sql = "SELECT * FROM tb_usuario WHERE email_usuario = ?";
         $retorno = conectarDB("select", $sql, "s", [$email_usuario]);
 
-        if (sizeof($retorno[1]) > 0) {
+        if (sizeof($retorno[1]) == 0) {
             /** Insere novo usuário no banco de dados */
             $sql = "INSERT INTO tb_usuario VALUES (NULL, ?, ?, ?, ?, ?)";
             conectarDB("insert_update", $sql, "sssss", [$nome_usuario, $email_usuario, $senha_usuario, 'Cliente', $p_modalidade]);
@@ -159,9 +159,10 @@ switch ($case) {
         /** Redireciona para o perfil */
         redirecionar("perfil", "");
         break;
-
+    
     default:
         /** @ignore Opção inválida */
         break;
+        
 }
 ?>

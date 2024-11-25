@@ -24,6 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/public/assets/css/cards.css">
+    <script src="https://kit.fontawesome.com/bc42253982.js" crossorigin="anonymous"></script>
 </head>
 <style>
     /* CSS da navbar */
@@ -131,7 +132,12 @@
                         <?php 
                         switch ($situacao_cavalo) {
                             case 'Ativo':
-                                echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view'>Ver propostas</a>";
+                                echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view'>Propostas</a>";
+                                if ($dados['destaque'] == "Sim") {
+                                    echo "<a href='/controle/controle_cavalo.php?caso=r_destaque&id_cavalo=$id_cavalo&view=$view'><i class='fa-solid fa-star'></i></a>";
+                                }elseif ($dados['destaque'] == "Não") {
+                                    echo "<a href='/controle/controle_cavalo.php?caso=a_destaque&id_cavalo=$id_cavalo&view=$view'><i class='fa-regular fa-star'></i></a>";
+                                }
                                 break;
                             case 'Inativo':
                                 echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view'>Editar</a>

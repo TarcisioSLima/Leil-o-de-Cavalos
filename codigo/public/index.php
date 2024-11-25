@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
+    
 ?>
 
 <!DOCTYPE html>
@@ -172,10 +173,10 @@
            <img src="assets/img/logo_verde.png" alt="" style="max-width: 200px; max-height: 200px;">
         </div>
         <form action="index.php">
-        <div class="search-container">
+            <div class="search-container">
             <!-- <input type="hidden" name="pesquisa" value = "qualquercoisa"> -->
                 <select name="filtro" id="" class="search-box">
-                    <option disabled selected >Filtrar</option>
+                    <option value="sem_filtro" selected >Sem filtro</option>
                     <option value="raca_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'raca_cavalo') {echo 'selected';} ?>>Raça</option>
                     <option value="pelagem_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'pelagem_cavalo') {echo 'selected';} ?>>Pelagem</option>
                     <option value="premio_cavalo" <?php if (isset($_REQUEST['filtro']) && $_REQUEST['filtro'] == 'premio_cavalo') {echo 'selected';} ?>>Prêmio</option>
@@ -248,7 +249,7 @@
         </ul>
     </div>
     <?php 
-        if (!isset($_REQUEST["texto"]))  ?>
+        if (!isset($_REQUEST["texto"]) && !isset($_REQUEST["filtro"])) { ?>
             <div class="container">
                 <!-- Menu lateral de cavalos em destaque -->
                 
@@ -262,6 +263,7 @@
             $retorno = conectarDB("select", $sql, "", []);
             $num = 1;
             foreach ($retorno[1] as $dados) { ?>
+            
                  <li><a href="index.php?cavalo_d=<?=$num?>">
                      <i class="fa-solid fa-<?=$num?>"></i>Cavalo em destaque</a>
                     </li>
@@ -282,12 +284,37 @@
             foreach ($retorno[1] as $dados) { 
                 if ($contador == $cavalo_d) {
                     $id_cavalo = $dados['id_cavalo'];
+                    $sql_2 = "SELECT * FROM tb_lote WHERE tb_cavalo_id_cavalo = ?";
+                    $retorno_2 = conectarDB("select", $sql_2, "i", [$id_cavalo]);
+                    
+                    if (sizeof($retorno_2[1]) > 0) {
+                        $dados_2 = $retorno_2[1][0];
+                        $id_lote = $dados_2["id_lote"];
+                        $valor_inicial_lote = $dados_2["valor_lote"];
+                        $data_de_fechamento = $dados_2["data_fechamento"];
+                    
+                        // --------------------------------------------------------------------}
+                        // Maior Lance {------------------------------------------------------------------
+                        $sql = "SELECT * FROM tb_lance WHERE tb_lote_id_lote = ? ORDER BY valor_lance";
+                        $retorno_3 = conectarDB("select", $sql, "i", [$id_lote]);
+                        if (sizeof($retorno_3[1]) == 0) {
+                            $lance_atual = $valor_inicial_lote;
+                        }else {
+                            $indice = sizeof($retorno_3[1]) -1;
+                            $dados_1 = $retorno_3[1][$indice];
+                            $lance_atual = $dados_1["valor_lance"];
+
+                        }
+                    }
+                    
                     $dados_basicos = [
                         $nome_cavalo = ("Nome: " . $dados["nome_cavalo"]),
                         $raca_cavalo = ("Raça: " . $dados["raca_cavalo"]),
                         $pelagem_cavalo = ("Pelagem: " . $dados["pelagem_cavalo"]),
                         $premio_cavalo = ("Prêmio: " . $dados["premio_cavalo"]),
                         $modalidade_cavalo = ("Modalidade: " . $dados["modalidade_cavalo"]),
+                        $valor_lote_atual = ("Valor atual do Lote: " . $lance_atual),
+                        $fechamento =  ("Data de fechamento: " . $data_de_fechamento)
                     ];
                     $img_cavalo = $dados["img_cavalo"];
                     $situacao_cavalo = $dados["situacao_cavalo"];
@@ -306,7 +333,7 @@
                 </ul>
                 <ul>
                     
-                    <a href="lance.php?id_cavalo=<?=$id_cavalo?>">Ver lances</a>
+                    <a href="lance_form.php?id_cavalo=<?=$id_cavalo?>&action=dar_lance">Dar lance</a>
                 </ul>
             </div>
             <?php } else { ?>
@@ -315,198 +342,214 @@
             </div>
             <?php } ?>
         </div>
-<!-- Inclusão do CSS e JavaScript do Swiper -->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        
+        <!-- Lotes de cavalos -->
+        <div class="lotes">
+            <?php
+            $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Ativo' ";
+            $retorno = conectarDB("select", $sql, "", []);
+            foreach ($retorno[1] as $dados) { 
+                $id_cavalo = $dados['id_cavalo'];
+                $nome_cavalo = $dados['nome_cavalo'];
+                $raca_cavalo = $dados['raca_cavalo'];
+                $pelagem_cavalo = $dados['pelagem_cavalo'];
+                $premio_cavalo = $dados['premio_cavalo'];
+                $situacao_cavalo = $dados['situacao_cavalo'];
+                $modalidade_cavalo = $dados['modalidade_cavalo'];
+                $img_cavalo = $dados['img_cavalo'];
 
-<style>
-    /* Centralizar os carrosséis na página */
-    .swiper-container {
-        max-width: 80%; /* Ajuste conforme desejado */
-        margin: 0 auto;
-        position: relative;
-    }
+                $sql_2 = "SELECT * FROM tb_lote WHERE tb_cavalo_id_cavalo = ?";
+                $retorno_2 = conectarDB("select", $sql_2, "i", [$id_cavalo]);
+                if (sizeof($retorno_2[1]) > 0) {
+                    $dados_2 = $retorno_2[1][0];
+                    $id_lote = $dados_2["id_lote"];
+                    $valor_inicial_lote = $dados_2["valor_lote"];
+                    $data_de_fechamento = $dados_2["data_fechamento"];
+                
+                    // --------------------------------------------------------------------}
+                    // Maior Lance {------------------------------------------------------------------
+                    $sql = "SELECT * FROM tb_lance WHERE tb_lote_id_lote = ? ORDER BY valor_lance";
+                    $retorno = conectarDB("select", $sql, "i", [$id_lote]);
+                    if (sizeof($retorno[1]) == 0) {
+                        $lance_atual = $valor_inicial_lote;
+                     }else {
+                        $dados = $retorno[1][0];
+                        $lance_atual = $dados["valor_lance"];
+                    }
+                }
+           ?>
+    <div class="ls">
+        <img src="assets/img/horse.jpg" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="img">
+        
+        <h4>Nome: <?= $nome_cavalo ?></h4>
+        
+        <p>Raça: <?= $raca_cavalo ?></p>
+        
+        <p>Prêmios: <?= $premio_cavalo ?></p>
+        
+        <p>Modalidade: <?= $modalidade_cavalo ?></p>
 
-    /* Estilos para os cards */
-    .card {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        padding: 15px;
-        text-align: left; /* Alinha o conteúdo do card à esquerda */
-        width: 90%; /* Ajusta o tamanho dos cards */
-    }
-
-    /* Estilos para a imagem dentro dos cards */
-    .card-img {
-        width: 100%;
-        height: auto;
-        max-height: 200px; /* Ajuste conforme desejado */
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    /* Estilos para o conteúdo do card */
-    .card-content {
-        text-align: left; /* Alinha o conteúdo ao lado esquerdo */
-    }
-
-    /* Estilos para os botões de navegação do Swiper */
-    .swiper-button-next, .swiper-button-prev {
-        color: #000; /* Cor das setas */
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        z-index: 10;
-    }
-
-    /* Posição das setas fora da área dos cards */
-    .swiper-button-next {
-        right: -30px;
-    }
-
-    .swiper-button-prev {
-        left: -30px;
-    }
-</style>
-
-<!-- Carrossel para a modalidade Corrida -->
-<h2 style="text-align: center;">Modalidade: 3 Tambores</h2>
-<div class="swiper-container corrida-carousel">
-    <div class="swiper-wrapper">
-        <?php
-        $sql = "SELECT * FROM tb_cavalo WHERE modalidade_cavalo = '3 Tambores'";
-        $retorno = conectarDB("select", $sql, "", []);
-        foreach ($retorno[1] as $dados) {
-            $nome_cavalo = $dados['nome_cavalo'];
-            $raca_cavalo = $dados['raca_cavalo'];
-            $pelagem_cavalo = $dados['pelagem_cavalo'];
-            $premio_cavalo = $dados['premio_cavalo'];
-            $img_cavalo = $dados['img_cavalo'];
-        ?>
-        <div class="swiper-slide">
-            <div class="card lotes">
-                <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
-                <div class="card-content">
-                    <h3 class="card-title"><?= $nome_cavalo ?></h3>
-                    <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
-                    <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
-                    <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
-                    <div class="card-actions">
-                        <a href="#" class="card-link">Dar lance</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php } ?>
+        <p>Valor atual do lote: <?= $lance_atual ?></p> 
+        
+        <p>Data de fechamento: <?= $data_de_fechamento ?></p> 
+        
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <?php } ?>
 </div>
+<?php } else {
+        $filtro = $_REQUEST["filtro"];
+        $texto = $_REQUEST["texto"];
+        switch ($filtro) {
+            case 'sem_filtro':
+                $sql = "SELECT * FROM tb_cavalo WHERE raca_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
+                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
+                $retorno = conectarDB("select", $sql, "s", [$param]);
+                if (sizeof($retorno[1]) > 0) {
+                    foreach ($retorno[1] as $dados) { 
+                        // Dados do cavalo
+                        $id_cavalo = $dados["id_cavalo"];
+                        $nome_cavalo = $dados["nome_cavalo"];
+                        $raca_cavalo = $dados["raca_cavalo"];
+                        $pelagem_cavalo = $dados["pelagem_cavalo"];
+                        $premio_cavalo = $dados["premio_cavalo"];
+                        $modalidade_cavalo = $dados["modalidade_cavalo"];
+                        $img_cavalo = $dados["img_cavalo"];
+                    }
+                }
 
-<!-- Carrossel para a modalidade Salto -->
-<h2 style="text-align: center;">Modalidade: Laço</h2>
-<div class="swiper-container salto-carousel">
-    <div class="swiper-wrapper">
-        <?php
-        $sql = "SELECT * FROM tb_cavalo WHERE modalidade_cavalo = 'Laço'";
-        $retorno = conectarDB("select", $sql, "", []);
-        foreach ($retorno[1] as $dados) {
-            $nome_cavalo = $dados['nome_cavalo'];
-            $raca_cavalo = $dados['raca_cavalo'];
-            $pelagem_cavalo = $dados['pelagem_cavalo'];
-            $premio_cavalo = $dados['premio_cavalo'];
-            $img_cavalo = $dados['img_cavalo'];
-        ?>
-        <div class="swiper-slide">
-            <div class="card lotes">
-                <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
-                <div class="card-content">
-                    <h3 class="card-title"><?= $nome_cavalo ?></h3>
-                    <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
-                    <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
-                    <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
-                    <div class="card-actions">
-                        <a href="#" class="card-link">Dar lance</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php } ?>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-</div>
+                        // $data_fechamento_conversao = new DateTime($data_fechamento);
+                        // $data_final = $data_fechamento_conversao ->format('d/m/Y');
+                ?>
+                        <div class="card lotes">
+                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                            <div class="card-content">
+                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
+                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
+                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
+                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
 
-<!-- Carrossel para a modalidade Exposição -->
-<h2 style="text-align: center;">Modalidade: Vaquejada</h2>
-<div class="swiper-container exposicao-carousel">
-    <div class="swiper-wrapper">
-        <?php
-        $sql = "SELECT * FROM tb_cavalo WHERE modalidade_cavalo = 'Vaquejada'";
-        $retorno = conectarDB("select", $sql, "", []);
-        foreach ($retorno[1] as $dados) {
-            $nome_cavalo = $dados['nome_cavalo'];
-            $raca_cavalo = $dados['raca_cavalo'];
-            $pelagem_cavalo = $dados['pelagem_cavalo'];
-            $premio_cavalo = $dados['premio_cavalo'];
-            $img_cavalo = $dados['img_cavalo'];
-        ?>
-        <div class="swiper-slide">
-            <div class="card lotes">
-                <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
-                <div class="card-content">
-                    <h3 class="card-title"><?= $nome_cavalo ?></h3>
-                    <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
-                    <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
-                    <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
-                    <div class="card-actions">
-                        <a href="#" class="card-link">Dar lance</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php } ?>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-</div>
+                            <div class="card-actions">
+                                <a href="#" class="card-link">Dar lance</a>
+                            </div>
+                            </div>
+                        </div>
+                
+                <?php  
+                break;
+            case 'raca_cavalo':
+                $sql = "SELECT * FROM tb_cavalo WHERE raca_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
+                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
+                $retorno = conectarDB("select", $sql, "s", [$param]);
+                if (sizeof($retorno[1]) > 0) {
+                    foreach ($retorno[1] as $dados) { 
+                        // Dados do cavalo
+                        $id_cavalo = $dados["id_cavalo"];
+                        $nome_cavalo = $dados["nome_cavalo"];
+                        $raca_cavalo = $dados["raca_cavalo"];
+                        $pelagem_cavalo = $dados["pelagem_cavalo"];
+                        $premio_cavalo = $dados["premio_cavalo"];
+                        $modalidade_cavalo = $dados["modalidade_cavalo"];
+                        $img_cavalo = $dados["img_cavalo"];
+                    }
+                }
 
-<!-- JavaScript para Inicializar os Carrosséis -->
-<script>
-    var corridaCarousel = new Swiper('.corrida-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.corrida-carousel .swiper-button-next',
-            prevEl: '.corrida-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3, /* Apenas 3 cards na tela */
-        spaceBetween: 30, /* Espaço entre os cards */
-    });
+                        // $data_fechamento_conversao = new DateTime($data_fechamento);
+                        // $data_final = $data_fechamento_conversao ->format('d/m/Y');
+                ?>
+                        <div class="card lotes">
+                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                            <div class="card-content">
+                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
+                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
+                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
+                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
 
-    var saltoCarousel = new Swiper('.salto-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.salto-carousel .swiper-button-next',
-            prevEl: '.salto-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3,
-        spaceBetween: 30,
-    });
+                            <div class="card-actions">
+                                <a href="#" class="card-link">Dar lance</a>
+                            </div>
+                            </div>
+                        </div>
+                
+                <?php  
+                break;
+            case 'pelagem_cavalo':
+                $sql = "SELECT * FROM tb_cavalo WHERE pelagem_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
+                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
+                $retorno = conectarDB("select", $sql, "s", [$param]);
+                if (sizeof($retorno[1]) > 0) {
+                    foreach ($retorno[1] as $dados) { 
+                        // Dados do cavalo
+                        $id_cavalo = $dados["id_cavalo"];
+                        $nome_cavalo = $dados["nome_cavalo"];
+                        $raca_cavalo = $dados["raca_cavalo"];
+                        $pelagem_cavalo = $dados["pelagem_cavalo"];
+                        $premio_cavalo = $dados["premio_cavalo"];
+                        $modalidade_cavalo = $dados["modalidade_cavalo"];
+                        $img_cavalo = $dados["img_cavalo"];
 
-    var exposicaoCarousel = new Swiper('.exposicao-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.exposicao-carousel .swiper-button-next',
-            prevEl: '.exposicao-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3,
-        spaceBetween: 30,
-    });
-</script>
 
+                        // $data_fechamento_conversao = new DateTime($data_fechamento);
+                        // $data_final = $data_fechamento_conversao ->format('d/m/Y');
+                ?>
+                        <div class="card lotes">
+                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                            <div class="card-content">
+                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
+                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
+                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
+                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
+
+                            <div class="card-actions">
+                                <a href="#" class="card-link">Dar lance</a>
+                            </div>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }
+                break;
+            case 'premio_cavalo':
+                $sql = "SELECT * FROM tb_cavalo WHERE premio_cavalo LIKE ? AND situacao_cavalo = 'Ativo'"; 
+                $param = "%" . $texto . "%"; // Adiciona os % ao redor do texto
+                $retorno = conectarDB("select", $sql, "s", [$param]);
+                if (sizeof($retorno[1]) > 0) {
+                    foreach ($retorno[1] as $dados) { 
+                        // Dados do cavalo
+                        $id_cavalo = $dados["id_cavalo"];
+                        $nome_cavalo = $dados["nome_cavalo"];
+                        $raca_cavalo = $dados["raca_cavalo"];
+                        $pelagem_cavalo = $dados["pelagem_cavalo"];
+                        $premio_cavalo = $dados["premio_cavalo"];
+                        $modalidade_cavalo = $dados["modalidade_cavalo"];
+                        $img_cavalo = $dados["img_cavalo"];
+                ?>
+                                  <div class="card lotes">
+                            <img src="<?= $img_cavalo?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
+                            <div class="card-content">
+                                <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                                <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
+                                <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
+                                <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
+                                <p class="card-text"><strong>Modalidade:</strong> <?= $modalidade_cavalo ?></p>
+
+                            <div class="card-actions">
+                                <a href="#" class="card-link">Dar lance</a>
+                            </div>
+                            </div>
+                        </div>
+            <?php
+            }
+        }
+            default:
+                
+                break;
+
+        }
+    }
+  ?>
 
 <br><br><br><br><br><br>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
