@@ -1,0 +1,113 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container principal */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Estilo dos lotes */
+.lote {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lote:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Dados do lote */
+.dados_lote {
+    display: flex;
+    gap: 20px;
+}
+
+.dados_lote img {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.dados_lote ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dados_lote ul li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.dados_lote ul li h3 {
+    font-size: 1.4em;
+    color: #282e09;
+}
+
+/* Tabela de lances */
+.dados_lance table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.dados_lance table th,
+.dados_lance table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.dados_lance table th {
+    background-color: #53422a;
+    color: #fff;
+}
+
+.dados_lance table tr:hover {
+    background-color: #f4f4f4;
+}
+
+.f_dados_lance h1 {
+    font-size: 1.5em;
+    color: #888;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dados_lote {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .dados_lote img {
+        max-width: 100%;
+        max-height: 200px;
+    }
+}
