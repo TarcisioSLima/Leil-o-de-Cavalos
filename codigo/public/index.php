@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/verificador_lote.php';
     
 ?>
 

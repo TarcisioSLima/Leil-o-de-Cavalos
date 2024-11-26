@@ -26,18 +26,15 @@ CREATE TABLE `tb_cavalo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `tb_cavalo` (`id_cavalo`, `nome_cavalo`, `raca_cavalo`, `pelagem_cavalo`, `premio_cavalo`, `situacao_cavalo`, `modalidade_cavalo`, `destaque`, `img_cavalo`) VALUES
-(1,	'Tornado',	'Puro Sangue',	'Alazão',	'Troféu de Velocidade',	'Inativo',	'3 Tambores',	'Sim',	'tornado.jpg'),
-(2,	'Relâmpago',	'Mangalarga',	'Tordilho',	'Troféu de Resistência',	'Inativo',	'Laço',	'Não',	'relampago.jpg'),
-(3,	'Ventania',	'Crioulo',	'Baio',	'Medalha de Ouro',	'Inativo',	'Vaquejada',	'Sim',	'ventania.jpg'),
-(4,	'Estrela',	'Árabe',	'Preto',	'Troféu de Agilidade',	'Ativo',	'3 Tambores',	'Sim',	'/public/assets/img/172770821769b9621bddf91556683b0af20cdf27af69.PNG'),
-(5,	'Diamante',	'Lusitano',	'Castanho',	'Certificado de Excelência',	'Inativo',	'Laço',	'Sim',	'diamante.jpg'),
-(6,	'Pegasus',	'Appaloosa',	'Malhado',	NULL,	'Inativo',	'Vaquejada',	'Não',	'pegasus.jpg'),
-(7,	'Fênix',	'Puro Sangue',	'Alazão',	'Troféu de Participação',	'Inativo',	'3 Tambores',	'Sim',	'fenix.jpg'),
-(8,	'Jatobá',	'Mangalarga Marchador',	'Lobuno',	NULL,	'Inativo',	'Laço',	'Não',	'jatoba.jpg'),
-(9,	'Caramelo',	'Andaluz',	'Palomino',	'Troféu de Estilo',	'Inativo',	'Vaquejada',	'Sim',	'caramelo.jpg'),
-(10,	'Aurora',	'Quarto de Milha',	'Rosilho',	'Medalha de Prata',	'Inativo',	'3 Tambores',	'Sim',	'aurora.jpg'),
-(11,	'Cleber',	'Bravo',	'Azul',	'Mortal de 2 patas',	'Inativo',	'Laço',	'Não',	'../public/assets/img/1726794310a47fdd2ae7a0a0f6f24d9a3fc2b3232727.png'),
-(12,	'kjjo',	'bhunjmk,l',	'numk',	' hujm',	'Ativo',	'Vaquejada',	'Não',	'/public/assets/img/172719067879278245a252ad584cf32899b049033f20.png')
+(13,	'Tornado',	'Puro Sangue',	'Alazão',	'Troféu de Velocidade',	'Inativo',	'3 Tambores',	'Não',	'/public/assets/img/1732589276c78b06c339049b2e7a51d05a70f7ecd729.jpg'),
+(14,	'Estrela',	'Quarto de Milha',	'Rosilho',	'Medalha de Bronze',	'Inativo',	'3 Tambores',	'Não',	'/public/assets/img/17325893604de18c4f7ca0a1744c3492e46973a5cf38.jpg'),
+(15,	'Relâmpago',	'Crioulo',	'Castanho',	'Certificado de Desempenho',	'Inativo',	'3 Tambores',	'Não',	'/public/assets/img/1732589446ec3b4144f12a53632b9d7e9ef6b5f26425.png'),
+(16,	'Cometa',	'Puro Sangue',	'Baio',	'Medalha de Ouro',	'Inativo',	'3 Tambores',	'Não',	'/public/assets/img/1732589512a8c7155c2ad89d78452015f79e497ad073.jpg'),
+(17,	'Àquila',	'Lusitano',	'Castanho',	'Troféu de Participação',	'Inativo',	'3 Tambores',	'Não',	'/public/assets/img/1732589612e0f6d8eb636e694ea3c7750a5595557150.jpg'),
+(18,	'Ventania',	'Crioulo',	'Baio',	'Medalha de Ouro',	'Inativo',	'Vaquejada',	'Não',	'/public/assets/img/173258969034224b4e128d7978506952428af4161684.jpg'),
+(19,	'Diamante',	'Lusitano',	'Castanho',	'Execelência',	'Inativo',	'Vaquejada',	'Não',	'/public/assets/img/1732589737f6454eb3484c5e38263aa16b4ad63cc065.jpg'),
+(20,	'Pegasus',	'Puro Sangue',	'Alazão',	'Medalha de Bronze',	'Inativo',	'Vaquejada',	'Não',	'/public/assets/img/17325898131f58eea9e1c3e0048baa6a89c050a4f478.jpg'),
+(21,	'Tigre',	'Quarto de Milha',	'Rosilho',	'Medalha de prata',	'Inativo',	'Vaquejada',	'Não',	'/public/assets/img/17325898531f6063bb248ea02a1fdf7d139ed6792f46.jpg')
 ON DUPLICATE KEY UPDATE `id_cavalo` = VALUES(`id_cavalo`), `nome_cavalo` = VALUES(`nome_cavalo`), `raca_cavalo` = VALUES(`raca_cavalo`), `pelagem_cavalo` = VALUES(`pelagem_cavalo`), `premio_cavalo` = VALUES(`premio_cavalo`), `situacao_cavalo` = VALUES(`situacao_cavalo`), `modalidade_cavalo` = VALUES(`modalidade_cavalo`), `destaque` = VALUES(`destaque`), `img_cavalo` = VALUES(`img_cavalo`);
 
 DROP TABLE IF EXISTS `tb_lance`;
@@ -50,8 +47,8 @@ CREATE TABLE `tb_lance` (
   PRIMARY KEY (`id_lance`),
   KEY `tb_usuario_id_usuario` (`tb_usuario_id_usuario`),
   KEY `tb_lote_id_lote` (`tb_lote_id_lote`),
-  CONSTRAINT `tb_lance_ibfk_1` FOREIGN KEY (`tb_usuario_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`),
-  CONSTRAINT `tb_lance_ibfk_2` FOREIGN KEY (`tb_lote_id_lote`) REFERENCES `tb_lote` (`id_lote`)
+  CONSTRAINT `tb_lance_ibfk_3` FOREIGN KEY (`tb_usuario_id_usuario`) REFERENCES `tb_usuario` (`id_usuario`) ON DELETE CASCADE,
+  CONSTRAINT `tb_lance_ibfk_4` FOREIGN KEY (`tb_lote_id_lote`) REFERENCES `tb_lote` (`id_lote`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -60,18 +57,13 @@ CREATE TABLE `tb_lote` (
   `id_lote` int(11) NOT NULL AUTO_INCREMENT,
   `valor_lote` decimal(10,2) NOT NULL,
   `data_fechamento` datetime NOT NULL,
-  `estado_lote` enum('Ativo','Inativo') NOT NULL,
+  `estado_lote` enum('Ativo','Inativo','Encerrado') NOT NULL,
   `tb_cavalo_id_cavalo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_lote`),
   KEY `tb_cavalo_id_cavalo` (`tb_cavalo_id_cavalo`),
-  CONSTRAINT `tb_lote_ibfk_1` FOREIGN KEY (`tb_cavalo_id_cavalo`) REFERENCES `tb_cavalo` (`id_cavalo`)
+  CONSTRAINT `tb_lote_ibfk_2` FOREIGN KEY (`tb_cavalo_id_cavalo`) REFERENCES `tb_cavalo` (`id_cavalo`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `tb_lote` (`id_lote`, `valor_lote`, `data_fechamento`, `estado_lote`, `tb_cavalo_id_cavalo`) VALUES
-(1,	30.00,	'2024-11-05 00:00:00',	'Ativo',	4),
-(2,	900.00,	'2024-11-05 00:00:00',	'Ativo',	4),
-(3,	0.01,	'2024-11-12 00:00:00',	'Ativo',	12)
-ON DUPLICATE KEY UPDATE `id_lote` = VALUES(`id_lote`), `valor_lote` = VALUES(`valor_lote`), `data_fechamento` = VALUES(`data_fechamento`), `estado_lote` = VALUES(`estado_lote`), `tb_cavalo_id_cavalo` = VALUES(`tb_cavalo_id_cavalo`);
 
 DROP TABLE IF EXISTS `tb_usuario`;
 CREATE TABLE `tb_usuario` (
@@ -85,11 +77,7 @@ CREATE TABLE `tb_usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `tb_usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_usuario`, `tipo_usuario`, `p_modalidade`) VALUES
-(1,	'James',	'cjames@gmail.com',	'123',	'Admin',	'3 Tambores'),
-(6,	'Fernando',	'mortinboludo@gmail.com',	'321',	'Cliente',	'Laço'),
-(7,	'Samuel',	'leumas@gmail.com',	'4321',	'Cliente',	'3 Tambores'),
-(8,	'Rayssa',	'rayrbm@gmail.com',	'lilas',	'Cliente',	'3 Tambores'),
-(9,	'tarcisio',	'tarcisioara9@gmail.com',	'senha',	'Cliente',	'Laço')
+(12,	'Tarciso',	'email_raro@gmail.com',	'senha_forte',	'Admin',	'Sem preferência')
 ON DUPLICATE KEY UPDATE `id_usuario` = VALUES(`id_usuario`), `nome_usuario` = VALUES(`nome_usuario`), `email_usuario` = VALUES(`email_usuario`), `senha_usuario` = VALUES(`senha_usuario`), `tipo_usuario` = VALUES(`tipo_usuario`), `p_modalidade` = VALUES(`p_modalidade`);
 
--- 2024-11-05 12:56:28
+-- 2024-11-26 02:58:49

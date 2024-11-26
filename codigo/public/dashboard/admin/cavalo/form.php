@@ -10,6 +10,7 @@
      * @after verificar_sessao("Admin") Inicia sessão e verifica permissões de acesso.
      */
 
+    include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/verificador_lote.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
     session_start();
     verificar_sessao("Admin");
