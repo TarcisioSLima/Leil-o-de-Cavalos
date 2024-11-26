@@ -171,8 +171,8 @@
         <li><a href="/public/dashboard/admin/lote/selecionar_cavalo.php?view=card">Cadastrar novo lote</a></li><?php } ?>
     </ul>
 </div>
-
         <!--Tabela com os ativos!   -->
+
     <?php 
 
     $view = $_REQUEST['view'];     
@@ -270,27 +270,45 @@
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo
+                    $id_lote = $dados["id_lote"];
                     $valor_lote = $dados["valor_lote"];
                     $estado_lote = $dados["estado_lote"];
                     $data_fechamento = $dados["data_fechamento"];
-                    $data_fechamento_conversao = new DateTime($data_fechamento);
-                    $data_final = $data_fechamento_conversao ->format('d/m/Y');
+                    // $data_fechamento_conversao = new DateTime($data_fechamento);
+                    $data_final_final = date("d/m/Y", strtotime($data_fechamento));
+                    // $data_final = $data_final_final ->format('d/m/Y');
 
             ?>
             <div class="card">
                 <img src="<?= $img_cavalo?>" alt="Imagem do cavalo " class="card-img">
                 <div class="card-content">
+                <p class="card-text"><strong>Tempo restante: </strong></p>
+                <div id="cronometro card-content" style="display: flex; gap: 10px; margin-top: 10px;">
+                    <div id="dias-box" class="time-box" style="background-color: #f3f3f3; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; min-width: 50px;">
+                        <span id="dias" style="display: block; font-size: 18px;"></span> d
+                    </div>
+                    <div id="horas-box" class="time-box" style="background-color: #f3f3f3; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; min-width: 50px;">
+                        <span id="horas" style="display: block; font-size: 18px;"></span> h
+                    </div>
+                    <div id="minutos-box" class="time-box" style="background-color: #f3f3f3; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; min-width: 50px;">
+                        <span id="minutos" style="display: block; font-size: 18px;"></span> m
+                    </div>
+                    <div id="segundos-box" class="time-box" style="background-color: #f3f3f3; padding: 10px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; min-width: 50px;">
+                        <span id="segundos" style="display: block; font-size: 18px;"></span> s
+                    </div>
+                </div>
                     <p class="card-text"><strong>Valor:</strong> <?= $valor_lote ?></p>
-                    <p class="card-text"><strong>Data de fechamento:</strong> <?= $data_final ?></p>
+                    <p class="card-text"><strong>Data de fechamento:</strong> <?= $data_final_final ?></p>
                     <p class="card-text"><strong>Situação:</strong> <?= $estado_lote ?></p>
                 <div class="card-actions">
                     <a href="#" class="card-link">Ver propostas</a>
                     <a href="#" class="card-link">Pausar anuncio</a>
                 </div>
                 </div>
-            </div>
+            </div></div>
                     <?php } ?>
         </div>
+
         
     <?php }
     elseif ($view == 'cardinativo') { ?>
@@ -306,6 +324,7 @@
 
                 foreach ($retorno[1] as $dados) { 
                     // Dados do cavalo
+                    $id_lote = $dados["id_lote"];
                     $valor_lote = $dados["valor_lote"];
                     $data_fechamento = $dados["data_fechamento"];
                     $estado_lote = $dados["estado_lote"];
@@ -323,6 +342,9 @@
                 </div>
                 </div>
             </div>
+            <script>
+                Cronometro("<?= $data_fechamento ?>", "timer-<?= $dados['id_lote'] ?>");
+            </script>
                     <?php } ?>
         </div>
         
@@ -330,5 +352,35 @@
     // else redirecionar("pagina_inicial", "")?>
 
 </body>
+
+    <script>
+        // Passe a data de fechamento do PHP para o JavaScript
+    const dataFinal = new Date("<?= $data_fechamento ?>").getTime();
+
+// Atualize a contagem regressiva a cada segundo
+const intervalo = setInterval(() => {
+    const agora = new Date().getTime();
+    const diferenca = dataFinal - agora;
+
+    // Calcule os dias, horas, minutos e segundos restantes
+    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+    // Atualize os elementos com os valores calculados
+    document.getElementById('dias').innerText = dias;
+    document.getElementById('horas').innerText = horas;
+    document.getElementById('minutos').innerText = minutos;
+    document.getElementById('segundos').innerText = segundos;
+
+    // Se a contagem regressiva terminar, exiba uma mensagem
+    if (diferenca < 0) {
+        clearInterval(intervalo);
+        document.getElementById('cronometro').innerHTML = "Contagem encerrada!";
+    }
+}, 1000);
+    </script>
+
 </html>
        
