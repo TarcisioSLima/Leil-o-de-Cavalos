@@ -38,7 +38,7 @@ $(document).ready(function() {
     })
 
 
-    $("#form_cadastro").on("submit", function(event) {
+    $("#form_cadastro_usuario").on("submit", function(event) {
         event.preventDefault(); // Impede o envio automático do formulário
         $(".error-message").hide(); // Esconde todas as mensagens de erro
         let validacao = true;
@@ -102,7 +102,62 @@ $(document).ready(function() {
             this.submit();
         }
     });
+
+    $("#form_editar_usuario").on("submit", function(event) {
+        event.preventDefault(); // Impede o envio automático do formulário
+        $(".error-message").hide(); // Esconde todas as mensagens de erro
+        let validacao = true;
+    
+        // Validação do Nome
+        const nomeUsuario = $("input[name='n_nome']").val().trim();
+        if (nomeUsuario === "") {
+            $("#nomeError").text("O nome é obrigatório.").show();
+            validacao = false;
+        } else if (nomeUsuario.length < 3) {
+            $("#nomeError").text("O nome deve ter pelo menos 3 caracteres.").show();
+            validacao = false;
+        }
+    
+        // Validação do E-mail
+        const emailUsuario = $("input[name='n_email']").val().trim();
+        const email = $("#n_email").val().trim(); //.val() = pega o valor ;;; .trim() = tira os espaços do inicio e final
+        const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const caracteresInvalidos = /[<>{}[\]/'"!#$%^&*()]/;
+    
+        if (emailUsuario === "") {
+            $("#emailError").text("O e-mail é obrigatório.").show();
+            validacao = false;
+        }
+        if (email === "") {
+            $("#emailError").text("O email é obrigatório.").show();
+            validacao = false;
+        } else if (email.length < 5) {
+            $("#emailError").text("O e-mail deve ter pelo menos 5 caracteres.").show();
+            validacao = false;
+        } else if (caracteresInvalidos.test(email)) {
+            $("#emailError").text("O e-mail contém caracteres inválidos.").show();
+            validacao = false;
+        } else if (!formatoEmail.test(email)) {
+             $("#emailError").text("Formato de e-mail inválido.").show();
+             validacao = false;         
+        } 
+        else {
+            $("#emailError").hide();
+        }
+        // Validação da Modalidade
+        const modalidade = $("select[name='p_modalidade']").val();
+        if (modalidade === "") {
+            $("#modalidadeError").text("Por favor, selecione uma modalidade.").show();
+            validacao = false;
+        }
+    
+        // Envia o formulário apenas se todas as validações forem aprovadas
+        if (validacao) {
+            this.submit();
+        }
+    });
 })
+
 
 
 

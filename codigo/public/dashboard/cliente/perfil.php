@@ -50,13 +50,15 @@
     <?php if (isset($_GET['editar'])) {?>
         <div class="div_form">
             <p>Altere os campos que achar necessário</p>
-                <form action="/controle/controle_usuario.php?caso=editar" method="POST">
+                <form action="/controle/controle_usuario.php?caso=editar" method="POST" id="form_editar_usuario">
                     <ul>
                         <li>
-                            <input type="text" value="<?= $nome_usuario ;?>" name="n_nome">
+                            <input type="text" value="<?= $nome_usuario ;?>" name="n_nome" id="n_nome">
+                            <br><small class="error-message" id="nomeError"></small>
                         </li>
                         <li>
-                            <input type="email" value="<?= $email_usuario ;?>" name="n_email">  
+                            <input type="email" value="<?= $email_usuario ;?>" name="n_email" id="n_email">  
+                            <br> <small class="error-message" id="emailError"></small>
                         </li>
                         <li>
                             <select name="n_p_modalidade" id="">
@@ -83,4 +85,6 @@
 
     
 </body>
+    <script src="../../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/js/script.js"></script>
 </html>
