@@ -416,6 +416,7 @@
                 <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                 <div class="card-content">
                     <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                    <p class="card-text"><strong>Tempo restante:</strong> </p>
                     <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
                     <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
                     <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
@@ -450,6 +451,7 @@
                 <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                 <div class="card-content">
                     <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                    <p class="card-text"><strong>Tempo restante:</strong> </p>
                     <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
                     <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
                     <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
@@ -484,6 +486,7 @@
                 <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                 <div class="card-content">
                     <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                    <p class="card-text"><strong>Tempo restante:</strong> </p>
                     <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
                     <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
                     <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
