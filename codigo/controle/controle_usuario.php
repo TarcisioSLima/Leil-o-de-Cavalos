@@ -12,6 +12,7 @@
 
 require_once "../db/conexao.php";
 require_once "../helpers/redirecionamento.php";
+include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/verificador_lote.php';
 
 /**
  * @var string case Ação a ser executada

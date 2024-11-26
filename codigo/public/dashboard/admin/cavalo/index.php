@@ -132,7 +132,7 @@
                         <?php 
                         switch ($situacao_cavalo) {
                             case 'Ativo':
-                                echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view'>Propostas</a>";
+                                echo "<a href='/public/dashboard/admin/lance/index.php?e=t&id_cavalo=$id_cavalo'>Propostas</a>";
                                 if ($dados['destaque'] == "Sim") {
                                     echo "<a href='/controle/controle_cavalo.php?caso=r_destaque&id_cavalo=$id_cavalo&view=$view'><i class='fa-solid fa-star'></i></a>";
                                 }elseif ($dados['destaque'] == "Não") {
@@ -142,7 +142,7 @@
                             case 'Inativo':
                                 echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view'>Editar</a>
                                     <div></div>
-                                    <a href='/controle/controle_cavalo.php?caso=anunciar&id_cavalo=$id_cavalo&view=$view'>Anunciar</a>";
+                                    <a href='/public/dashboard/admin/lote/form_lote.php?id_cavalo=$id_cavalo&view=$view'>Anunciar</a>";
                                 break;
                             case 'Vendido':
                                 echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo&view=$view'>Remover</a>";
@@ -190,11 +190,11 @@
                             <?php 
                             switch ($situacao_cavalo) {
                                 case 'Ativo':
-                                    echo "<a href='/controle/controle_cavalo.php?caso=proposta&id_cavalo=$id_cavalo&view=$view' class='card-link'>Ver propostas</a>";
+                                    echo "<a href='/public/dashboard/admin/lance/index.php?e=t&id_cavalo=$id_cavalo' class='card-link'>Ver propostas</a>";
                                     break;
                                 case 'Inativo':
                                     echo "<a href='/public/dashboard/admin/cavalo/form.php?id_cavalo=$id_cavalo&view=$view' class='card-link'>Editar</a>";
-                                    echo "<a href='/controle/controle_cavalo.php?caso=anunciar&id_cavalo=$id_cavalo&view=$view' class='card-link'>Anunciar</a>";
+                                    echo "<a href='/public/dashboard/admin/lote/form_lote.php?id_cavalo=$id_cavalo&view=$view' class='card-link'>Anunciar</a>";
                                     break;
                                 case 'Vendido':
                                     echo "<a href='/controle/controle_cavalo.php?caso=remover&id_cavalo=$id_cavalo&view=$view' class='card-link'>Remover</a>";

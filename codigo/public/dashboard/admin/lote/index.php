@@ -191,6 +191,7 @@
             </thead>        
             <tbody>
                 <?php
+                include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/verificador_lote.php';
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
                 $sql = "SELECT * FROM tb_lote WHERE estado_lote = 'Ativo'";
                 $retorno = conectarDB("select", $sql, "", []);

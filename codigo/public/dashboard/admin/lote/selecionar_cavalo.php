@@ -172,6 +172,7 @@
     <!-- Cards com os dados do cavalo -->
         <div class="cards-container">
             <?php
+                include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/verificador_lote.php';
                 include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
                 $sql = "SELECT * FROM tb_cavalo WHERE situacao_cavalo = 'Inativo'";
                 $retorno = conectarDB("select", $sql, "", []);
