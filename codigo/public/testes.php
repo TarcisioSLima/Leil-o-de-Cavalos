@@ -84,7 +84,7 @@ $pdf->Output();
 
 
 
-<?php
+
 require_once './fpdf/fpdf.php';
 require_once '../db/conexao.php';
 
@@ -136,3 +136,4 @@ if (sizeof($retorno[1]) > 0) {
     }
 }
 $pdf->Output();
+?>

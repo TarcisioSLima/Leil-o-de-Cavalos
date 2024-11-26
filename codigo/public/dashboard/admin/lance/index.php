@@ -66,7 +66,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/navbar.html';
                         </ul>
                         <ul class="ul_pdf">
                             <li>
-                                <a href=""><i class="fa-solid fa-file-pdf fa-xl" style="color: #c20000;"></i></a>
+                                <a href="/helpers/lances_gerais_pdf.php"><i class="fa-solid fa-file-pdf fa-xl" style="color: #c20000;"></i></a>
                             </li>
                         </ul>                <?php
                 

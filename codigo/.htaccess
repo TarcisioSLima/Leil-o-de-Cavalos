@@ -1,4 +1,5 @@
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !^/public/
 RewriteCond %{REQUEST_URI} !^/controle/
+RewriteCond %{REQUEST_URI} !^/helpers/
 RewriteRule ^(.*)$ /public/$1 [L]
