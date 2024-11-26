@@ -21,8 +21,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/navbar.html';
 
 </head>
 <body>
+    
+    
+    
     <div class="main">
-
+    <div class="u_pdf">
+            <ul>
+                <a href="/helpers/lances_gerais_pdf.php"><li><b>Gerar PDF com todos </b> <i class="fa-solid fa-file-pdf fa-xl" style="color: #c20000;"></i></li></a>
+            </ul>
+            
+        </div>
     
     <?php
 
@@ -66,10 +74,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/navbar.html';
                         </ul>
                         <ul class="ul_pdf">
                             <li>
-                                <a href=""><i class="fa-solid fa-file-pdf fa-xl" style="color: #c20000;"></i></a>
+                                <a href="/helpers/lances_um_pdf.php?id=<?=$id_lote?>"><i class="fa-solid fa-file-pdf fa-xl" style="color: #c20000;"></i></a>
                             </li>
-                        </ul>
-                <?php
+                        </ul>                <?php
                 
                 ?></div><?php
              
@@ -155,7 +162,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/navbar.html';
                             $minutos_lance . "min ";
                         ?>
                             <tr>
-                                <td><?= $valor_lance?></td>
+                                <td>R$ <?= $valor_lance?></td>
                                 <td><?= $data_lance?></td>
                                 <td><?= $nome_user?></td>
                                 <td><?= $email_user?></td>

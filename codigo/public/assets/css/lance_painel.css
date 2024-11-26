@@ -14,6 +14,32 @@ body {
 }
 
 /* Container principal */
+.u_pdf {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+   
+}
+.u_pdf a{
+    text-decoration: none;
+    color: black
+}
+.u_pdf ul{
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+}
+.u_pdf li{
+    border: 1px black solid;
+    max-width: 250px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.u_pdf li:hover{
+    background-color: #ddd;
+}
+
 .ul_pdf {
     margin-left: auto;
 }
