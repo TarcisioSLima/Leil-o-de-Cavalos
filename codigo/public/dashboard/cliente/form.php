@@ -12,7 +12,7 @@
 <body>
     <div class="div_form">
         <p>Preencha os campos abaixo para criar sua conta!</p> <br>
-        <form id = "form_cadastro"action="/controle/controle_usuario.php?caso=cadastro_usuario" method="POST">
+        <form id = "form_cadastro_usuario"action="/controle/controle_usuario.php?caso=cadastro_usuario" method="POST">
             <ul>
                 <li>
                     <input type="text" name="nome_usuario" placeholder="Nome" class="inputs" id="nome" > <br>

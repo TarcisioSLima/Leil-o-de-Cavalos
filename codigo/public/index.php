@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/verificador_lote.php';
     
 ?>
 
@@ -419,6 +420,7 @@
                 <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                 <div class="card-content">
                     <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                    <p class="card-text"><strong>Tempo restante:</strong> </p>
                     <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
                     <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
                     <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
@@ -453,6 +455,7 @@
                 <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                 <div class="card-content">
                     <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                    <p class="card-text"><strong>Tempo restante:</strong> </p>
                     <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
                     <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
                     <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
@@ -487,6 +490,7 @@
                 <img src="<?= $img_cavalo ?>" alt="Imagem do cavalo <?= $nome_cavalo ?>" class="card-img">
                 <div class="card-content">
                     <h3 class="card-title"><?= $nome_cavalo ?></h3>
+                    <p class="card-text"><strong>Tempo restante:</strong> </p>
                     <p class="card-text"><strong>Raça:</strong> <?= $raca_cavalo ?></p>
                     <p class="card-text"><strong>Pelagem:</strong> <?= $pelagem_cavalo ?></p>
                     <p class="card-text"><strong>Prêmios:</strong> <?= $premio_cavalo ?></p>
@@ -502,45 +506,43 @@
     <div class="swiper-button-prev"></div>
 </div>
 
-<!-- JavaScript para Inicializar os Carrosséis -->
-<script>
-    var corridaCarousel = new Swiper('.corrida-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.corrida-carousel .swiper-button-next',
-            prevEl: '.corrida-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3, /* Apenas 3 cards na tela */
-        spaceBetween: 30, /* Espaço entre os cards */
-    });
-
-    var saltoCarousel = new Swiper('.salto-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.salto-carousel .swiper-button-next',
-            prevEl: '.salto-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3,
-        spaceBetween: 30,
-    });
-
-    var exposicaoCarousel = new Swiper('.exposicao-carousel', {
-        loop: true,
-        navigation: {
-            nextEl: '.exposicao-carousel .swiper-button-next',
-            prevEl: '.exposicao-carousel .swiper-button-prev',
-        },
-        slidesPerView: 3,
-        spaceBetween: 30,
-    });
-</script>
-
-
-<br><br><br><br><br><br>
+ 
+<?php } ?>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
+    // JavaScript para Inicializar os Carrosséis
+
+        var corridaCarousel = new Swiper('.corrida-carousel', {
+            loop: true,
+            navigation: {
+                nextEl: '.corrida-carousel .swiper-button-next',
+                prevEl: '.corrida-carousel .swiper-button-prev',
+            },
+            slidesPerView: 3, /* Apenas 3 cards na tela */
+            spaceBetween: 30, /* Espaço entre os cards */
+        });
+
+        var saltoCarousel = new Swiper('.salto-carousel', {
+            loop: true,
+            navigation: {
+                nextEl: '.salto-carousel .swiper-button-next',
+                prevEl: '.salto-carousel .swiper-button-prev',
+            },
+            slidesPerView: 3,
+            spaceBetween: 30,
+        });
+
+        var exposicaoCarousel = new Swiper('.exposicao-carousel', {
+            loop: true,
+            navigation: {
+                nextEl: '.exposicao-carousel .swiper-button-next',
+                prevEl: '.exposicao-carousel .swiper-button-prev',
+            },
+            slidesPerView: 3,
+            spaceBetween: 30,
+        });
         function animate_y1() {
             document.getElementById("button1").classList.add('animate__animated', 'animate__pulse')
         }
@@ -553,6 +555,7 @@
         function animate_n2() {
             document.getElementById("button2").classList.remove('animate__animated', 'animate__pulse')
         }
+<<<<<<< HEAD
     </script>
         
         <!-- Lotes de cavalos -->
@@ -767,6 +770,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
+=======
+>>>>>>> 617f552cd289367668a40bd161402bc81f0913b0
         function animate_y1() {
             document.getElementById("button1").classList.add('animate__animated', 'animate__pulse')
         }

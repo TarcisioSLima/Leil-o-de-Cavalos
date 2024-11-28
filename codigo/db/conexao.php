@@ -14,12 +14,12 @@
  * 
  * @param string $tipo Tipo de operação SQL: 'select', 'insert_update' ou 'delete'
  * @param string $sql  Consulta SQL a ser executada
- * @param string $tipos_dados Tipos de dados dos parâmetros para binding (ex: 'ssi' para string, string, inteiro)
- * @param array  $dados Parâmetros para binding na consulta SQL
+ * @param string|null $tipos_dados Tipos de dados dos parâmetros para binding (ex: 'ssi' para string, string, inteiro)
+ * @param array|null $dados Parâmetros para binding na consulta SQL
  * 
  * @return mixed Retorna os resultados de uma consulta select ou o ID de inserção para insert/update
  */
-function conectarDB($tipo, $sql, $tipos_dados, $dados) {
+function conectarDB($tipo, $sql, $tipos_dados = null, $dados = null) {
     // Parâmetros de conexão
     $servidor = "db";
     $usuario = "root";
@@ -29,25 +29,16 @@ function conectarDB($tipo, $sql, $tipos_dados, $dados) {
     // Conexão com o banco de dados
     $conexao = mysqli_connect($servidor, $usuario, $senha, $nome_banco);
 
-    // Seleção do tipo de operação
     switch ($tipo) {
         case 'select':
-            /** Executa a função select e retorna os resultados */
             return select($conexao, $sql, $tipos_dados, $dados);
-            break;
-
         case 'insert_update':
-            /** Executa a função insert_update para inserir ou atualizar dados */
             return insert_update($conexao, $sql, $tipos_dados, $dados);
-            break;
-
         case 'delete':
-            /** Implementação futura de delete */
+            // Implementação futura
             break;
-
         default:
-            // Tipo de operação inválido
-            break;
+            return null;
     }
 }
 
@@ -56,28 +47,28 @@ function conectarDB($tipo, $sql, $tipos_dados, $dados) {
  * 
  * @param object $conexao Conexão MySQL
  * @param string $sql Consulta SQL a ser executada
- * @param array|null $dados Parâmetros para binding na consulta SQL
  * @param string|null $tipos_dados Tipos de dados dos parâmetros para binding
+ * @param array|null $dados Parâmetros para binding na consulta SQL
  * 
  * @return array Retorna um array com status de execução e resultados da consulta
  */
 function select($conexao, $sql, $tipos_dados = null, $dados = null) {
     $stmt = mysqli_prepare($conexao, $sql);
 
-    // Verifica e associa parâmetros
-    if (!is_null($tipos_dados) && !empty($tipos_dados)) {
+    // Associa parâmetros somente se forem fornecidos
+    if (!empty($tipos_dados) && !empty($dados)) {
         mysqli_stmt_bind_param($stmt, $tipos_dados, ...$dados);
     }
 
-    $retorno = mysqli_stmt_execute($stmt); // Executa a consulta
-    $resultados = mysqli_stmt_get_result($stmt); // Armazena o resultado
+    $retorno = mysqli_stmt_execute($stmt);
+    $resultados = mysqli_stmt_get_result($stmt);
 
     if ($resultados) {
         $resultados = mysqli_fetch_all($resultados, MYSQLI_ASSOC);
     }
 
-    mysqli_stmt_close($stmt); // Fecha o statement
-    mysqli_close($conexao);   // Fecha a conexão
+    mysqli_stmt_close($stmt);
+    mysqli_close($conexao);
 
     return [$retorno, $resultados];
 }
@@ -87,22 +78,25 @@ function select($conexao, $sql, $tipos_dados = null, $dados = null) {
  * 
  * @param object $conexao Conexão MySQL
  * @param string $sql Consulta SQL a ser executada
- * @param string $tipos_dados Tipos de dados dos parâmetros para binding
- * @param array  $dados Parâmetros para binding na consulta SQL
+ * @param string|null $tipos_dados Tipos de dados dos parâmetros para binding
+ * @param array|null $dados Parâmetros para binding na consulta SQL
  * 
  * @return int Retorna o ID do registro inserido (ou atualizado)
  */
-function insert_update($conexao, $sql, $tipos_dados, $dados) {
+function insert_update($conexao, $sql, $tipos_dados = null, $dados = null) {
     $stmt = mysqli_prepare($conexao, $sql);
 
-    // Associa parâmetros e executa a consulta
-    mysqli_stmt_bind_param($stmt, $tipos_dados, ...$dados);
+    // Associa parâmetros somente se forem fornecidos
+    if (!empty($tipos_dados) && !empty($dados)) {
+        mysqli_stmt_bind_param($stmt, $tipos_dados, ...$dados);
+    }
+
     mysqli_stmt_execute($stmt);
 
-    $id = mysqli_stmt_insert_id($stmt); // Armazena o ID do último registro inserido
+    $id = mysqli_stmt_insert_id($stmt);
 
-    mysqli_stmt_close($stmt); // Fecha o statement
+    mysqli_stmt_close($stmt);
+    mysqli_close($conexao);
+
     return $id;
 }
-
-?>
