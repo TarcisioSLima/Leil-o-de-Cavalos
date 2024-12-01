@@ -9,6 +9,7 @@
  * @requires ../db/conexao.php
  * @requires ../helpers/redirecionamento.php
  * 
+ * @autor Samuel <samuelbatistadeb@gmail.com>
 */
 
 require_once "../db/conexao.php";
