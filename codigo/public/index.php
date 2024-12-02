@@ -266,7 +266,7 @@
                     </li>
                     <?php } ?>
 
-                    // Verifica se o usuário está logado e qual tipo de usuário (Cliente)
+                    <!-- Verifica se o usuário está logado e qual tipo de usuário (Cliente) -->
 <!-- Botões Cliente logado -->
 
 <?php 
