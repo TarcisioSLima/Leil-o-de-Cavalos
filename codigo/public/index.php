@@ -265,7 +265,7 @@
                      <i class="fa-solid fa-<?=$num?>"></i>Cavalo em destaque</a>
                     </li>
                     <?php
-                if ($num >= 10) break;
+                if ($num >= 4) break;
                 $num += 1; 
             }?>
         

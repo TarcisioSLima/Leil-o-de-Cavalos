@@ -8,6 +8,7 @@
  * @file controle_cavalo.php
  * @requires ../db/conexao.php
  * @requires ../helpers/redirecionamento.php
+ * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
  * 
  */
 
