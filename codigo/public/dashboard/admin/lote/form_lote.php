@@ -1,4 +1,21 @@
 <?php
+    
+    /**
+     * Página de Cadastro de Lotes
+     * 
+     * Este arquivo gerencia a exibição e o envio de dados para o cadastro de lotes associados a cavalos.
+     * 
+     * @requires /helpers/session_usuarios.php
+     * @requires /db/conexao.php
+     * @requires /helpers/verificador_lote.php
+     * 
+     * @after verificar_sessao("Admin") Inicia sessão e valida permissões de acesso.
+     * 
+     * @autor Samuel <samuelbatistadeb@gmail.com>
+     * 
+     */
+
+
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/db/conexao.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/verificador_lote.php';

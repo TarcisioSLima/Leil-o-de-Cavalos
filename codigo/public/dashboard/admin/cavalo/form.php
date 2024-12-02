@@ -8,6 +8,9 @@
      * @requires /db/conexao.php (apenas em modo edição)
      * 
      * @after verificar_sessao("Admin") Inicia sessão e verifica permissões de acesso.
+     * 
+     * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
+     * 
      */
 
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/verificador_lote.php';

@@ -10,7 +10,7 @@
  * @requires ../helpers/redirecionamento.php  Função de redirecionamento.
  * @requires ../helpers/verificador_lote.php  Verifica condições relacionadas ao lote.
  * 
- * @autor Tarcísio <seu_email@example.com>
+ * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
  */
 
 // Inclusão dos arquivos necessários para o funcionamento do sistema

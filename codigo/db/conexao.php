@@ -7,6 +7,7 @@
  * inserção e atualização (insert/update) com segurança usando prepared statements.
  * 
  * @file conexao.php
+ * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
  */
 
 /**

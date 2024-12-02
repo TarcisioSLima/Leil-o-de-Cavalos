@@ -9,6 +9,9 @@
      * @requires /db/conexao.php
      * 
      * @after verificar_sessao("Admin")
+     * 
+     * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
+     * 
      */
 
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';

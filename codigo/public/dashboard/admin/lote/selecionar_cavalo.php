@@ -1,4 +1,25 @@
 <?php
+    
+    /**
+     * Página de Visualização de Lotes (Tabela e Cartões)
+     * 
+     * Este arquivo exibe os lotes de cavalos em formato de tabela ou cartões, 
+     * permitindo ao administrador visualizar lotes ativos e inativos, com opções de ações como
+     * ver propostas, editar, anunciar e remover.
+     *
+     * @requires /helpers/verificador_lote.php
+     * @requires /db/conexao.php
+     * 
+     * @param string $_REQUEST['view'] Define o modo de exibição:
+     * - 'tableativo': Exibe lotes ativos em tabela.
+     * - 'tableinativo': Exibe lotes inativos em tabela.
+     * - 'cardativo': Exibe lotes ativos em cartões.
+     * - 'cardinativo': Exibe lotes inativos em cartões.
+     * 
+     * @autor Samuel <samuelbatistadeb@gmail.com>
+     */
+
+
     include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
     session_start(); verificar_sessao("Admin");
 ?>

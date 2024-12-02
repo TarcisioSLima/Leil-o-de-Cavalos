@@ -8,7 +8,7 @@
  * @file atualizacao_lote.php
  * @requires /db/conexao.php       Conexão com o banco de dados.
  * 
- * @autor Samuel <seu_email@example.com>
+ * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
  */
 
 // Inclusão da dependência de conexão com o banco de dados

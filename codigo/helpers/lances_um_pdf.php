@@ -8,7 +8,7 @@
  * @requires ./pdf/tcpdf.php      Biblioteca TCPDF para criação de PDF.
  * @requires /db/conexao.php      Conexão com o banco de dados.
  * 
- * @autor Tarcísio <seu_email@example.com>
+ * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
  */
 
 // Inclusão das dependências

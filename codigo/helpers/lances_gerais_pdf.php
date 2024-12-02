@@ -9,7 +9,7 @@
  * @requires ./pdf/tcpdf.php       Biblioteca TCPDF para geração de PDFs.
  * @requires /db/conexao.php       Conexão com o banco de dados.
  * 
- * @autor Tarcísio <seu_email@example.com>
+ * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
  */
 
 // Inclusão das dependências

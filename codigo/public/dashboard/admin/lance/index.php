@@ -1,4 +1,27 @@
 <?php
+
+/**
+     * Painel de Lances do Administrador
+     * 
+     * Este arquivo exibe os lances feitos em lotes, permitindo ao administrador visualizar os lances de um lote específico ou de todos os lotes.
+     * Inclui opções para gerar relatórios em PDF.
+     *
+     * @requires /helpers/session_usuarios.php
+     * @requires /db/conexao.php
+     * @requires /helpers/verificador_lote.php
+     * @requires /helpers/navbar.html
+     * 
+     * @after verificar_sessao("Admin") Inicia sessão e verifica permissões de acesso.
+     * 
+     * @param string $_REQUEST['e'] Define o modo de exibição ('t' para um lote específico, 'f' para todos os lotes).
+     * @param int $_REQUEST['id_cavalo'] (Opcional) ID do cavalo para exibir os lances do lote correspondente (usado quando $_REQUEST['e'] é 't').
+     *
+     * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
+     */
+
+
+
+
 include_once $_SERVER['DOCUMENT_ROOT'].'/helpers/session_usuarios.php';
 
 // Inicia sessão e verifica se o usuário possui a permissão "Admin"

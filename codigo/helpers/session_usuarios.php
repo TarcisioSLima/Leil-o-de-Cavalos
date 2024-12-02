@@ -10,6 +10,8 @@ include_once "redirecionamento.php";
  * para acessar uma determinada página. Caso contrário, redireciona para uma página de erro ou de login.
  *
  * @param string $usuario Tipo de usuário que a página requer, por exemplo, 'Cliente' ou 'Admin'.
+ * 
+ * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
  */
 function verificar_sessao($usuario) {
     if (isset($_SESSION['id_cavalo'])) { unset($_SESSION['id_cavalo']); }

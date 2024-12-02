@@ -8,6 +8,7 @@
  * 
  * @param string $action Nome da ação que determina a página de destino
  * @param string $mensagem (Opcional) Mensagem para exibição em alert
+ * @autor Tarcísio <tarcisio.pesquisa.estudo@gmail.com>
  */
 function redirecionar($action, $mensagem) {
     switch ($action) {
